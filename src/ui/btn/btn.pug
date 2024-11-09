@@ -1,0 +1,26 @@
+mixin btn(button)
+  if button
+    -
+      var {
+        svgLeft,
+        svgRight,
+        dscrp,
+        text,
+        dscrpMarginTop,
+        dscrpMdAlignLeft,
+        tag,
+      } = button
+      var dscrpClasses = ''
+
+      dscrpClasses += dscrpMarginTop ? ' _margin-top' : ''
+      dscrpClasses += dscrpMdAlignLeft ? ' _md-align-left' : ''
+
+    #{tag || 'button'}.btn-common&attributes(attributes)
+      if svgLeft
+        +svgsprite(svgLeft)
+      span= text
+      if svgRight
+        +svgsprite(svgRight)
+    if dscrp
+      span.btn-common-dscrp(class=dscrpClasses)
+        | !{dscrp}

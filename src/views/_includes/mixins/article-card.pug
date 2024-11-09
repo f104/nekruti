@@ -1,0 +1,13 @@
+mixin article-card(data)
+  a(href="#").article-card
+    +picture({
+      url: data.image,
+      alt: data.title,
+      _0: {width: 359, height: 245,},
+      _400: {width: 727, height: 495,},
+      _1024: {width: 468, height: 318,},
+      _1280: {width: 266, height: 181,},
+    }).article-card__picture
+    .article-card__content
+      p.article-card__title=data.title
+      p.article-card__text=data.text

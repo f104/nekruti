@@ -1,0 +1,21 @@
+mixin promo-alert(props = {})
+  - 
+    const {
+      title,
+      text,
+      buttonText,
+      image,
+    } = props 
+  .promo-alert&attributes(attributes)
+    if image
+      +picture({
+        url: image,
+        _0: {width: 359, height: 202},
+        _400: {width: 727, height: 409},
+        _768: {width: 983, height: 553},
+        _1024: {width: 832, height: 468},
+      }).promo-alert__picture
+    .promo-alert__content
+      h3.promo-alert__title= title
+      p.promo-alert__text= text 
+      a(href="#").btn= buttonText

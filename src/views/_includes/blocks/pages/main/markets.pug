@@ -1,0 +1,19 @@
+-
+    const markets = [
+        {
+            image: 'assets/img/markets/ozon.svg',
+            title: 'ozon.ru',
+        },
+        {
+            image: 'assets/img/markets/yandex-market.svg',
+            title: 'yandex.market',
+        },
+        {
+            image: 'assets/img/markets/wildberries.svg',
+            title: 'wildberries.ru',
+        },
+    ]
+.market-list
+    each item in markets 
+        a(href="#" title=item.title)
+            img(src=item.image loading="lazy" alt=item.title)

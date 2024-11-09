@@ -1,0 +1,446 @@
+.btn-common {
+  $root: &;
+
+  @mixin size-xs($includeMedia: true) {
+    height: 3.6rem;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    padding: 0 1.2rem;
+    grid-gap: 0.4rem;
+    border: 0.2rem solid transparent;
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+
+    &._rounded {
+      width: 2.2rem;
+      height: 2.2rem;
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    @if $includeMedia {
+      &._icon-only-on-sm {
+        @include down(sm) {
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
+
+  @mixin size-s($includeMedia: true) {
+    height: 4.8rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    padding: 0 2rem;
+    grid-gap: 0.6rem;
+    border: 0.2rem solid transparent;
+
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    &._rounded {
+      width: 2.8rem;
+      height: 2.8rem;
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    @if $includeMedia {
+      &._icon-only-on-sm {
+        @include down(sm) {
+          padding: 0 1.4rem;
+        }
+      }
+    }
+  }
+
+  @mixin size-m($includeMedia: true) {
+    height: 6.4rem;
+    border-radius: 1.2rem;
+    font-size: 1.7rem;
+    padding: 0 2.7rem;
+    grid-gap: 0.8rem;
+    border: 0.3rem solid transparent;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &._rounded {
+      width: 3.2rem;
+      height: 3.2rem;
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    @if $includeMedia {
+      &._icon-only-on-sm {
+        @include down(sm) {
+          padding: 0 2rem;
+        }
+      }
+    }
+  }
+
+  @mixin size-l($includeMedia: true) {
+    height: 8rem;
+    border-radius: 1.4rem;
+    font-size: 2.2rem;
+    padding: 0 3.5rem;
+    grid-gap: 1rem;
+    border: 0.3rem solid transparent;
+
+    svg {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+
+    &._rounded {
+      width: 3.8rem;
+      height: 3.8rem;
+
+      svg {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+    }
+
+    @if $includeMedia {
+      &._icon-only-on-sm {
+        @include down(sm) {
+          padding: 0 2.6rem;
+        }
+      }
+    }
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  @include transition(all);
+
+  svg {
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  * {
+    @include transition(opacity);
+  }
+
+  span {
+    padding-top: 0.3rem;
+  }
+
+  &:disabled,
+  &._disabled {
+    cursor: not-allowed !important;
+  }
+
+  &._size-xs {
+    @include size-xs;
+
+    @each $media in $medias {
+      &-#{$media} {
+        @include only($media) {
+          @include size-xs(false);
+        }
+      }
+    }
+  }
+
+  &._size-s {
+    @include size-s;
+
+    @each $media in $medias {
+      &-#{$media} {
+        @include only($media) {
+          @include size-s(false);
+        }
+      }
+    }
+  }
+
+  &._size-m {
+    @include size-m;
+
+    @each $media in $medias {
+      &-#{$media} {
+        @include only($media) {
+          @include size-m(false);
+        }
+      }
+    }
+  }
+
+  &._size-l {
+    @include size-l;
+
+    @each $media in $medias {
+      &-#{$media} {
+        @include only($media) {
+          @include size-l(false);
+        }
+      }
+    }
+  }
+
+  &._rounded {
+    padding: 0 !important;
+    border-radius: 50% !important;
+  }
+
+  &._primary {
+    background: var(--button-default-bg01);
+    color: var(--button-default-typo01);
+
+    @include hover {
+      background: var(--button-state-bg01);
+      color: var(--button-state-typo01);
+    }
+
+    &:active {
+      background: var(--button-state-bg02);
+      color: var(--button-state-typo02);
+    }
+
+    &:disabled,
+    &._disabled {
+      background: var(--button-default-bg01);
+      color: var(--button-default-typo01);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._neutral-light {
+    background: var(--button-default-bg02);
+    color: var(--button-default-typo04);
+
+    @include hover {
+      background: var(--button-state-bg01);
+      color: var(--button-state-typo01);
+    }
+
+    &:active {
+      background: var(--button-state-bg02);
+      color: var(--button-state-typo02);
+    }
+
+    &:disabled,
+    &._disabled {
+      background: var(--button-default-bg02);
+      color: var(--button-default-typo04);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._neutral-dark {
+    background: var(--button-default-bg03);
+    color: var(--button-default-typo03);
+
+    @include hover {
+      background: var(--button-state-bg03);
+      color: var(--button-state-typo03);
+    }
+
+    &:active {
+      background: var(--button-state-bg04);
+      color: var(--button-state-typo04);
+    }
+
+    &:disabled,
+    &._disabled {
+      background: var(--button-default-bg03);
+      color: var(--button-default-typo03);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._secondary-light {
+    color: var(--button-state-dark-typo01);
+    background: transparent;
+    border-color: var(--button-default-dark-bg01-outline);
+
+    @include hover {
+      background: var(--button-state-dark-bg01);
+      color: var(--button-state-dark-typo01);
+    }
+
+    &:active {
+      background: var(--button-state-dark-bg02);
+      color: var(--button-state-dark-typo02);
+    }
+
+    &:disabled,
+    &._disabled {
+      background: transparent;
+      color: var(--button-default-dark-typo01);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._secondary-dark {
+    color: var(--button-default-typo05);
+    background: transparent;
+    border-color: var(--button-default-bg04-outline);
+
+    @include hover {
+      background: var(--button-state-bg05);
+      border-color: var(--button-state-bg05);
+      color: var(--button-state-typo05);
+    }
+
+    &:active {
+      background: var(--button-state-bg06);
+      border-color: var(--button-state-bg06);
+      color: var(--button-state-typo06);
+    }
+
+    &:disabled,
+    &._disabled {
+      background: transparent;
+      color: var(--button-default-typo05);
+      border-color: var(--button-default-bg04-outline);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._link-dark {
+    color: var(--button-default-bg05);
+    background: none !important;
+    border: none !important;
+    height: auto !important;
+    padding: 0 !important;
+
+    @include link-hover;
+  }
+
+  &._link-light {
+    color: var(--button-default-dark-typo01);
+    background: none !important;
+    border: none !important;
+    height: auto !important;
+    padding: 0 !important;
+
+    @include hover {
+      color: var(--button-state-dark-bg03);
+    }
+
+    &:active {
+      color: var(--button-state-dark-bg04);
+    }
+
+    &:disabled,
+    &._disabled {
+      color: var(--button-default-dark-typo01);
+      opacity: 0.4;
+    }
+  }
+
+  &._success:not(._primary) {
+    background: var(--system-success1);
+    color: var(--button-default-typo03);
+
+    &:disabled,
+    &._disabled {
+      background: var(--system-success1);
+      color: var(--button-default-typo03);
+
+      > * {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &._mobile-wide {
+    width: 100%;
+
+    @include up(md) {
+      width: fit-content;
+    }
+  }
+  &._contentpage {
+    margin-top: 2.4rem;
+
+    @include up(xl) {
+      margin-top: 3.2rem;
+    }
+  }
+
+  &-dscrp {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: var(--typography-default-tertiary);
+
+    @include up(md) {
+      font-size: 1.3rem;
+    }
+    @include up(xl) {
+      font-size: 1.6rem;
+    }
+
+    &._margin-top {
+      margin-top: 1.2rem;
+
+      @include up(xl) {
+        margin-top: 1.6rem;
+      }
+    }
+
+    &._md-align-left {
+      @include up(md) {
+        text-align: left;
+      }
+    }
+  }
+  &._wide {
+    width: 100%;
+  }
+
+  &._hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &._loaded *:not(.vue-loader) {
+    opacity: 0 !important;
+  }
+}

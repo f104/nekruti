@@ -1,0 +1,50 @@
+@import '~/swiper/swiper';
+
+.swiper {
+  margin: {
+    left: 0;
+    right: 0;
+  }
+
+  &-wrapper {
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  &-slide {
+    display: flex;
+    flex: none;
+    height: auto;
+  }
+
+  &-button-prev,
+  &-button-next {
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 50%;
+    background: $color-bg;
+    display: flex;
+    cursor: pointer;
+    @include transition((color, background, opacity));
+
+    @include hover {
+      background: $color-primary;
+      color: $color-white;
+    }
+
+    &.swiper-button-disabled {
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    &.swiper-button-lock {
+      display: none;
+    }
+
+    .svgsprite {
+      width: 3.6rem;
+      height: 3.6rem;
+      margin: auto;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+-
+  const data = [
+    {
+      image: 'assets/img/main/slide-1.jpg',
+      text: 'Механизм Вращения Шампуров сделает всю работу за вас. И самое главное — он не даст сгореть мясу и ваши друзья будут всегда довольны вашим мастерством!',
+    },
+    {
+      video: 'assets/video/1.mp4',
+      text: 'Proactively streamline real-time niches through wireless bandwidth.',
+    },
+    {
+      image: 'assets/img/main/slide-2.jpg',
+    },
+    {
+      image: 'assets/img/main/slide-3.jpg',
+    },
+    {
+      image: 'assets/img/main/slide-4.jpg',
+    },
+    {
+      image: 'assets/img/main/slide-5.jpg',
+    },
+  ]
+.main-slider.swiper.js-main-slider
+  .swiper-wrapper
+    each item in data
+      .swiper-slide
+        .main-slider__slide
+          .main-slider__slide__picture
+            if item.image
+              +picture({
+                url: item.image,
+                _0: {width: 359, height: 202},
+                _400: {width: 727, height: 409},
+                _768: {width: 983, height: 553},
+                _1024: {width: 832, height: 468},
+              }).cover-pic
+            if item.video
+              video(
+                src=item.video
+                muted="true"
+                autoplay
+                loop
+                preload="auto"
+                playsinline
+              ).cover-pic
+          if item.text
+            p.main-slider__slide__text.swiper-hide-on-transition= item.text
+  .swiper-button-prev
+    +svgsprite('arrow-left')
+  .swiper-button-next
+    +svgsprite('arrow-right')

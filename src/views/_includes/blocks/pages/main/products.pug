@@ -1,0 +1,42 @@
+-
+    const products = [
+        {
+            image: 'assets/img/products/1.jpg',
+            title: 'Шампуры-самокруты МВШ-5',
+            price: '4 000 ₽',
+            priceOld: '4 600 ₽',
+            text: 'Компактный набор из пяти шампуров. Идеален для пикника в небольшой компании.',
+        },
+        {
+            image: 'assets/img/products/2.jpg',
+            title: 'Стартер для угля',
+            price: '1 950 ₽',
+            priceOld: '2 300 ₽',
+            text: 'Предназначен для быстрого и безопасного приготовления углей. Позволяет быстро разжечь угли не пр...',
+        },
+        {
+            image: 'assets/img/products/3.jpg',
+            title: 'Универсальный механизм вращения',
+            price: '14 000 ₽',
+            text: 'Предназначен для эксплуатации со всеми видами шампуров, а также с валиками для гриль-булочек...',
+        },
+        {
+            image: 'assets/img/products/4.jpg',
+            title: 'Шампуры-самокруты МВШ-9',
+            price: '5 600 ₽',
+            priceOld: '6 500 ₽',
+            text: 'Набор из девяти шампуров для большой компании и большого праздника.',
+        },
+        {
+            image: 'assets/img/products/5.jpg',
+            title: 'Валик для гриль-булочки',
+            price: '1 500 ₽',
+            priceOld: '2 000 ₽',
+            text: 'Валик для гриль-булочки предназначен для приготовления теста на углях.',
+        },
+    ]
+.product-list
+    each item in products 
+        +product-card(item)
+    each item in products
+        +product-card(item)

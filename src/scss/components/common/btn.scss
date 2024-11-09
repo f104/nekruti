@@ -1,0 +1,36 @@
+.btn {
+  $root: &;
+
+  display: inline-flex;
+  width: fit-content;
+  height: 4.4rem;
+  padding: 0 1.8rem;
+  justify-content: center;
+  align-items: center;
+  gap: .8rem;
+  flex-shrink: 0;
+  border-radius: 2.5rem;
+  background: $color-text;
+  color: $color-white;
+  font-size: 1.6rem;
+  font-weight: 500;
+  @include transition(background);
+
+  @include hover {
+    color: $color-white;
+    background: $color-primary;
+  }
+
+  &._icon-right {
+    padding-right: .8rem;
+  }
+
+  &._icon-left {
+    padding-left: .8rem;
+  }
+
+  &__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

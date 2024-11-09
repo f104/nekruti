@@ -1,0 +1,19 @@
+mixin product-card(data)
+  .product-card
+    a(href="#").product-card__picture-wrapper
+      +picture({
+        url: data.image,
+        alt: data.title,
+        _0: {width: 262, height: 179},
+        _1024: {width: 398, height: 271},
+        _1440: {width: 262, height: 179},
+      }).product-card__picture
+    .product-card__content
+      .product-card__content__head
+        a(href="#").product-card__title=data.title
+        p.product-card__price=data.price
+          if data.priceOld 
+            del.product-card__price__old=data.priceOld
+      p.product-card__text=data.text
+      .product-card__form
+        button(tabindex="-1").btn Купить

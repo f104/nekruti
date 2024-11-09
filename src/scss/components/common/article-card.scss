@@ -1,0 +1,58 @@
+.article-card {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  @include up(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  @include hover {
+    #{$root}__picture img {
+      transform: scale(1.1);
+      transition-duration: 1s;
+    }
+
+    #{$root}__title {
+      color: $color-primary-hover;
+    }
+  }
+
+  &__picture {
+    flex-shrink: 0;
+    overflow: hidden;
+    @include aspect(320, 218);
+
+    @include up(lg) {
+      width: 22rem;
+    }
+
+    @include up(xl) {
+      width: 26.6rem;
+    }
+
+    img {
+      transition: transform .5s ease-in-out;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 500;
+    @include transition(color);
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    color: $color-text-gray;
+  }
+}

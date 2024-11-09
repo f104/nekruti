@@ -1,0 +1,23 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Список страниц"
+
+block append head
+  if !isDev
+    link(href="css/critical/main-page.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/main-page.scss" rel='stylesheet')
+
+block content
+  .container(style='font-size: 2rem')
+    ul
+      li
+        a(href='main-page.html') Главная
+      li
+        a(href='ui.html') Ui kit
+      li
+        a(href='vue.html') Vue
+      li
+        a(href='listing.html') Listing

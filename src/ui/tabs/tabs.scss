@@ -1,0 +1,13 @@
+.tabs-common {
+  $root: &;
+
+  &__content {
+    animation-name: fadeEffect;
+    animation-duration: 0.4s;
+    animation-timing-function: $transition-timing-function;
+
+    &:not(._open) {
+      display: none;
+    }
+  }
+}

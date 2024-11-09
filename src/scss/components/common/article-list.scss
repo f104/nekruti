@@ -1,0 +1,10 @@
+.article-list {
+  $root: &;
+
+  display: grid;
+  gap: 2.4rem 4.8rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

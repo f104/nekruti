@@ -1,0 +1,40 @@
+@use "sass:math";
+
+@import "base";
+@import 'components/header';
+@import 'components/content';
+@import 'components/footer';
+@import 'components/rte';
+// @import 'components/alternative';
+
+// ui kit
+// @import "../ui/input/input";
+// @import "../ui/input/input-tel/input-tel";
+// @import "../ui/input/multiselect/multiselect";
+// @import "../ui/input/datepicker/datepicker";
+// @import "../ui/input/checkbox/checkbox";
+// @import "../ui/btn/btn";
+// @import "../ui/checkbox-group/checkbox-group";
+// @import "../ui/checkbox-group/radio-btn";
+// @import "../ui/group-tab/group-tab";
+// @import "../ui/tabs/tabs";
+// @import "../ui/popup/popup";
+// @import "../ui/pagination/pagination";
+// @import "../ui/accordion/accordions";
+// @import "../ui/accordion/accordion-item";
+// @import "../ui/breadcrumbs/breadcrumbs";
+// @import "../ui/form-message/form-message";
+// @import "../ui/form/form-commom";
+// @import "../ui/video/video";
+// @import "../ui/toggle-switch/toggle-switch";
+// @import "../ui/listing/page/page";
+// @import "../ui/listing/page/page-preloader";
+// @import "../ui/listing/empty-results/empty-results";
+
+// сюда добавлять общие стили для всего сайта
+@import 'components/common/btn';
+@import 'components/common/swiper';
+@import 'components/common/product-list';
+@import 'components/common/product-card';
+@import 'components/common/article-list';
+@import 'components/common/article-card';

@@ -1,0 +1,15 @@
+footer.footer
+  .footer__inner.container
+    a(href="index.html").footer__logo
+      img(src="assets/img/logo.svg" alt="alt text")
+    ul.footer__menu
+      each item in nav
+        li.footer__menu__item
+          a(href="#").footer__menu__link=item
+    p.footer__copyright Самокруты © 2003-2025
+    ul.footer__agree
+      li.footer__agree__item
+        a(href="#").footer__agree__link Публичный договор-оферта
+      li.footer__agree__item
+        a(href="#").footer__agree__link Обработка персональных данных
+      li.footer__agree__item Внешний вид изделия, может отличаться от иллюстраций, представленных на сайте

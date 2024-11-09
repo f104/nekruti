@@ -1,0 +1,98 @@
+.footer {
+  $root: &;
+
+  margin-top: auto;
+  background: $color-text;
+  padding: 2rem 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+    height: 24rem;
+    background: linear-gradient(to bottom, $color-bg, $color-gray-bg);
+    z-index: -1;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-areas: "logo menu""copyright menu""agree agree";
+    gap: 2.4rem;
+    grid-template-columns: 18rem auto;
+
+    @include up(lg) {
+      grid-template-areas: "logo menu agree""copyright menu agree";
+      grid-template-columns: 23.5rem auto auto;
+    }
+  }
+
+  &__logo {
+    grid-area: logo;
+    align-self: start;
+    margin-top: -3.2rem;
+    top: 0;
+    @include transition(top);
+
+    @include hover {
+      top: -.4rem;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__menu {
+    grid-area: menu;
+    justify-self: start;
+
+    @include up(md) {
+      columns: 2;
+      column-gap: 3rem;
+    }
+
+    &__link {
+      color: $color-gray-light;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      break-inside: avoid;
+
+      @include transition(color);
+
+      @include hover {
+        color: $color-white;
+      }
+    }
+  }
+
+  &__copyright {
+    grid-area: copyright;
+    align-self: end;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: rgba($color-gray-light, .9);
+  }
+
+  &__agree {
+    grid-area: agree;
+    font-size: 10px;
+    line-height: 1.8;
+    color: rgba($color-gray-light, .9);
+
+    @include up(lg) {
+      align-self: end;
+      text-align: right;
+    }
+
+    &__link {
+      color: rgba($color-gray-light, .9);
+
+      @include hover {
+        color: $color-gray-light;
+      }
+    }
+  }
+}

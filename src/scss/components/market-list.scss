@@ -1,0 +1,17 @@
+.market-list {
+  $root: &;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.6rem;
+
+  a {
+    @include transition(opacity);
+
+    @include hover {
+      opacity: .8;
+    }
+  }
+}

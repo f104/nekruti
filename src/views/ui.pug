@@ -1,0 +1,623 @@
+extends _layouts/default
+
+block append config
+  - var pagetitle = "Index"
+  - var bodyClass = '_padding-top'
+  -
+    var breadcrumbs = [
+      {
+        label: 'Главная',
+        link: '#',
+      },
+      {
+        label: 'Страница',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/main-page.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/main-page.scss" rel='stylesheet')
+
+block content
+  .container(
+    style='display: grid; grid-gap: 30px'
+  )
+    .
+      <style> h2 { font-size: 20px !important; margin-bottom: -15px !important; } </style>
+
+
+    form.js-form(
+      action="#"
+      novalidate
+      autocomplete="off"
+      data-goal-id='vip_hall_order'
+      data-goal-event='formSendSuccess'
+      style='display: grid; grid-gap: 30px'
+    )
+      h2 Текстовое поле
+      +input({
+        placeholder: 'ФИО',
+        id: 'qwe',
+        errorMessage: 'Error message',
+        isLabelOutside: false,
+        classes: '_size-s _size-m-md _size-l-lg _size-l-xl',
+        iconLeft: 'search',
+        iconRight: 'arrow-down',
+      })(
+        type='text',
+        name='name',
+        required,
+      )
+
+      h2 Поле ввода числа
+      +input-number({
+        placeholder: 'Срок хранения, дней',
+        id: 'number',
+        isLabelOutside: true,
+        classes: '_size-m _size-s-md _size-s-lg _size-l-xl',
+        caption: 'Независимо от времени сдачи багажа, оплачивается каждый календарный день.',
+        errorMessage: 'Error message',
+      })(
+        type='number'
+        name='number'
+        min='0'
+        max='10'
+        value='1'
+        step='1'
+        data-min-num-error-message='Значение должно быть больше или равно 1'
+        data-max-num-error-message='Значение должно быть меньше или равно 10'
+        data-step-num-error-message='Значение должно быть кратно 1'
+        required
+      )
+
+      h2 Поле ввода с маской email
+      +input-mask({
+        placeholder: 'Электронная почта',
+        id: 'rent_email',
+        errorMessage: 'Необходимо указать электронную почту',
+        isLabelOutside: false,
+        classes: '_size-s _size-m-xl',
+      })(
+        type='text'
+        name='email'
+        required
+        data-inputmask-alias="email"
+        data-inputmask-inputmode="email"
+      )
+
+      h2 Поле ввода с маской tel
+      +input-mask({
+        placeholder: 'Телефон',
+        id: 'rent_tel',
+        errorMessage: 'Укажите корректный телефон',
+        isLabelOutside: false,
+        classes: '_size-s _size-m-xl',
+      })(
+        type='tel'
+        name='tel1'
+        required
+        data-inputmask-alias="tel"
+        data-inputmask-inputmode="tel"
+      )
+      
+      h2 Поле ввода с маской url
+        +input-mask({
+          placeholder: 'Ссылка',
+          id: 'rent_url',
+          errorMessage: 'Укажите корректную ссылку',
+          isLabelOutside: false,
+          classes: '_size-s _size-m-xl',
+        })(
+          type='text'
+          name='url'
+          required
+          data-inputmask-alias="url"
+          data-inputmask-inputmode="url"
+        )
+
+      h2 Поле телефона с выбором страны
+      +input-tel({
+        placeholder: 'Телефон',
+        id: 'contentpage_feedback_form_tel',
+        errorMessage: 'Необходимо указать телефон',
+        isLabelOutside: false,
+        classes: '_size-m _size-l-xl _is-tel',
+      })(
+        type='tel',
+        name='tel',
+        required,
+        class='js-inputmask js-intl-tel-input'
+        data-inputmask-mask="[+]9{+}"
+        data-inputmask-placeholder=" "
+        maxlength="18"
+        data-intl-dial-code="tel_dial_code"
+        data-intl-iso="tel_iso2"
+      )
+
+      h2 Селект - мультивыбор
+      +multiselect({
+        placeholder: 'Выберите',
+        id: 'select',
+        errorMessage: 'Необходимо заполнить это поле',
+        selectAttrs: {
+          autocomplete: "off",
+          multiple: true,
+          name: 'select',
+          required: true,
+        },
+        selectOptionWithHint: false,
+        selectLabelField: 'label',
+        selectValueField: 'value',
+        selectWithSearchInput: true,
+        caption: 'caption',
+      })(
+        class='_size-s _size-m-md _size-l-lg _size-l-xl'
+      )
+        optgroup(label="Climbing")
+          option(value='') -
+          option(value="4") Thomas Edison
+          option(value="1") Nikola
+          option(value="3") Nikola Tesla
+          option(value="5") Arnold Schwarzenegger
+
+      h2 Селект - одиночный
+        +multiselect({
+          placeholder: 'Выберите',
+          id: 'select-2',
+          errorMessage: 'Необходимо заполнить это поле',
+          selectAttrs: {
+            autocomplete: "off",
+            multiple: false,
+            name: 'select'
+          },
+          selectOptionWithHint: false,
+          selectLabelField: 'label',
+          selectValueField: 'value',
+        })(
+          class='_size-s _size-m-md _size-l-lg _size-l-xl'
+        )
+          optgroup(label="Climbing")
+            option(value='') -
+            option(value="4") Thomas Edison
+            option(value="1") Nikola
+            option(value="3") Nikola Tesla
+            option(value="5") Arnold Schwarzenegger
+
+      h2 Селект - внешние данные (c подзаголовком и категорией)
+        +multiselect({
+          placeholder: 'Выберите',
+          id: 'select-3',
+          errorMessage: 'Необходимо заполнить это поле',
+          selectAttrs: {
+            autocomplete: "off",
+            multiple: true,
+            name: 'select'
+          },
+          selectOptionWithHint: true,
+          selectLabelField: 'label',
+          selectValueField: 'value',
+          selectHintField: 'hint',
+          selectGroupField: 'group',
+          selectGroupValueField: 'value',
+          selectGroupLabelField: 'label',
+          selectUrl: '/assets/ajax/select-data-with-group-hint.json',
+          selectPreloadData: false,
+          selectWithSearchInput: true,
+          selectWithGroups: true,
+        })(
+          class='_size-s _size-m-md _size-l-lg _size-l-xl'
+        )
+
+      h2 Селект - внешние данные (c подзаголовком, категорией и ссылкой)
+        +multiselect({
+          placeholder: 'Выберите',
+          id: 'select-4',
+          errorMessage: 'Необходимо заполнить это поле',
+          selectAttrs: {
+            autocomplete: "off",
+            multiple: false,
+            name: 'select'
+          },
+          selectOptionWithHint: true,
+          selectLabelField: 'label',
+          selectValueField: 'value',
+          selectHintField: 'hint',
+          selectGroupField: 'group',
+          selectGroupValueField: 'value',
+          selectGroupLabelField: 'label',
+          selectUrl: '/assets/ajax/select-data-with-group-hint.json',
+          selectPreloadData: true,
+          selectWithSearchInput: true,
+          selectWithGroups: true,
+          selectLinkField: 'link',
+          selectOptionIsLink: true,
+        })(
+          class='_size-s _size-m-md _size-l-lg _size-l-xl'
+        )
+
+      h2 Календарь
+      +datepicker({
+        placeholder: 'Выберите дату',
+        id: 'date',
+        isLabelOutside: false,
+        classes: '_size-m _size-l-xl',
+        iconLeft: '',
+        iconRight: 'calendar',
+        errorMessage: 'Необходимо заполнить это поле',
+      })(
+        name='date'
+        required
+        multiple
+      )
+
+      h2 Поле с типом time
+      +input({
+        placeholder: 'Время вылета',
+        id: 'questions_time',
+        errorMessage: 'Необходимо указать время вылета',
+        isLabelOutside: false,
+        classes: '_size-m _size-l-xl _row-3',
+      })(
+        type='time'
+        name='time'
+        required
+      )
+
+
+      h2 Связать два календаря между собой
+      +datepicker({
+        placeholder: 'Дата вылета',
+        id: 'questions_date',
+        isLabelOutside: false,
+        classes: '_size-m _size-l-xl _row-3',
+        iconLeft: '',
+        iconRight: 'calendar',
+        isDatepicker: true,
+        errorMessage: 'Необходимо указать дату вылета',
+      })(
+        name='date_1'
+        required
+        data-disabled-to-today
+        data-dp-to-name='date_2'
+      )
+
+      +datepicker({
+        placeholder: 'Дата прилета',
+        id: 'questions_date_2',
+        isLabelOutside: false,
+        classes: '_size-m _size-l-xl _row-3',
+        iconLeft: '',
+        iconRight: 'calendar',
+        isDatepicker: true,
+        errorMessage: 'Необходимо указать дату прилета',
+      })(
+        name='date_2'
+        required
+        data-disabled-to-today
+        data-dp-from-name='date_1'
+      )
+
+      h2 Поле для загрузки файлов
+      +input-file({
+        placeholder: 'Загрузите файл',
+        id: 'file',
+        isLabelOutside: false,
+        classes: '_size-s _size-m-lg _size-m-xl',
+        iconLeft: '',
+        iconRight: '',
+        caption: 'Вы можете загрузить до 10 файлов общим размером не более 100 Мб',
+        errorMessage: 'Необходимо заполнить это поле',
+      })(
+        name='file'
+        required
+        data-max-file-count-error-message='Достигнуто максимальное количество файлов.'
+        data-max-file-size-error-message='Размер файла {{name}} превышает допустимый лимит.'
+        data-max-file-accept-error-message='Тип файла {{name}} недопустим.'
+        data-file-count-message='Файлов: {{count}}. Общий размер: {{size}}'
+        data-max-file-count='10'
+        data-max-file-size='10'
+        accept='.png,.jpg'
+        multiple
+        data-use-clipboard
+      )
+
+      h2 Единичный чекбокс
+      +checkbox({
+        classes: '_size-m _size-l-md _size-l-lg _size-xl-xl _secondary',
+        id: 'questions_agreement',
+        errorMessage: 'Необходимо дать свое согласие',
+      })(
+        name='agreement'
+        required
+      )
+        | Даю согласие на обработку персональных данных и соглашаюсь с <a href='#' target='_blank' class='link-hover _blue-link'>политикой конфиденциальности</a>
+
+      h2 Группа радиокнопок
+
+      -
+        var questions = [
+          {
+            labelMainTitle: '',
+            labelMainId: 'direction-1',
+            required: true,
+            errorMessage: 'Необходимо выбрать вариант',
+            classes: '_size-m _size-l-md _size-l-lg _size-l-xl _primary',
+            checkboxes: [
+              {
+                name: 'direction-1',
+                value: '1',
+                labelTitle: 'В одну сторону',
+                checked: true,
+                attrs: {
+                  'data-add-class-to-form': '_one-way'
+                },
+              },
+              {
+                name: 'direction-1',
+                value: '2',
+                labelTitle: 'Туда-обратно',
+                attrs: {
+                  'data-remove-class-from-form': '_one-way'
+                },
+              },
+            ],
+          },
+        ]
+      each item in questions
+        +checkbox-group(item, true)
+
+      h2 Группа чекбоксов
+
+      -
+        var questions = [
+          {
+            labelMainTitle: '',
+            labelMainId: 'direction-11',
+            required: true,
+            errorMessage: 'Необходимо выбрать вариант',
+            classes: '_size-m _size-l-md _size-l-lg _size-l-xl _primary',
+            checkboxes: [
+              {
+                name: 'direction-11',
+                value: '1',
+                labelTitle: 'В одну сторону',
+                checked: true,
+                attrs: {
+                  'data-add-class-to-form': '_one-way'
+                },
+              },
+              {
+                name: 'direction-12',
+                value: '2',
+                labelTitle: 'Туда-обратно',
+                attrs: {
+                  'data-remove-class-from-form': '_one-way'
+                },
+              },
+            ],
+          },
+        ]
+      each item in questions
+        +checkbox-group(item, false)
+
+      h2 Кнопка
+
+      +btn({
+        text: 'Отправить',
+      })(
+        type='submit'
+      )._size-m._size-l-xl._primary._mobile-wide
+
+    +btn({
+      text: 'Отправить',
+      svgRight: 'arrow-long-right',
+    })(
+      type='submit'
+    )._size-s._size-l-xl._primary._mobile-wide
+
+    h2 Группа кнопок
+
+    +group-tab({
+      items: [
+        {
+          label: 'На автомобиле',
+          tag: 'button',
+          icon: 'car',
+          active: true,
+          classes: '_size-s _size-m-md _size-m-lg _size-l-xl',
+          attrs: {
+            type: 'button',
+            'aria-controls': 'ways-1',
+            'aria-expanded': 'true',
+          },
+        },
+        {
+          label: 'На общественном транспорте',
+          tag: 'button',
+          icon: 'bus',
+          classes: '_size-s _size-m-md _size-m-lg _size-l-xl',
+          attrs: {
+            type: 'button',
+            'aria-controls': 'ways-2',
+            'aria-expanded': 'false',
+          },
+        },
+      ],
+    })(class="_flex-wrap")
+
+
+    h2 Группа радиокнопок
+    -
+      var items = [
+        {
+          name: 'terminal',
+          label: 'Терминал А',
+          checked: true,
+          classes: '_size-m',
+          value: 1,
+        },
+        {
+          name: 'terminal',
+          label: 'Почтово-грузовой комплекс',
+          classes: '_size-m',
+          value: 2,
+        },
+        {
+          name: 'terminal',
+          label: 'Терминал B и D',
+          classes: '_size-m',
+          value: 3,
+        },
+      ]
+    +group-tab-radio({items})
+
+
+    h2 Переключение контента по табам
+
+    .tabs-common.js-tabs
+      +group-tab({
+        items: [
+          {
+            label: 'На автомобиле',
+            tag: 'button',
+            icon: 'car',
+            active: true,
+            classes: '_size-s _size-m-md _size-m-lg _size-l-xl',
+            attrs: {
+              type: 'button',
+              'aria-controls': 'ways-11',
+              class: 'js-tabs__btn',
+              'aria-expanded': 'true',
+            },
+          },
+          {
+            label: 'На общественном транспорте',
+            tag: 'button',
+            icon: 'bus',
+            classes: '_size-s _size-m-md _size-m-lg _size-l-xl',
+            attrs: {
+              type: 'button',
+              'aria-controls': 'ways-22',
+              class: 'js-tabs__btn',
+              'aria-expanded': 'false',
+            },
+          },
+        ],
+      })(class="_flex-wrap")
+
+      div
+        .tabs-common__content.js-tabs__content(id='ways-11' class='_open')
+          | контент 1
+        .tabs-common__content.js-tabs__content(id='ways-22' class='')
+          | контент 2
+
+    h2 Модалка
+
+    div
+      button(type='button' data-modal='popup_test' aria-label='Обратная связь (модальное окно)').btn-common._primary._size-m._size-s-lg
+        +svgsprite('question')(aria-hidden='true')
+        span Обратная связь
+
+    div
+      button(
+        type='button'
+        data-modal='popup_person'
+        data-url='assets/ajax/person.json'
+        aria-label='модалка с запросом внешний данных (модальное окно)'
+      ).btn-common._primary._size-m._size-s-lg
+        +svgsprite('question')(aria-hidden='true')
+        span модалка с запросом внешний данных
+
+    h2 Аккордеоны
+
+    -
+      var accordionsItems = [
+        {
+          title: 'Парковка',
+          svg: 'parking',
+          anchorId: 'anchor_block_1',
+          items: [
+            {
+              id: 'faq_collapse_block_1_question_1',
+              title: 'Почему не прошла оплата за парковку?',
+              content: '<p>Вы можете изучить подробную информацию о парковке на странице <a href="#">Вылетающим пассажирам</a> в разделе <a href="#">Приезд в аэропорт</a></p>'
+            },
+            {
+              id: 'faq_collapse_block_1_question_2',
+              title: 'Где можно посмотреть информацию о парковке?',
+              content: '<p>Вы можете изучить подробную информацию о парковке на странице <a href="#">Вылетающим пассажирам</a> в разделе <a href="#">Приезд в аэропорт</a></p>'
+            },
+            {
+              id: 'faq_collapse_block_1_question_3',
+              title: 'Что делать, если потерялась парковочная карта?',
+              content: '<p>Вы можете изучить подробную информацию о парковке на странице <a href="#">Вылетающим пассажирам</a> в разделе <a href="#">Приезд в аэропорт</a></p>'
+            }
+          ]
+        },
+        {
+          title: 'Вылетающим пассажирам',
+          svg: 'airplane1',
+          anchorId: 'anchor_block_2',
+          items: [
+            {
+              id: 'faq_collapse_block_2_question_1',
+              title: 'Есть ли в аэропорту комнаты для курения?',
+              content: '<p>Вы можете изучить подробную информацию о парковке на странице <a href="#">Вылетающим пассажирам</a> в разделе <a href="#">Приезд в аэропорт</a></p>'
+            },
+          ]
+        },
+      ]
+    +accordions(accordionsItems)
+
+    h2 Видео
+
+    +video-common({
+      iframe: 'https://www.youtube.com/embed/LXb3EKWsInQ?autoplay=1',
+      poster: 'assets/img/poster.jpg',
+      hint: 'Видео: внешнее видео',
+      picture: {
+        _0: {
+          url: 'assets/img/poster.jpg',
+          width: 320,
+          height: 172,
+        },
+        _400: {
+          url: 'assets/img/poster.jpg',
+          width: 640,
+          height: 344,
+        },
+        _768: {
+          url: 'assets/img/poster.jpg',
+          width: 1014,
+          height: 546,
+        },
+      }
+    })
+
+    +video-common({
+      video: 'assets/video/sunset.mp4',
+      hint: 'Видео: локальное видео',
+      poster: 'assets/img/poster.jpg',
+      picture: {
+        _0: {
+          url: 'assets/img/poster.jpg',
+          width: 320,
+          height: 172,
+        },
+        _400: {
+          url: 'assets/img/poster.jpg',
+          width: 640,
+          height: 344,
+        },
+        _768: {
+          url: 'assets/img/poster.jpg',
+          width: 1014,
+          height: 546,
+        },
+      }
+    })
+
+

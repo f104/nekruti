@@ -1,0 +1,84 @@
+/* Main Colors */
+$color-bg: #F3F3F3;
+$color-text: #282828;
+$color-text-gray: #666666;
+$color-white: #FFFFFF;
+$color-gray-light: #E6E6E6;
+$color-gray-bg: #E2E2E2;
+$color-red: #E31E24;
+$color-primary: #56B533;
+$color-primary-hover: #4ca12d;
+$color-primary-dark: #418D25;
+
+$color-error: $color-red;
+$color-popup-background: $color-white;
+
+$color-overlay: $color-text;
+$opacity-overlay: .4;
+
+$link-color: $color-primary;
+$link-hover-color: $color-primary-hover;
+
+$transition-duration: .2s;
+$transition-timing-function: ease-in-out;
+
+$header-z-index: 1000;
+$header-height: (sm: 4.6rem,
+  md: 4.6rem,
+  lg: 4.6rem,
+  xl: 4.6rem,
+  xxl: 4.6rem,
+);
+
+/* Fonts */
+$font-family: 'Roboto',
+sans-serif;
+$font-family-alt: $font-family;
+$font-size: 10px;
+$font-weight: normal;
+$letter-spacing: normal;
+$line-height: 1.4;
+
+/* Screen sizes */
+$medias: md,
+lg,
+xl,
+xxl;
+$grid-breakpoints: (sm: 360px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1440px,
+);
+$container-max-widths: (sm: 100%,
+  md: 100%,
+  lg: 100%,
+  xl: 100%,
+  xxl: 140rem,
+);
+$container-paddings: (sm: 2rem,
+  md: 2rem,
+  lg: 2rem,
+  xl: 2rem,
+  xxl: 0,
+);
+
+$data-color-selector-light: "data-theme='light'";
+$data-color-selector-dark: "data-theme='dark'";
+$data-color-selector-c-light: "data-theme='contrast-light'";
+$data-color-selector-c-dark: "data-theme='contrast-dark'";
+$data-color-selector-c-blue: "data-theme='contrast-blue'";
+
+$data-images-selector-1: "data-images='1'";
+$data-images-selector-2: "data-images='2'";
+$data-images-selector-3: "data-images='3'";
+
+$data-no-effects-selector: "data-no-effects";
+
+$zoom-sizes: [100,
+125,
+150,
+175,
+200];
+
+$form-preloader-width: 5.6rem;

@@ -1,0 +1,102 @@
+extends _layouts/default
+
+block append config
+  - var pagetitle = "Index"
+  - var bodyClass = '_padding-top'
+  -
+    var breadcrumbs = [
+      {
+        label: 'Главная',
+        link: '#',
+      },
+      {
+        label: 'Страница',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/main-page.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/main-page.scss" rel='stylesheet')
+
+block content
+  .container
+    .js-filter-form__wrap
+      div
+        +input({
+          placeholder: 'Этот инпут вне формы (min-length="3")',
+          id: 'search',
+          isLabelOutside: false,
+          classes: '_size-s _size-m-md _size-l-lg _size-l-xl',
+          iconLeft: 'search',
+          buttons: [
+            {
+              attrs: {
+                class: '_size-xs _size-s-lg _neutral-dark js-input__clear _hidden',
+              },
+              iconLeft: 'close',
+            },
+          ],
+        })(
+          type="text"
+          name="query"
+          form="filter_form"
+          data-min-length="3"
+        )
+        form.js-filter-form(id="filter_form" novalidate autocomplete="off")
+          +multiselect({
+            placeholder: 'Выберите',
+            id: 'select',
+            errorMessage: 'Необходимо заполнить это поле',
+            selectAttrs: {
+              autocomplete: "off",
+              multiple: true,
+              name: 'select'
+            },
+            selectOptionWithHint: false,
+            selectLabelField: 'label',
+            selectValueField: 'value',
+            selectWithSearchInput: true,
+          })(
+            class='_size-s _size-m-md _size-l-lg _size-l-xl'
+          )
+            option(value='') -
+            option(value="4") Thomas Edison
+            option(value="1") Nikola
+            option(value="3") Nikola Tesla
+            option(value="5") Arnold Schwarzenegger
+
+            
+          +datepicker({
+            placeholder: 'Выберите даты',
+            id: 'date',
+            isLabelOutside: false,
+            classes: '_size-m _size-l-xl',
+            iconLeft: '',
+            iconRight: 'calendar',
+            errorMessage: 'Необходимо заполнить это поле',
+            inListing: true,
+          })(
+            multiple
+          )
+            
+      .page__content-wrap
+        .page__content.js-page.team__sections(
+          aria-live='assertive'
+          aria-atomic='true'
+        )
+          ul.js-page__inner(style='font-size: 2rem')
+            li контент
+
+            // для пустой выдачи
+            +empty-results-common({
+              title: 'По вашему запросу ничего не найдено',
+              text: 'Попробуйте изменить поисковый запрос или настройки фильтра',
+            })
+        +page-preloader()
+      +pagination({
+        page: 1,
+        pages: 10
+      })

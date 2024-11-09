@@ -1,0 +1,66 @@
+block config
+  - 
+    const nav = [
+      'О компании',
+      'Каталог',
+      'Оплата и доставка',
+      'Статьи',
+      'Фото продукции',
+      'Видео',
+    ]
+
+include ../_includes/mixins/svgsprite
+include ../_includes/mixins/picture
+include ../../ui/input/input
+include ../../ui/input/input-number/input-number
+include ../../ui/input/input-mask/input-mask
+include ../../ui/input/input-tel/input-tel
+include ../../ui/input/multiselect/multiselect
+include ../../ui/input/datepicker/datepicker
+include ../../ui/input/input-file/input-file
+include ../../ui/input/checkbox/checkbox
+include ../../ui/checkbox-group/checkbox-group
+include ../../ui/btn/btn
+include ../../ui/group-tab/group-tab
+include ../../ui/group-tab-radio/group-tab-radio
+include ../../ui/popup/popup
+include ../../ui/pagination/pagination
+include ../../ui/accordion/accordions
+include ../../ui/accordion/accordion-item
+include ../../ui/breadcrumbs/breadcrumbs
+include ../../ui/form-message/form-message
+include ../../ui/video/video
+include ../../ui/toggle-switch/toggle-switch
+include ../../ui/listing/page/page-preloader
+include ../../ui/listing/empty-results/empty-results
+
+include ../_includes/mixins/product-card
+include ../_includes/mixins/article-card
+include ../_includes/mixins/promo-alert
+
+doctype html
+html(lang="ru" data-zoom='100')
+  head
+    block head
+      include ../_includes/head
+      link(href="/src/scss/fonts/roboto/stylesheet.css" rel='stylesheet')
+
+
+  body.body(class=bodyClass)
+    block header
+      include ../_includes/blocks/header
+
+    main.content
+      block content
+
+    block footer
+      include ../_includes/blocks/footer
+
+    block popups
+
+    block styles
+      link(href="/src/scss/common.scss" rel='stylesheet')
+
+    block scripts
+      script(src="/src/js/app.js" type="module" async)
+

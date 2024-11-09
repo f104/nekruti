@@ -1,0 +1,44 @@
+.product-list {
+    $root: &;
+
+    @include down(sm) {
+        margin-left: -#{map-get($container-paddings, sm)};
+        margin-right: -#{map-get($container-paddings, sm)};
+        padding-left: map-get($container-paddings, sm);
+        padding-right: map-get($container-paddings, sm);
+        scroll-padding-left: map-get($container-paddings, sm);
+    }
+
+    @include down(md) {
+        display: flex;
+        gap: .8rem;
+        overflow-y: auto;
+        margin-left: -#{map-get($container-paddings, md)};
+        margin-right: -#{map-get($container-paddings, md)};
+        padding-left: map-get($container-paddings, md);
+        padding-right: map-get($container-paddings, md);
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: map-get($container-paddings, md);
+
+        .product-card {
+            width: 26.4rem;
+            flex-shrink: 0;
+            scroll-snap-align: start;
+        }
+    }
+
+    @include up(lg) {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include up(xl) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include up(xxl) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
