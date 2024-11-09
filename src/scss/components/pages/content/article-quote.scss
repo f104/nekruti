@@ -1,0 +1,25 @@
+.article-quote {
+  $root: &;
+
+  display: flex;
+  align-items: flex-start;
+  gap: .8rem;
+  max-width: 60rem;
+  margin-inline: auto;
+
+  .svgsprite {
+    width: 2.4rem;
+    height: 2.4rem;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    padding-left: 1.2rem;
+    border-left: .1rem solid $color-gray-light;
+    font-size: 1.2rem;
+
+    @include up(md) {
+      font-size: 1.4rem;
+    }
+  }
+}

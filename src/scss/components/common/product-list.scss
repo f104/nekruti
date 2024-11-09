@@ -1,44 +1,63 @@
 .product-list {
-    $root: &;
+  $root: &;
 
-    @include down(sm) {
-        margin-left: -#{map-get($container-paddings, sm)};
-        margin-right: -#{map-get($container-paddings, sm)};
-        padding-left: map-get($container-paddings, sm);
-        padding-right: map-get($container-paddings, sm);
-        scroll-padding-left: map-get($container-paddings, sm);
+  margin-inline: -.4rem;
+
+  .swiper-slide {
+    width: 26.4rem + .8rem;
+    padding-inline: .4rem;
+    display: flex;
+    flex-direction: column;
+
+    .product-card {
+      flex-grow: 1;
     }
+  }
 
-    @include down(md) {
-        display: flex;
-        gap: .8rem;
-        overflow-y: auto;
-        margin-left: -#{map-get($container-paddings, md)};
-        margin-right: -#{map-get($container-paddings, md)};
-        padding-left: map-get($container-paddings, md);
-        padding-right: map-get($container-paddings, md);
-        scroll-behavior: smooth;
-        scroll-snap-type: x mandatory;
-        scroll-padding-left: map-get($container-paddings, md);
+  .container & {
+    margin-inline: -#{map-get($container-paddings, sm)};
+    padding-inline: map-get($container-paddings, sm) - .4rem;
 
-        .product-card {
-            width: 26.4rem;
-            flex-shrink: 0;
-            scroll-snap-align: start;
-        }
-    }
-
-    @include up(lg) {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    @include up(xl) {
-        grid-template-columns: repeat(4, 1fr);
+    @each $media in (md, lg, xl) {
+      @include up($media) {
+        margin-inline: -#{map-get($container-paddings, $media)};
+        padding-inline: map-get($container-paddings, $media) - .4rem;
+      }
     }
 
     @include up(xxl) {
-        grid-template-columns: repeat(5, 1fr);
+      margin-inline: -.4rem;
+      padding-inline: .4rem;
     }
+  }
+
+  &._full {
+    @include up(lg) {
+      margin-inline: 0;
+      padding-inline: 0;
+    }
+
+    .swiper-wrapper {
+      @include up(lg) {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @include up(xl) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      @include up(xxl) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .swiper-slide {
+      @include up(lg) {
+        width: auto;
+        padding-inline: 0;
+      }
+    }
+  }
 }

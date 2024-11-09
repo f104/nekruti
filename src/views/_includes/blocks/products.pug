@@ -1,0 +1,5 @@
+.product-list.swiper.js-product-slider
+  .swiper-wrapper
+    each item in products.splice(0, 5)
+      .swiper-slide
+        +product-card(item)

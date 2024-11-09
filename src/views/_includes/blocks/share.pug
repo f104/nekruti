@@ -1,0 +1,14 @@
+-
+  var data = [
+    {key: 'tg', title: 'Telegram'},
+    {key: 'vk', title: 'VK'},
+    {key: 'ok', title: 'Одноклассники'},
+  ]
+.share
+  p.share__title Поделиться
+  .share__list
+    each item in data
+      a(href="#" title=item.title class=`_${item.key}`).share__item.js-share
+        +svgsprite(item.key)
+    button(title="Скопировать ссылку").share__item.js-clipboard-btn
+      +svgsprite('link')

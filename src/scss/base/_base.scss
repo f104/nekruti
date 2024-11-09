@@ -74,20 +74,6 @@ html {
     overflow: hidden;
   }
 
-  padding-top: map-get($header-height, sm)+2rem;
-
-  @include up(md) {
-    padding-top: map-get($header-height, md) + 2.4rem;
-  }
-
-  @include up(lg) {
-    padding-top: map-get($header-height, lg) + 2.4rem;
-  }
-
-  @include up(xl) {
-    padding-top: map-get($header-height, xl) + 2.4rem;
-  }
-
   &._is-ios {}
 }
 

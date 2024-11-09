@@ -56,15 +56,15 @@ export const MEDIA_BREAKPOINT_MD = {
 }
 export const MEDIA_BREAKPOINT_LG = {
   name: 'lg',
-  value: 1280,
+  value: 1024,
 }
 export const MEDIA_BREAKPOINT_XL = {
   name: 'xl',
-  value: 1600,
+  value: 1280,
 }
 export const MEDIA_BREAKPOINT_XXL = {
   name: 'xxl',
-  value: 1920,
+  value: 1440,
 }
 
 export const OPEN_CLASS_NAME = '_open'
@@ -333,3 +333,8 @@ export const SWIPER_FRACTION_LANG_RU = 'из'
 export const SWIPER_FRACTION_LANG_EN = 'of'
 export const SWIPER_SLIDE_CLASS = 'swiper-slide'
 export const MAIN_SLIDER_CLASS = 'js-main-slider'
+export const PRODUCT_SLIDER_CLASS = 'js-product-slider'
+
+// share
+export const SHARE_NETWORK_CLASS = 'js-share'
+export const CLIPBOARD_BTN_CLASS = 'js-clipboard-btn'

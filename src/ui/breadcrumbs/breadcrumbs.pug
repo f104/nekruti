@@ -1,15 +1,10 @@
-mixin breadcrumbs(breadcrumbs)
-  if breadcrumbs
-    .breadcrumbs-common
-      each item in breadcrumbs
-        -
-          var {
-            link,
-            label,
-          } = item
-        .breadcrumbs-common__item
-          if link
-            a.link-hover(href=link)= label
-            +svgsprite('arrow-right')(aria-hidden="true")
+mixin breadcrumbs(items)
+  - const lastIndex = items.length - 1
+  .container
+    ul.breadcrumbs&attributes(attributes)
+      each item, index in items
+        li.breadcrumbs__item
+          if index < lastIndex
+            a(href="#").breadcrumbs__link= item
           else
-            span(aria-hidden="true")= label
+            = item

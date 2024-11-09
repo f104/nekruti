@@ -11,32 +11,32 @@ block append styles
   link(href="/src/scss/main-page.scss" rel='stylesheet')
 
 block content
-  .main
-    section.main__section 
-      include ./_includes/blocks/pages/main/slider
+  .main-grid
+    section.main-grid__section 
+      include _includes/blocks/main-slider
 
-    section.main__section
-      .main__section__inner.container._narrow
-        include ./_includes/blocks/pages/main/text
-        a(href="#").btn._icon-right.main__btn
+    section.main-grid__section
+      .main-grid__section__inner.container._narrow
+        include _includes/blocks/pages/main/text
+        a(href="#").btn._icon-right.main-grid__btn
           span О компании
           +svgsprite('arrow-right').btn__icon
 
-    section.main__section
-      .main__section__inner.container 
-        h3.main__h3 Купить у производителя
-        include ./_includes/blocks/pages/main/products
-        a(href="#").btn._icon-right.main__btn
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        h3.main-grid__h3 Купить у производителя
+        include _includes/blocks/pages/main/products
+        a(href="#").btn._icon-right.main-grid__btn
           span Все товары
           +svgsprite('arrow-right').btn__icon
 
-    section.main__section
-      .main__section__inner.container 
-        h3.main__h3 Или на маркет-плейсах
-        include ./_includes/blocks/pages/main/markets
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        h3.main-grid__h3 Или на маркет-плейсах
+        include _includes/blocks/pages/main/markets
 
-    section.main__section
-      .main__section__inner.container._narrow
+    section.main-grid__section
+      .main-grid__section__inner.container._narrow
         +promo-alert({
           title: 'Спецпредложение для жителей Саратова и Энгельса!',
           text: 'Описание. Есть вариант зеленый и красный. Можно без картинки.',
@@ -44,17 +44,17 @@ block content
           image: 'assets/img/main/alert.jpg'
         })
 
-    section.main__section
-      .main__section__inner.container 
-        h3.main__h3 Почитать
-        include ./_includes/blocks/pages/main/articles
-        a(href="#").btn._icon-right.main__btn
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        h3.main-grid__h3 Почитать
+        include _includes/blocks/pages/main/articles
+        a(href="#").btn._icon-right.main-grid__btn
           span Все статьи
           +svgsprite('arrow-right').btn__icon
 
 
-    //-section.main__section
-      .main__section__inner.container._narrow
+    //-section.main-grid__section
+      .main-grid__section__inner.container._narrow
         +promo-alert({
           title: 'Спецпредложение для жителей Саратова и Энгельса!',
           text: 'Intrinsicly predominate state of the art growth strategies after worldwide systems. Quickly embrace customized experiences after end-to-end catalysts for change. Proactively streamline professional leadership after team building partnerships. Continually restore cooperative schemas with maintainable potentialities. Intrinsicly benchmark go forward initiatives for cross-platform materials. Enthusiastically leverage other\'s interactive customer service before focused processes. Appropriately grow maintainable manufactured products after client-centric expertise. Monotonectally administrate global technologies rather than goal-oriented technology. Monotonectally create performance based markets without adaptive niche markets. Efficiently generate process-centric niche markets without customer directed architectures.',
@@ -62,8 +62,8 @@ block content
           image: 'assets/img/main/alert.jpg'
         })
 
-    //-section.main__section
-      .main__section__inner.container._narrow
+    //-section.main-grid__section
+      .main-grid__section__inner.container._narrow
         +promo-alert({
           title: 'Спецпредложение для жителей Саратова и Энгельса!',
           text: 'Можно без картинки.',

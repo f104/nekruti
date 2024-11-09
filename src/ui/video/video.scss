@@ -1,24 +1,6 @@
 .video-common {
   $root: &;
 
-  margin-top: 2.4rem;
-
-  @include up(md) {
-    margin-top: 2.8rem;
-  }
-
-  @include up(lg) {
-    margin-top: 3.6rem;
-  }
-
-  @include up(xl) {
-    margin-top: 4.2rem;
-  }
-
-  &:first-child {
-    margin-top: 0 !important;
-  }
-
   &__inner {
     @include aspect(16, 9);
   }
@@ -34,13 +16,12 @@
     height: 6.4rem;
     border-radius: 50%;
     z-index: 1;
-    background: var(--surface-color-yellow);
-    box-shadow: 0 14.8rem 5.9rem rgba(243, 213, 78, 0.01), 0 8.3rem 5rem rgba(243, 213, 78, 0.04), 0 3.7rem 3.7rem rgba(243, 213, 78, 0.07), 0 .9rem 2rem rgba(243, 213, 78, 0.08), 0 0 0 rgba(243, 213, 78, 0.08);
+    background: $color-primary;
     display: flex;
     align-items: center;
     justify-content: center;
     @include transition(all);
-    color: var(--surface-on-surface-dark-surface);
+    color: $color-white;
 
     @include up(md) {
       width: 12rem;
@@ -50,6 +31,7 @@
     svg {
       width: 2.5rem;
       height: 2.5rem;
+      left: .2rem;
 
       @include up(md) {
         width: 4.6rem;
@@ -66,18 +48,9 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    border-radius: .4rem;
     overflow: hidden;
     z-index: 1;
     @include transition(all);
-
-    @include up(md) {
-      border-radius: .3rem;
-    }
-
-    @include up(lg) {
-      border-radius: .4rem;
-    }
 
     &::after {
       content: '';
@@ -125,15 +98,13 @@
 
     @include hover {
       #{$root}__play {
-        background: var(--button-state-bg01);
-        color: var(--button-state-typo01);
+        background: $color-primary-hover;
       }
     }
 
     &:active {
       #{$root}__play {
-        background: var(--button-state-bg02);
-        color: var(--button-state-typo02);
+        background: $color-primary-dark;
       }
     }
   }
@@ -148,7 +119,6 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
-    border-radius: .4rem;
     overflow: hidden;
     @include transition((opacity, visibility));
 
@@ -159,21 +129,12 @@
   }
 
   &__hint {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.4rem;
-    line-height: 1.5;
-    color: var(--typography-default-secondary);
+    font-size: 1.2rem;
+    color: $color-text-gray;
     margin-top: 1.2rem;
 
     @include up(md) {
-      font-size: 1.5rem;
-      line-height: 1.6;
-      margin-top: 1.8rem;
-    }
-
-    @include up(lg) {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
     }
   }
 }

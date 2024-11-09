@@ -23,13 +23,14 @@ import { getBrowserName } from './functions/getBrowserName'
 import { customEvents } from './functions/customEvents'
 import HttpClass from './components/Http'
 import SlidersClass from './components/Sliders'
+import ShareClass from './components/Share'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
 // import PopupClass from '../ui/popup/Popup.class'
 // import CollapseClass from '../ui/accordion/Collapse.class'
 // import { BtnUpClass } from '../ui/btn-scroll-up/BtnUp.class'
 // import FormClass from '../ui/form/Form.class'
-// import VideoClass from '../ui/video/Video.class'
+import VideoClass from '../ui/video/Video.class'
 // import Dropdown from '../ui/dropdown/Dropdown.class'
 // import FilterClass from '../ui/listing/Filter.class'
 import { checkUseMouse } from './functions/checkUseMouse'
@@ -158,12 +159,13 @@ class App {
       // include components here
 
       new SlidersClass()
+      new ShareClass()
       // new TabsClass()
       // new PopupClass()
       // new CollapseClass()
       // new BtnUpClass()
       // new FormClass()
-      // new VideoClass()
+      new VideoClass()
       // new Dropdown()
       // new FilterClass()
       // new AlternativeVersionClass() // вызывать после всех остальных компонентов

@@ -1,0 +1,40 @@
+.share {
+  $root: &;
+
+  &__title {
+    margin-bottom: .8rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    width: fit-content;
+    gap: .8rem;
+  }
+
+  &__item {
+    width: 3.2rem;
+    height: 3.2rem;
+    flex-shrink: 0;
+    display: flex;
+    border-radius: .4rem;
+    background: $color-text;
+    color: $color-white;
+    @include transition(background);
+
+    @include hover {
+      background: $color-primary;
+    }
+
+    &._success {
+      background: $color-primary-dark;
+    }
+
+    .svgsprite {
+      width: 2.4rem;
+      height: 2.4rem;
+      margin: auto;
+    }
+  }
+}

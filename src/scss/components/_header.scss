@@ -1,11 +1,9 @@
 .header {
   $root: &;
 
-  position: fixed;
   z-index: $header-z-index;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
   background-color: $color-white;
   height: map-get($header-height, sm);
   border-bottom: .1rem solid;

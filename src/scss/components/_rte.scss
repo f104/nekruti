@@ -1,51 +1,54 @@
 // rte content
 .rte {
-  h3 {
-    font-size: 120%;
-    font-weight: bold;
+  font-size: 1.2rem;
+
+  @include up(md) {
+    font-size: 1.4rem;
   }
 
-  > * {
+  >* {
     break-inside: avoid;
 
     &:not(:last-child) {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1em;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+
+    &:not(:last-child) {
+      margin-bottom: .5em;
+    }
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.2;
+
+    @include up(md) {
+      font-size: 1.6rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: .5em;
     }
   }
 
   ul,
   ol {
-    li {
-      padding-left: 1rem;
-
-      &:before {
-        position: absolute;
-        left: 0;
-      }
-
-      &:not(:last-child) {
-        margin-bottom: .5rem;
-      }
-    }
+    padding-inline-start: 2rem;
   }
 
   ul {
-    li {
-      &:before {
-        content: '⋅';
-      }
-    }
+    list-style-type: disc;
   }
 
   ol {
-    counter-reset: myCounter;
-
-    li {
-      &:before {
-        counter-increment: myCounter;
-        content: counter(myCounter) ".";
-      }
-    }
+    list-style-type: decimal;
   }
 
   img {

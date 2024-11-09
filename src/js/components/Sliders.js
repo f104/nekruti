@@ -1,6 +1,8 @@
 import {
+  CUSTOM_EVENT_OPTIMIZED_RESIZE,
   HIDDEN_CLASS_NAME,
   MAIN_SLIDER_CLASS,
+  PRODUCT_SLIDER_CLASS,
   SWIPER_BTN_NEXT_CLASS,
   SWIPER_BTN_PREV_CLASS,
   SWIPER_FRACTION_LANG_EN,
@@ -35,6 +37,7 @@ export default class SlidersClass {
     this.fractionLang = window.app.lang === 'ru' ? SWIPER_FRACTION_LANG_RU : SWIPER_FRACTION_LANG_EN
 
     this.initMainSlider()
+    this.initProductSlider()
   }
 
   renderFraction(currentClass, totalClass) {
@@ -69,6 +72,44 @@ export default class SlidersClass {
           transitionEnd: () => hideOnTransitionEls.forEach((el) => el.classList.remove(HIDDEN_CLASS_NAME)),
         },
       })
+    })
+  }
+
+  initProductSlider() {
+    document.querySelectorAll(`.${PRODUCT_SLIDER_CLASS}`).forEach((el) => {
+      const isFullList = el.classList.contains('_full')
+
+      let swiper = null
+
+      const init = () => {
+        if (!swiper) {
+          swiper = new Swiper(el, {
+            ...this.commonParams,
+            slidesPerView: 'auto',
+            breakpoints: {
+              1440: {
+                slidesPerView: 5,
+              },
+            },
+          })
+        }
+      }
+      const destroy = () => {
+        if (swiper) {
+          swiper.destroy()
+          swiper = null
+        }
+      }
+
+      if (!isFullList || window.app.isMobile || window.app.isTablet) {
+        init(el)
+      }
+
+      if (isFullList) {
+        window.addEventListener(CUSTOM_EVENT_OPTIMIZED_RESIZE, () => {
+          window.app.isMobile ? init() : destroy()
+        })
+      }
     })
   }
 }
