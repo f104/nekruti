@@ -1,0 +1,26 @@
+.contacts-form {
+  $root: &;
+
+  background: $color-gray-bg;
+  padding-block: 3.6rem;
+
+  &__inner {
+    display: grid;
+    gap: 2.4rem;
+
+    @include up(lg) {
+      grid-template-columns: 33% auto;
+      gap: 3.6rem;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__lead {
+    font-size: 1.8rem;
+  }
+}

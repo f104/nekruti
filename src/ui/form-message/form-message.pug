@@ -6,10 +6,10 @@
     - btnAttrs - атрибуты для кнопки
 
   errorData: 
-      - title
-      - text
-      - btnText
-      - btnAttrs - атрибуты для кнопки
+    - title
+    - text
+    - btnText
+    - btnAttrs - атрибуты для кнопки
 
   withoutClose - без кнопки закрытия
 
@@ -27,19 +27,19 @@ mixin form-message(successData, errorData, withoutClose)
     if successData && errorData
       .form-message__content
         .form-message__header
-          +svgsprite('error')(class="form-message__icon _error" aria-hidden='true')
-          +svgsprite('done')(class="form-message__icon _success" aria-hidden='true')
+          +svgsprite('info')(class="form-message__icon _error" aria-hidden='true')
+          +svgsprite('info')(class="form-message__icon _success" aria-hidden='true')
           if successData.title
-            h6.form-message__title._success.js-form-common-preloader__success-message__title!= successData.title
+            h6.h2.form-message__title._success.js-form-common-preloader__success-message__title!= successData.title
           if errorData.title
-            h6.form-message__title._error.js-form-common-preloader__error-message__title(title= errorData.title)!= errorData.title
+            h6.h2.form-message__title._error.js-form-common-preloader__error-message__title(title= errorData.title)!= errorData.title
           if successData.text
             p.form-message__text._success.js-form-common-preloader__success-message__text!= successData.text
           if errorData.text
             p.form-message__text._error.js-form-common-preloader__error-message__text!= errorData.text
         if successData.btnText
-          button(type='button')&attributes(successData.btnAttrs).btn-common._size-s._size-l-xl._primary._success.js-form-common-preloader__close
+          button(type='button')&attributes(successData.btnAttrs).btn._success.js-form-common-preloader__close
             span!= successData.btnText
         if errorData.btnText
-          button(type='button')&attributes(errorData.btnAttrs).btn-common._size-s._size-l-xl._primary._error.js-form-common-preloader__close
+          button(type='button')&attributes(errorData.btnAttrs).btn._error.js-form-common-preloader__close
             span!= errorData.btnText

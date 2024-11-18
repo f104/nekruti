@@ -2,75 +2,73 @@ mixin input(params)
   - 
     var {
       /**
-       * @type {string}
-       * */
+      * @type {string}
+      * */
+      label,
+      /**
+      * @type {string}
+      * */
       placeholder,
       /**
-       * @type {string}
-       * */
+      * @type {string}
+      * */
       id,
       /**
-       * @type {string}
-       * */
+      * @type {string}
+      * */
       errorMessage, 
       /**
-       * @type {boolean}
-       * @description выводить лейбл вне поля ввода
-       * */      
-      isLabelOutside,
-      /**
-       * @type {string}
-       * @description классы для обертки с классом "input-common"
-       * */
+      * @type {string}
+      * @description классы для обертки с классом "input-common"
+      * */
       classes,
       /**
-       * @type {string}
-       * @description имя левой иконки, передается в миксин svgsprite
-       * */
+      * @type {string}
+      * @description имя левой иконки, передается в миксин svgsprite
+      * */
       iconLeft,
       /**
-       * @type {string}
-       * @description имя правой иконки, передается в миксин svgsprite
-       * */
+      * @type {string}
+      * @description имя правой иконки, передается в миксин svgsprite
+      * */
       iconRight,
       /**
-       * @type {{ attrs, label, iconLeft, iconRight, svgTitle }[]}
-       * @description массив кнопок, которые выводятся поверх инпута
-       * */
+      * @type {{ attrs, label, iconLeft, iconRight, svgTitle }[]}
+      * @description массив кнопок, которые выводятся поверх инпута
+      * */
       buttons,
       /**
-       * @type {boolean}
-       * @description скрывает текст кнопок на мобилке, оставляет только иконку
-       * */
+      * @type {boolean}
+      * @description скрывает текст кнопок на мобилке, оставляет только иконку
+      * */
       hideBtnTextOnMobile,
       /**
-       * @type {boolean}
-       * @description скрывает иконки кнопок на планшете, оставляя только текст
-       * */
+      * @type {boolean}
+      * @description скрывает иконки кнопок на планшете, оставляя только текст
+      * */
       hideBtnSvgOnMd,
       /**
-       * @type {boolean}
-       * @description выводит кнопки под вне инпута на мобилке
-       * */
+      * @type {boolean}
+      * @description выводит кнопки под вне инпута на мобилке
+      * */
       btnOutsideOnMobile,
       /**
-       * @type {string}
-       * @description подпись под инпутом
-       * */
+      * @type {string}
+      * @description подпись под инпутом
+      * */
       caption,
       /**
-       * @type {boolean}
-       * @description инпут выступает в роли календаря
-       * */
+      * @type {boolean}
+      * @description инпут выступает в роли календаря
+      * */
       isDatepicker,
     } = params
-    
+
     var isFile = attributes && attributes.type === 'file'
     var isNumber = attributes && attributes.type === 'number'
     var isTime = attributes && attributes.type === 'time'
     var classResult = classes || ''
-    
-    classResult += isLabelOutside ? ' _label-outside' : ''
+
     classResult += iconLeft ? ' _with-icon-left' : ''
     classResult += iconRight ? ' _with-icon-right' : ''
     classResult += buttons && buttons.length ? ' _with-button' : ''
@@ -81,25 +79,18 @@ mixin input(params)
     classResult += !isFile ? ' js-input' : ''
     classResult += isNumber ? ' _is-number' : ''
     classResult += isTime ? ' _is-time' : ''
-  
+
   .input-common(
     class=classResult
   )
-    if isLabelOutside && placeholder
+    if label
       label(for=id).input-common__label.js-input__label
-        | !{placeholder}
+        | !{label}
         if attributes.required
           span.input-common__required(
             aria-hidden='true'
-          )!= '&nbsp;*'
+          )!= '*'
     .input-common__inner
-      if !isLabelOutside && placeholder
-        label(for=id class=attributes.type==='textarea'?'_textarea':'').input-common__label.js-input__label
-          | !{placeholder}
-          if attributes.required
-            span.input-common__required(
-              aria-hidden='true'
-            ) *
       if iconLeft
         +svgsprite(iconLeft)(aria-hidden='true' class='input-common__icon _icon-left')
       if attributes.type === 'textarea'
@@ -107,41 +98,43 @@ mixin input(params)
           delete attributes.type
           var ariaDescribedby = ''
           ariaDescribedby += isFile || caption ? ` ${id}_caption` : ''
-          
+
         textarea(
           class='input-common__input _textarea js-input__input'
           id=id
           aria-describedby= ariaDescribedby || undefined
           data-error-message= errorMessage
+          placeholder=placeholder
         )&attributes(attributes)
         span.input-common__resize-icon
       else
         - 
           var inputClasses = ''
-          
+
           if (isFile) {
             inputClasses += ' js-dropzone__input'
           }
-          
+
           if (!isFile) {
             inputClasses += ' js-input__input'
           }
-          
+
         -
           var ariaDescribedby = ''
           ariaDescribedby += isFile || caption ? ` ${id}_caption` : ''
           ariaDescribedby += isDatepicker ? ` ${id}_hidden-caption` : ''
-          
+
         input(
           class=`input-common__input ${inputClasses}`
           id=id
           aria-describedby= ariaDescribedby || undefined
           data-error-message= errorMessage
+          placeholder=placeholder
         )&attributes(attributes)
-      
+
       if iconRight
         +svgsprite(iconRight)(aria-hidden='true' class='input-common__icon _icon-right')
-        
+
       if isNumber
         button(
           tabindex='-1'
@@ -157,12 +150,12 @@ mixin input(params)
           class='input-common__button-number _plus link-hover js-input__button-plus'
         )
           +svgsprite('plus')(aria-hidden='true')
-        
+
     span(
       id=id + '_error'
       aria-hidden='true'
     ).input-common__message._hidden.js-input__error-message= errorMessage
-    
+
     if isDatepicker
       span(
         id=id + '_hidden-caption'
@@ -178,16 +171,16 @@ mixin input(params)
         | Переход на 10 лет вперед: Alt + стрелка вправо или стрелка вверх.
         | Переход на 10 лет назад: Alt + стрелка влево или стрелка вниз.
         | Смена представления, от дней до декад: Ctrl + Shift + стрелка вверх.
-    
+
     if caption
       span(
         id=id + '_caption'
       ).input-common__caption= caption  
-      
+
     if isFile
       span.input-common__caption.js-dropzone__caption._hidden
       .input-common__file-list.js-dropzone__list._hidden
-      
+
     if buttons
       .input-common__buttons.js-input__buttons
         each button, i in buttons
@@ -203,6 +196,6 @@ mixin input(params)
               span= button.label
             if button.iconRight
               +svgsprite(button.iconRight, button.svgTitle || '')(aria-hidden= !button.svgTitle ? 'true' : undefined)
-    
+
     block
-      
+

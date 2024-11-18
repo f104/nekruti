@@ -54,18 +54,26 @@ export default class FormClass {
     const calendarEl = document.querySelector(`.${DATEPICKER_COMPONENT}`)
 
     if (multiselectEl && !window.app.TomSelectLib) {
-      window.app.TomSelectLib = (await import('tom-select/build/js/tom-select.base.min')).default
-      const TomSelectLib_checkbox_options = (await import('tom-select/build/js/plugins/checkbox_options')).default
-      const TomSelectLib_dropdown_input = (await import('tom-select/build/js/plugins/dropdown_input')).default
-      const TomSelectLib_no_backspace_delete = (await import('tom-select/build/js/plugins/no_backspace_delete')).default
+      window.app.TomSelectLib = (await import('tom-select/dist/js/tom-select.base.min')).default
+      const TomSelectLib_checkbox_options = (await import('tom-select/dist/js/plugins/checkbox_options')).default
+      const TomSelectLib_dropdown_input = (await import('tom-select/dist/js/plugins/dropdown_input')).default
+      const TomSelectLib_no_backspace_delete = (await import('tom-select/dist/js/plugins/no_backspace_delete')).default
       window.app.TomSelectLib.define('checkbox_options', TomSelectLib_checkbox_options)
       window.app.TomSelectLib.define('dropdown_input', TomSelectLib_dropdown_input)
       window.app.TomSelectLib.define('no_backspace_delete', TomSelectLib_no_backspace_delete)
     }
 
     if (calendarEl && !window.app.AirDatepickerLib) {
-      window.app.AirDatepickerLib = (await import('air-datepicker/dist/air-datepicker')).default
+      window.app.AirDatepickerLib = (await import('air-datepicker/air-datepicker')).default
     }
+
+    const limit = 200 //height limit
+    document.querySelectorAll('textarea').forEach((textarea) => {
+      textarea.addEventListener('input', () => {
+        textarea.style.height = ''
+        textarea.style.height = `${Math.min(textarea.scrollHeight, limit)}px`
+      })
+    })
 
     forms.forEach((form) => {
       let errors = false

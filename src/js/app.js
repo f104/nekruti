@@ -12,11 +12,9 @@ import {
   MEDIA_BREAKPOINT_SM,
   MEDIA_BREAKPOINT_XL,
   MEDIA_BREAKPOINT_XXL,
-  NO_WEBP_CLASS,
   OVERFLOW_HIDDEN,
   VAR_PADDING_RIGHT,
   VAR_PADDING_RIGHT_PX,
-  WEBP_CLASS,
 } from './constants'
 import { objectHasOwn } from './functions/objectHasOwn'
 import { getBrowserName } from './functions/getBrowserName'
@@ -24,12 +22,13 @@ import { customEvents } from './functions/customEvents'
 import HttpClass from './components/Http'
 import SlidersClass from './components/Sliders'
 import ShareClass from './components/Share'
+import MapClass from './components/Map'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
 // import PopupClass from '../ui/popup/Popup.class'
 // import CollapseClass from '../ui/accordion/Collapse.class'
 // import { BtnUpClass } from '../ui/btn-scroll-up/BtnUp.class'
-// import FormClass from '../ui/form/Form.class'
+import FormClass from '../ui/form/Form.class'
 import VideoClass from '../ui/video/Video.class'
 // import Dropdown from '../ui/dropdown/Dropdown.class'
 // import FilterClass from '../ui/listing/Filter.class'
@@ -59,7 +58,7 @@ class App {
     pathToContrastLightColor: 'css/variables-contrast-light.css',
   }
   resourceId = 16 // id страницы на бэке
-  yandexMapApiKey = ''
+  yandexMapApiKey = 'e9d6ce59-466a-4f39-8170-1394f72da84e'
   templateUrl = '' // путь к шаблону на вебе
   siteName = 'Сайт'
   loadSentry = false
@@ -110,7 +109,6 @@ class App {
     this.isIos = /iPad|iPhone|iPod/.test(window.navigator.userAgent)
     this.browserName = getBrowserName(window.navigator.userAgent)
     this.isFirefox = this.browserName === 'Firefox'
-    this.isSupportWebP = false
     this.isProd = process.env.NODE_ENV === 'production'
     this.telCountriesError = true
 
@@ -130,23 +128,6 @@ class App {
       import('./components/sentry')
     }
 
-    this.supportsWebP()
-      .then((res) => {
-        if (res) {
-          this.body.classList.add(WEBP_CLASS)
-          this.isSupportWebP = true
-        } else {
-          this.body.classList.add(NO_WEBP_CLASS)
-          this.isSupportWebP = false
-        }
-      })
-      .finally(() => {
-        if (!this.body.classList.contains(WEBP_CLASS) && !this.body.classList.contains(NO_WEBP_CLASS)) {
-          this.body.classList.add(NO_WEBP_CLASS)
-          this.isSupportWebP = false
-        }
-      })
-
     // глобально подключенные библиотеки, для уменьшения размера бандла с vue
     this.MustacheLib = mustache
     this.dayjs = dayjs
@@ -160,11 +141,12 @@ class App {
 
       new SlidersClass()
       new ShareClass()
+      new MapClass()
       // new TabsClass()
       // new PopupClass()
       // new CollapseClass()
       // new BtnUpClass()
-      // new FormClass()
+      new FormClass()
       new VideoClass()
       // new Dropdown()
       // new FilterClass()
@@ -396,20 +378,6 @@ class App {
       default:
         return MEDIA_BREAKPOINT_SM.name
     }
-  }
-
-  /**
-   * Inspired by Modernizr implementation. Выполняет проверку поддержки браузером изображений формата webp
-   *
-   * @return {Promise} Возвращает промис, который завершиться успешно, если браузер поддерживает изображения формата webp
-   * */
-  supportsWebP() {
-    return new Promise((resolve) => {
-      const image = new Image()
-      image.onerror = () => resolve(false)
-      image.onload = (event) => resolve(event.type === 'load' && image.width === 10)
-      image.src = 'data:image/webp;base64,UklGRhoAAABXRUJQVlA4TA0AAAAvCUACEAcQERGIiP4HAA=='
-    })
   }
 
   /**

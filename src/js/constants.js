@@ -40,8 +40,6 @@ export const CUSTOM_EVENT_SET_FOCUS_IN_MODAL = 'handleSetFocusInModal'
 export const CUSTOM_EVENT_TEL_COUNTRIES_IS_INIT = 'telCountriesIsInit'
 
 export const LOADED_CLASS = '_loaded'
-export const NO_WEBP_CLASS = '_no-webp'
-export const WEBP_CLASS = '_webp'
 export const IS_IOS_CLASS = '_is-ios'
 export const IS_FIREFOX_CLASS = '_is-firefox'
 
@@ -338,3 +336,7 @@ export const PRODUCT_SLIDER_CLASS = 'js-product-slider'
 // share
 export const SHARE_NETWORK_CLASS = 'js-share'
 export const CLIPBOARD_BTN_CLASS = 'js-clipboard-btn'
+
+// maps
+export const MAP_CLASS = 'js-map'
+export const MAP_DATA_GEO_FIELD = 'data-geo'

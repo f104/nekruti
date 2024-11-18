@@ -94,8 +94,6 @@ export default class ShareClass {
   }
 
   clipboard() {
-    let timer = null
-
     document.addEventListener('click', (event) => {
       const btn = event.target.closest(`.${CLIPBOARD_BTN_CLASS}`)
 

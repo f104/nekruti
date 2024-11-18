@@ -1,0 +1,135 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Контакты"
+  -
+    var cards = [
+      {
+        title: 'Адрес',
+        text: 'Российская Федерация, 410012, г. Саратов, Привокзальная пл., 1, завод «Гэксар»',
+      },
+      {
+        title: 'Телефоны',
+        text: '<a href="#">+7 (902) 717-00-24</a>, <a href="#">+7 (999) 80-434-80</a>, <a href="#">WathsApp</a>, <a href="#">Viber</a>',
+      },
+      {
+        title: 'Режим работы',
+        text: 'Понедельник-суббота: с 9:00 до 18:00<br>воскресение: выходной',
+      },
+      {
+        title: 'E-mail',
+        text: '<a href="#">shop@nekruti.com</a>',
+      },
+      {
+        title: 'Юридическое лицо',
+        text: 'ИП Родионов Андрей Геннадиевич',
+      },
+      {
+        title: 'ОГРН',
+        text: '312645027600025',
+      },
+      {
+        title: 'Юридический адрес',
+        text: '410002, Саратов, ул. Лермонтова, д. 29, кв. 25',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/contacts.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/contacts.scss" rel='stylesheet')
+
+block content
+
+  .contacts-page
+    .contacts-map
+      .contacts-map__header.container.page-header
+        +breadcrumbs(['Главная', 'Контакты'])
+        h1.h1 Контактная информация
+      .container.contacts-map__inner
+        ul.contacts-cards
+          each item in cards
+            li.contacts-cards__item
+              h6.contacts-cards__item__title= item.title
+              p.contacts-cards__item__text!= item.text
+      .contacts-map__map.js-map(data-geo='{"coords":{"center":[51.53944666830294,45.99679400069324],"zoom":14},"placemarks":[{"coords":[51.53944666830294,45.99679400069324]}]}')
+
+    .contacts-form
+      .container.contacts-form__inner
+        .contacts-form__header
+          h2.h2 Напишите нам
+          p.contacts-form__lead Внимательно читаем все письма кроме спама.
+
+        form.form.js-form(novalidate autocomplete="off" action="assets/ajax/success.json")
+          .form__inner
+            +input({
+              label: 'Представьтесь, пожалуйста',
+              placeholder: 'Иванов Иван Иванович',
+              id: 'contacts_form_name',
+              errorMessage: 'Это поле обязательно',
+              classes: 'form__row',
+            })(
+              type="text"
+              name="name"
+              required
+              value="123"
+            )
+
+            +input-mask({
+              label: 'E-mail',
+              placeholder: 'user@host.com',
+              id: 'contacts_form_email',
+              errorMessage: 'Необходимо указать электронную почту',
+            })(
+              type='text'
+              name='email2'
+              required
+              data-inputmask-alias="email"
+              data-inputmask-inputmode="email"
+              value="user@host.com"
+            )
+
+            +input-mask({
+              label: 'Телефон',
+              placeholder: '+7 (999) 999-99-99',
+              id: 'contacts_form_tel',
+              errorMessage: 'Укажите корректный номер телефона',
+            })(
+              type='tel'
+              name='tel'
+              data-inputmask-alias="tel"
+              data-inputmask-inputmode="tel"
+            )
+
+            +input({
+              label: 'Сообщение',
+              placeholder: 'Вопрос, предложение, претензия',
+              id: 'contacts_form_message',
+              errorMessage: 'Это поле обязательно',
+              classes: 'form__row',
+            })(
+              type='textarea',
+              name='message',
+              required
+            )
+
+            .form__footer.form__row
+              button(type="submit").btn._icon-right
+                span Отправить
+                +svgsprite('arrow-right').btn__icon
+              p.form__agree Отправляя информацию, вы соглашаетесь с <a href="#">условиями обработки персональных данных</a>.
+
+          -
+            var successData = {
+              title: 'Спасибо за Ваше обращение!',
+              text: 'Ваше обращение отправлено',
+              btnText: 'Отправить заново',
+            }
+            var errorData = {
+              title: 'Произошла ошибка',
+              text: 'Попробуйте повторить действие чуть позже',
+              btnText: 'Попробовать снова',
+            }
+          +form-message(successData, errorData, true)

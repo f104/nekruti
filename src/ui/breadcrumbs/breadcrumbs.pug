@@ -1,10 +1,9 @@
 mixin breadcrumbs(items)
   - const lastIndex = items.length - 1
-  .container
-    ul.breadcrumbs&attributes(attributes)
-      each item, index in items
-        li.breadcrumbs__item
-          if index < lastIndex
-            a(href="#").breadcrumbs__link= item
-          else
-            = item
+  ul.breadcrumbs&attributes(attributes)
+    each item, index in items
+      li.breadcrumbs__item
+        if index < lastIndex
+          a(href="#").breadcrumbs__link= item
+        else
+          = item

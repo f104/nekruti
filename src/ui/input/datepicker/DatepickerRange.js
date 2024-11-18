@@ -20,7 +20,7 @@ import {
 } from '../../../js/constants'
 import { InputClass } from '../Input.class'
 
-import localeRu from 'air-datepicker/dist/locale/ru'
+import localeRu from 'air-datepicker/locale/ru'
 // import localeEn from './air-datepicker/dist/locale/en'
 // import localeZh from './air-datepicker/dist/locale/zh'
 

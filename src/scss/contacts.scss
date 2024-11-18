@@ -1,0 +1,20 @@
+@use 'sass:math';
+
+@import "base/vars";
+@import "base/mixins";
+@import "base/grid";
+
+@import "components/pages/contacts/contacts-form";
+@import "components/pages/contacts/contacts-map";
+@import "components/pages/contacts/contacts-cards";
+
+.contacts-page {
+  margin-bottom: -$content-padding-bottom;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .contacts-map {
+    flex-grow: 1;
+  }
+}

@@ -11,12 +11,13 @@ block append styles
   link(href="/src/scss/content.scss" rel='stylesheet')
 
 block content
-  +breadcrumbs(['Главная', 'Статьи', 'Заголовок статьи. Пикник без проблем'])
+  .page-header.container
+    +breadcrumbs(['Главная', 'Статьи', 'Заголовок статьи. Пикник без проблем'])
 
   .main-grid
     article.article-grid
       section.container._narrow.article-intro
-        h1.article-intro__title Заголовок статьи. Пикник без проблем
+        h1.h1 Заголовок статьи. Пикник без проблем
         +picture({
           url: 'assets/img/content/intro.jpg',
           alt: 'Заголовок статьи. Пикник без проблем',

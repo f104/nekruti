@@ -8,7 +8,7 @@
 // @import 'components/alternative';
 
 // ui kit
-// @import "../ui/input/input";
+@import "../ui/input/input";
 // @import "../ui/input/input-tel/input-tel";
 // @import "../ui/input/multiselect/multiselect";
 // @import "../ui/input/datepicker/datepicker";
@@ -23,7 +23,7 @@
 // @import "../ui/accordion/accordions";
 // @import "../ui/accordion/accordion-item";
 @import "../ui/breadcrumbs/breadcrumbs";
-// @import "../ui/form-message/form-message";
+@import "../ui/form-message/form-message";
 // @import "../ui/form/form-commom";
 @import "../ui/video/video";
 // @import "../ui/toggle-switch/toggle-switch";
@@ -40,3 +40,5 @@
 @import 'components/common/article-card';
 @import 'components/common/share';
 @import 'components/common/main-grid';
+@import 'components/common/form';
+@import 'components/common/page-header';

@@ -259,6 +259,20 @@
   pointer-events: none;
 }
 
+@mixin link-primary {
+  text-decoration: none;
+  color: $color-primary;
+  @include transition(color);
+
+  @include hover() {
+    color: $color-primary-hover;
+  }
+
+  &:active {
+    color: $color-primary-dark;
+  }
+}
+
 @mixin link-hover {
   text-decoration: none;
   @include transition(color);

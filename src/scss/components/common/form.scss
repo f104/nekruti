@@ -1,0 +1,51 @@
+.form {
+  $root: &;
+
+  background: $color-white;
+  padding: 2.4rem;
+
+  &__inner {
+    display: grid;
+    gap: 1.6rem 4.8rem;
+
+    @include up(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #{$root}._hidden & {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #{$root}._loading & {
+      opacity: 0;
+    }
+  }
+
+  &__row {
+    @include up(md) {
+      grid-column-end: span 2;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  &__agree {
+    font-size: 1.2rem;
+    color: $color-text-gray;
+
+    a {
+      text-decoration: underline;
+      @include transition(color);
+
+      @include hover {
+        color: $color-text;
+      }
+    }
+  }
+}

@@ -535,18 +535,24 @@
 
   font-style: normal;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.2;
   width: 100%;
 
   &__input {
-    background: var(--control-default-bg02);
-    border-color: var(--control-default-bg03-outline);
+    background: transparent;
+    border-color: $color-text-gray-50;
     border-style: solid;
-    color: var(--control-default-typo01);
-    width: 100%;
+    border-width: 0 0 .1rem 0;
+    color: $color-text;
     text-overflow: ellipsis;
     display: block;
-    @include transition((background, border, color));
+    width: 100%;
+    height: 3.8rem;
+    font-size: 1.8rem;
+
+    .body._loaded & {
+      @include transition((border, color));
+    }
 
     &[type='number'] {
       text-align: center;
@@ -576,15 +582,19 @@
         @include alt-color-light {
           filter: brightness(0) saturate(100%) invert(8%) sepia(45%) saturate(1063%) hue-rotate(178deg) brightness(97%) contrast(90%);
         }
+
         @include alt-color-dark {
           filter: brightness(0) saturate(100%) invert(99%) sepia(1%) saturate(477%) hue-rotate(207deg) brightness(114%) contrast(100%);
         }
+
         @include alt-color-c-light {
           filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(324deg) brightness(96%) contrast(104%);
         }
+
         @include alt-color-c-dark {
           filter: brightness(0) saturate(100%) invert(95%) sepia(12%) saturate(772%) hue-rotate(349deg) brightness(107%) contrast(106%);
         }
+
         @include alt-color-c-blue {
           filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7499%) hue-rotate(272deg) brightness(95%) contrast(100%);
         }
@@ -597,11 +607,12 @@
       }
     }
 
-    &[aria-expanded="true"] ~ #{$root}__icon {
+    &[aria-expanded="true"]~#{$root}__icon {
       transform: rotate(180deg);
     }
 
     &:not(:disabled) {
+
       &.js-datepicker__input,
       &.js-multiselect__input {
         cursor: pointer;
@@ -609,78 +620,45 @@
     }
 
     &::placeholder {
-      color: var(--control-default-typo02);
+      color: $color-text-gray-50;
     }
 
     &._textarea {
-      resize: vertical;
-      min-height: 12rem;
-      max-height: 40rem;
-      height: auto;
-    }
-
-    .body._is-firefox form.js-cargo__form &:not(._remove-selection-style-in-firefox) {
-      &::selection {
-        background: transparent;
-      }
+      resize: none;
+      padding-block: .4em;
+      @include hideScrollbar;
     }
 
     @include hover-mouse-only {
       &:hover {
-        border-color: var(--control-state-bg05-outline);
+        border-bottom-color: $color-text;
       }
     }
 
     &._focus,
     &:focus {
-      border-color: var(--control-state-bg06-outline);
-      background: var(--control-default-bg01);
+      border-bottom-color: $color-text;
     }
 
     &:disabled {
-      border-color: var(--control-default-bg03-outline);
-      background: var(--control-state-bg-disabled);
-      color: var(--typography-default-tertiary);
+      cursor: not-allowed;
+      border-bottom-color: $color-text-gray-30;
+      color: $color-text-gray-30;
 
       &::placeholder {
-        color: var(--control-default-typo01);
-        opacity: .4;
+        border-bottom-color: $color-text-gray-30;
       }
     }
 
     #{$root}._error & {
-      border-color: var(--system-alert1);
+      border-bottom-color: $color-red;
     }
   }
 
   &__label {
-    position: absolute;
-    user-select: none;
-    overflow: hidden;
-    color: var(--control-default-typo02);
-    z-index: 1;
-    pointer-events: none;
     display: block;
-    @include transition(all);
-    &:not(._textarea) {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    #{$root}._disabled:not(._label-outside) & {
-      color: var(--control-default-typo01);
-      opacity: .4;
-    }
-
-    #{$root}._label-outside & {
-      color: var(--control-default-typo01);
-      line-height: 1.4;
-      width: 100%;
-      position: static;
-      pointer-events: initial;
-      user-select: initial;
-      padding-right: 0 !important;
-    }
+    font-size: 1.4rem;
+    color: $color-text-gray;
 
     #{$root}._is-file & {
       background: var(--control-default-bg02);
@@ -689,15 +667,9 @@
       cursor: pointer;
     }
 
-    #{$root}._is-file._disabled & {
+    #{$root}._disabled & {
       cursor: not-allowed;
-      opacity: 1;
-      background: var(--control-state-bg-disabled);
-      color: var(--typography-default-tertiary);
-
-      #{$root}__required {
-        opacity: .4;
-      }
+      color: $color-text-gray-50;
     }
 
     #{$root}._is-time & {
@@ -726,8 +698,8 @@
   }
 
   &__required {
-    margin-left: .3rem;
-    color: #DA291C;
+    margin-left: .2em;
+    color: $color-red;
   }
 
   &__icon {
@@ -744,15 +716,18 @@
   }
 
   &__message {
-    color: var(--system-alert1);
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: -0.01em;
     display: block;
+    margin-top: .4rem;
+    color: $color-red;
+    font-size: 1.2rem;
+
+    .body._loaded & {
+      @include transition((opacity, visibility));
+    }
 
     &._hidden {
-      display: none;
+      opacity: 0;
+      visibility: hidden;
     }
   }
 

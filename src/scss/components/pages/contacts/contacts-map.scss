@@ -1,0 +1,51 @@
+.contacts-map {
+  $root: &;
+
+  padding-bottom: 50rem;
+
+  @include up(lg) {
+    padding-bottom: 3.6rem;
+  }
+
+  &__inner {
+    display: grid;
+    gap: 2.4rem;
+    pointer-events: none;
+
+    >* {
+      pointer-events: initial;
+    }
+
+    @include up(lg) {
+      grid-template-columns: calc(33% + 3.6rem) auto;
+    }
+  }
+
+  &__header,
+  &__inner {
+    z-index: 2;
+  }
+
+  &__map {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    [class*=ground-pane] {
+      filter: grayscale(100%);
+    }
+
+    [class*=copyrights-promo] {
+      display: none !important;
+    }
+  }
+
+  &__placemark {
+    width: 32px;
+    height: 32px;
+    transform: translate(-50%, -100%);
+  }
+}

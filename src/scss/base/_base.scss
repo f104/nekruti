@@ -205,6 +205,55 @@ a[href^='mailto:'] {
   cursor: pointer;
 }
 
+.link {
+  color: $color-primary;
+  @include transition(color);
+
+  @include hover {
+    color: $color-primary-hover;
+  }
+
+  &:active {
+    color: $color-primary-dark;
+  }
+}
+
 .link-hover {
   @include link-hover;
+}
+
+.h1 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.05em;
+
+  @include up(md) {
+    font-size: 3.6rem;
+  }
+
+  @include up(xxl) {
+    font-size: 4.8rem;
+  }
+}
+
+.h2 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.05em;
+
+  @include up(md) {
+    font-size: 3.6rem;
+  }
+}
+
+.h3 {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+
+  @include up(md) {
+    font-size: 3.6rem;
+  }
 }

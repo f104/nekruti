@@ -2,6 +2,8 @@
 $color-bg: #F3F3F3;
 $color-text: #282828;
 $color-text-gray: #666666;
+$color-text-gray-50: rgba($color-text-gray, .5);
+$color-text-gray-30: rgba($color-text-gray, .3);
 $color-white: #FFFFFF;
 $color-gray-light: #E6E6E6;
 $color-gray-bg: #E2E2E2;
@@ -21,6 +23,8 @@ $link-hover-color: $color-primary-hover;
 
 $transition-duration: .2s;
 $transition-timing-function: ease-in-out;
+
+$content-padding-bottom: 5.4rem;
 
 $header-z-index: 1000;
 $header-height: (sm: 4.6rem,
