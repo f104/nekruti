@@ -140,16 +140,16 @@ mixin input(params)
           tabindex='-1'
           aria-hidden='true'
           type='button'
-          class='input-common__button-number _minus link-hover js-input__button-minus'
+          class='input-common__button-number _minus js-input__button-minus'
         )
-          +svgsprite('minus')(aria-hidden='true')
+          +svgsprite('minus')
         button(
           tabindex='-1'
           aria-hidden='true'
           type='button'
-          class='input-common__button-number _plus link-hover js-input__button-plus'
+          class='input-common__button-number _plus js-input__button-plus'
         )
-          +svgsprite('plus')(aria-hidden='true')
+          +svgsprite('plus')
 
     span(
       id=id + '_error'

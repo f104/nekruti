@@ -2,7 +2,10 @@ import {
   CUSTOM_EVENT_OPTIMIZED_RESIZE,
   HIDDEN_CLASS_NAME,
   MAIN_SLIDER_CLASS,
+  PRODUCTS_SLIDER_CLASS,
   PRODUCT_SLIDER_CLASS,
+  PRODUCT_SLIDER_MAIN_CLASS,
+  PRODUCT_SLIDER_NAV_CLASS,
   SWIPER_BTN_NEXT_CLASS,
   SWIPER_BTN_PREV_CLASS,
   SWIPER_FRACTION_LANG_EN,
@@ -12,11 +15,11 @@ import {
   SWIPER_SLIDE_CLASS,
 } from '../constants'
 import Swiper from 'swiper'
-import { Keyboard, Navigation, Pagination, A11y } from 'swiper/modules'
+import { Keyboard, Navigation, Pagination, A11y, Thumbs } from 'swiper/modules'
 
 export default class SlidersClass {
   commonParams = {
-    modules: [Keyboard, Navigation, Pagination, A11y],
+    modules: [Keyboard, Navigation, Pagination, A11y, Thumbs],
     watchOverflow: true,
     watchSlidesProgress: true,
     keyboard: {
@@ -37,6 +40,7 @@ export default class SlidersClass {
     this.fractionLang = window.app.lang === 'ru' ? SWIPER_FRACTION_LANG_RU : SWIPER_FRACTION_LANG_EN
 
     this.initMainSlider()
+    this.initProductsSlider()
     this.initProductSlider()
   }
 
@@ -75,8 +79,8 @@ export default class SlidersClass {
     })
   }
 
-  initProductSlider() {
-    document.querySelectorAll(`.${PRODUCT_SLIDER_CLASS}`).forEach((el) => {
+  initProductsSlider() {
+    document.querySelectorAll(`.${PRODUCTS_SLIDER_CLASS}`).forEach((el) => {
       const isFullList = el.classList.contains('_full')
 
       let swiper = null
@@ -108,6 +112,33 @@ export default class SlidersClass {
       if (isFullList) {
         window.addEventListener(CUSTOM_EVENT_OPTIMIZED_RESIZE, () => {
           window.app.isMobile ? init() : destroy()
+        })
+      }
+    })
+  }
+
+  initProductSlider() {
+    document.querySelectorAll(`.${PRODUCT_SLIDER_CLASS}`).forEach((el) => {
+      const main = el.querySelector(`.${PRODUCT_SLIDER_MAIN_CLASS}`)
+      if (main) {
+        const nav = el.querySelector(`.${PRODUCT_SLIDER_NAV_CLASS}`)
+        let thumbsSwiper = undefined
+        if (nav) {
+          thumbsSwiper = new Swiper(nav, {
+            watchOverflow: true,
+            watchSlidesProgress: true,
+            slidesPerView: 'auto',
+          })
+        }
+        new Swiper(main, {
+          ...this.commonParams,
+          navigation: {
+            nextEl: el.querySelector(`.${SWIPER_BTN_NEXT_CLASS}`),
+            prevEl: el.querySelector(`.${SWIPER_BTN_PREV_CLASS}`),
+          },
+          thumbs: {
+            swiper: thumbsSwiper,
+          },
         })
       }
     })

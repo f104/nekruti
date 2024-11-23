@@ -1,0 +1,292 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Товар"
+
+block append head
+  if !isDev
+    link(href="css/critical/product.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/product.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Каталог', 'Стартер для угля'])
+    h1.h1 Стартер для угля
+
+  .main-grid
+    section.main-grid__section 
+      .container.product
+        .product__content
+          .product__price 1 800 ₽
+            del(
+              title="Старая цена 1 950 ₽"
+            ).product__price__old 1 950 ₽
+
+          form(data-native-action).js-form.product__form
+            input(type="hidden" name="id" value="15")
+            button(
+              type="button"
+              name="ms2_action" 
+              value="cart/add"
+              onclick="this.closest('form').classList.add('_in-cart');this.setAttribute('disabled', true); this.closest('form').querySelector('input[type=number]').value = 1; this.closest('form').querySelectorAll('.input-common__button-number').forEach(el => el.removeAttribute('disabled'))"
+            ).btn._primary._wide-sm 
+              span.product__form__buy Купить
+              span.product__form__in-cart В корзине
+              +svgsprite('check')(aria-hidden="true").btn__icon.product__form__in-cart
+            +input-number({
+              id: 'form_number',
+              errorMessage: 'Error message',
+              classes: 'product__form__in-cart',
+            })(
+              type='number'
+              name='number'
+              min='0'
+              max='10'
+              value='1'
+              step='1'
+              data-min-num-error-message='Значение должно быть больше или равно 0'
+              data-max-num-error-message='Значение должно быть меньше или равно 10'
+              data-step-num-error-message='Значение должно быть кратно 1'
+              required
+              oninput="if (this.value == 0) { this.closest('form').classList.remove('_in-cart'); this.closest('form').querySelector('button[name=ms2_action]').removeAttribute('disabled') }"
+            )
+
+          p.product__lead Предназначен для быстрого и безопасного приготовления углей. Позволяет быстро разжечь угли не применяя химических жидкостей, в любую погоду — в дождь или снег.
+          - 
+            var data = [
+              {title: 'Вес', text: '1.3 кг'},
+              {title: 'Размер', text: 'высота — 30 см, диаметр — 21,5 см, объем — 9 л'},
+              {title: 'Материал', text: 'нержавеющая сталь'},
+            ]
+          ul.product__data 
+            each item in data
+              ul.product__data__item
+                span.product__data__item__title= item.title
+                span.product__data__item__text= item.text
+
+          a(href="#reviews").product__reviews
+            +svgsprite('comment')(aria-hidden="true")
+            span Отзывы (2)
+
+          include _includes/blocks/share
+
+          .product__content__footer
+            p.product__article Артикул: 3.2
+            p.product__note Внешний вид изделия, может отличаться от иллюстраций, представленных на сайте.
+
+        .product__slider.js-product-slider
+          -
+            var data = [
+              'assets/img/product/1.jpg',
+              'assets/img/product/2.jpg',
+              'assets/img/product/3.jpg',
+              'assets/img/product/4.jpg',
+            ]
+          .product-slider
+            .swiper.js-product-slider__main
+              .swiper-wrapper
+                each item in data
+                  .swiper-slide
+                    a(
+                      href=item
+                      data-fancybox="product-slider"
+                    ).product-slider__slide
+                      +picture({
+                        url: item,
+                        _0: {width: 357},
+                        _400: {width: 725},
+                        _768: {width: 981},
+                        _1024: {width: 674},
+                      })
+                      +svgsprite('full-screen')(aria-hidden="true").product-slider__slide__icon
+              .swiper-button-prev
+                +svgsprite('arrow-left')
+              .swiper-button-next
+                +svgsprite('arrow-right')
+          .product-slider-nav
+            .swiper.js-product-slider__nav
+              .swiper-wrapper
+                each item in data
+                  .swiper-slide
+                    .product-slider__slide
+                      +picture({
+                        url: item,
+                        _0: {width: 357},
+                        _400: {width: 725},
+                        _768: {width: 981},
+                        _1024: {width: 674},
+                      })
+
+    section.main-grid__section.article-grid
+      .container._narrow.rte
+        p Изделие предназначено для розжига углей, топливных брикетов и другого твердого топлива. Внешний вид похож на мини-трубу с отверстиями, в которой присутствует эффект тяги. Внутри расположена сетка в форме конуса, благодаря которой угли распределяются так, что для их розжига достаточно «пучка» бумаги.
+        p.text-primary Колосник изготовлен из жаропрочной нержавеющей стали AISI 321.
+
+      .container._narrow
+        +video-common({
+          iframe: 'https://www.youtube.com/embed/o-hmPl7CX4M?si=KqmANyUoLGXq3Lev',
+          picture: {
+            url: 'assets/video/poster.jpg',
+            _0: {width: 359, height: 202},
+            _400: {width: 727, height: 409},
+            _768: {width: 983, height: 553},
+            _1024: {width: 1239, height: 697},
+            _1280: {width: 1035, height: 582},
+          },
+        })
+
+      .container._narrow.rte
+        p Appropriately generate holistic functionalities after effective meta-services. Dynamically visualize magnetic leadership skills rather than emerging platforms. Credibly grow one-to-one platforms before team driven value. Dramatically whiteboard highly efficient scenarios before robust e-services. Objectively simplify premium web-readiness for technically sound web-readiness.
+        p Collaboratively grow market positioning interfaces via state of the art niches. Competently productivate viral information and accurate synergy. Assertively whiteboard efficient schemas rather than superior experiences. Uniquely brand efficient technologies via cooperative users. Monotonectally implement bleeding-edge services through synergistic synergy.
+
+      section.container._narrow
+        +picture({
+          url: 'assets/img/content/picture.jpg',
+          alt: 'Alt text',
+          _0: {width: 359},
+          _400: {width: 727},
+          _768: {width: 983},
+          _1024: {width: 1239},
+          _1280: {width: 1035},
+        })
+
+      .container._narrow.rte
+        p Authoritatively productivate process-centric niches after functional technologies. Conveniently streamline timely applications through premium solutions. Collaboratively transition fully tested methodologies.
+
+    #reviews.section.main-grid__section
+      .main-grid__section__inner.container._narrow
+        h3.h3.main-grid__h3 Отзывы
+        .product-reviews
+          -
+            var data = [
+              {
+                name: 'Анна',
+                date: '2 апреля 2021',
+                stars: 5,
+                like: 'Всё',
+                dislike: '',
+                text: 'Очень удобно. Прекрасный подарок мужу!',
+                comment: '',
+              },
+              {
+                name: 'Вячеслав',
+                date: '4 мая 2021',
+                stars: 4,
+                like: 'Мясо прожаривается равномерно',
+                dislike: 'Тонкий металл',
+                text: 'Первая ручка с механизмом расплавилась. Следите за рассмотрением между ручкой и огнем.',
+                comment: '',
+              },
+              {
+                name: 'Васильев Михаил Александрович',
+                date: '19 июня 2018',
+                stars: 3,
+                like: 'Понравилось то, что крутить не нужно.',
+                dislike: 'Металл очень тонкий.',
+                text: 'В целом нормально, но за эти деньги могло быть и лучше. Купил из-за того что нет времени делать самому. Обошлось бы в два раза дешевле.',
+                comment: 'Спасибо за отзыв. Мы уверены, что вы смогли бы сделать подобную конструкцию дешевле. В интернете масса подобных примеров. Но наше производство все-таки не мелкосерийное, поэтому «гаражный» вариант «на коленке» нам не подходит. Мы арендуем помещения, платим заработную плату и налоги, закладываем средства на развитие и рекламу. Поэтому себестоимость изделия составляет ровно половину от конечной цены. Вопрос увеличения толщины металла лежит в этой же плоскости — соотношение цены и качества. На жесткости конструкции это вряд ли скажется, а вот к увеличению стоимости неизбежно приведет.',
+              },
+            ]
+            var lexicon = {
+              like: 'Понравилось',
+              dislike: 'Не понравилось',
+              text: 'Общие впечатления',
+              comment: 'Комментарий производителя',
+            }
+          each item in data
+            .product-reviews__card
+              .product-reviews__card__header
+                .product-reviews__name= item.name
+                .product-reviews__date= item.date
+                +svgsprite('comment')(aria-hidden="true").product-reviews__card__header__icon
+                .product-reviews__stars
+                  each num in [1,2,3,4,5]
+                    +svgsprite('star')(class= num<=item.stars ? '_filled' : '')
+              .product-reviews__card__content
+                each key in ['like', 'dislike', 'text', 'comment']
+                  if item[key]
+                    .product-reviews__block
+                      p.product-reviews__block__title= lexicon[key]
+                      p.product-reviews__block__text= item[key]
+          // ._no-reviews, если нет отзывов
+          .product-reviews__card._add
+            .product-reviews__card__content
+              form.form.js-form(novalidate autocomplete="off" action="assets/ajax/success.json")
+                .form__inner
+                  .form__header.form__row У вас есть «Стартер для угля»? Будем признательны за отзыв.
+                  +input({
+                    label: 'Что понравилось?',
+                    id: 'reviews_form_like',
+                    classes: 'form__row',
+                  })(
+                    type='textarea',
+                    name='like',
+                  )
+                  +input({
+                    label: 'Что не понравилось?',
+                    id: 'reviews_form_dislike',
+                    classes: 'form__row',
+                  })(
+                    type='textarea',
+                    name='dislike',
+                  )
+                  +input({
+                    label: 'Общие впечатления и любая другая информация, которой вы хотите поделиться',
+                    id: 'reviews_form_comment',
+                    classes: 'form__row',
+                  })(
+                    type='textarea',
+                    name='comment',
+                  )
+                  .input-common
+                    .input-common__label Итоговая оценка
+                    .form__rating.js-rating-row
+                      .form__rating__item.js-rating-star._active
+                        input(
+                          type="radio"
+                          name="stars"
+                          value="0"
+                        ).js-rating-radio
+                      each num in [1,2,3,4,5]
+                        .form__rating__item.js-rating-star
+                          input(
+                            type="radio"
+                            name="stars"
+                            value=num
+                            id=`rating_${num}`
+                          ).js-rating-radio
+                          label(
+                            for=`rating_${num}`
+                          ).form__rating__label
+                            +svgsprite('star')
+
+                  .form__footer.form__row
+                    button(type="submit").btn
+                      span Отправить
+                      +svgsprite('arrow-right').btn__icon
+                    p.form__agree Отправляя информацию, вы соглашаетесь с <a href="#">условиями обработки персональных данных</a>.
+
+                -
+                  var successData = {
+                    title: 'Спасибо за отзыв!',
+                    text: 'Ваше мнение очень важно для нас',
+                    btnText: 'Отправить заново',
+                  }
+                  var errorData = {
+                    title: 'Произошла ошибка',
+                    text: 'Попробуйте повторить действие чуть позже',
+                    btnText: 'Попробовать снова',
+                  }
+                +form-message(successData, errorData, true)
+
+
+    section.main-grid__section
+      .main-grid__section__inner.container
+        h3.h3.main-grid__h3 Другие товары
+        include _includes/blocks/products
+        a(href="#").btn.main-grid__btn
+          span Все товары
+          +svgsprite('arrow-right').btn__icon

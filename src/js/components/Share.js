@@ -107,14 +107,13 @@ export default class ShareClass {
         navigator.clipboard
           .writeText(url)
           .then(() => {
-            btn.classList.add('_success')
-            setTimeout(() => {
-              btn.classList.remove('_success')
-            }, 2000)
+            window.app.message.success({ text: 'Скопировано' })
           })
           .catch(() => {
-            btn.classList.remove('_success')
-            alert('Ошибка! Текст не скопирован.')
+            window.app.message.error({
+              title: 'Ошибка!',
+              text: 'Текст не скопирован',
+            })
           })
       }
     })

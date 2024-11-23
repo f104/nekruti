@@ -1,0 +1,82 @@
+.product-reviews {
+  $root: &;
+
+  display: grid;
+  gap: 3.6rem;
+
+  &__card {
+    display: grid;
+    gap: 1.8rem;
+
+    @include up(md) {
+      grid-template-columns: 2fr 6fr;
+      gap: 2.4rem;
+    }
+
+    &._no-reviews {
+      grid-template-columns: 1fr 5fr 1fr;
+    }
+
+    &__header {
+      padding-left: 3.2rem;
+
+      &__icon {
+        position: absolute;
+        top: .2rem;
+        left: 0;
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+
+    &__content {
+      padding-left: 3.2rem;
+      display: grid;
+      gap: 1.2rem;
+
+      @include up(md) {
+        padding-left: 0;
+        grid-column: 2/3;
+      }
+
+      #{$root}__card._add & {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &__name {
+    font-size: 1.8rem;
+  }
+
+  &__date {
+    font-size: 1.4rem;
+    color: $color-text-gray;
+  }
+
+  &__stars {
+    display: flex;
+    gap: .8rem;
+    margin-top: 1.2rem;
+    color: $color-text-gray-30;
+
+    .svgsprite {
+      width: 2.4rem;
+      height: 2.4rem;
+
+      &._filled {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__block {
+    font-size: 1.4rem;
+
+    &__title {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: $color-text-gray;
+    }
+  }
+}

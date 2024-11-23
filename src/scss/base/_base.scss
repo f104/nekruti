@@ -130,6 +130,18 @@ html {
   &-uppercase {
     text-transform: uppercase;
   }
+
+  &-primary {
+    color: $color-primary;
+  }
+
+  &-primary-dark {
+    color: $color-primary-dark;
+  }
+
+  &-red {
+    color: $color-red;
+  }
 }
 
 a,

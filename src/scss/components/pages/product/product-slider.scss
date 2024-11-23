@@ -1,0 +1,103 @@
+.product-slider {
+  $root: &;
+  $arrow-width: 6.4rem;
+
+
+  @include up(lg) {
+    margin-inline: -#{math.div($arrow-width, 2)};
+    padding-inline: math.div($arrow-width, 2);
+  }
+
+  .swiper {
+    margin-inline: -#{map-get($container-paddings, sm)};
+    padding-inline: map-get($container-paddings, sm) - .4rem;
+
+    @include up(md) {
+      margin-inline: -#{map-get($container-paddings, md)};
+      padding-inline: map-get($container-paddings, md) - .4rem;
+    }
+
+    @include up(lg) {
+      margin-inline: 0;
+      padding-inline: 0;
+      position: static;
+    }
+  }
+
+  .swiper-slide {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-inline: .4rem;
+
+    @include up(lg) {
+      padding-inline: 0;
+    }
+  }
+
+  &__slide {
+    border: .1rem solid $color-gray-light;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+    picture {
+      flex-grow: 1;
+    }
+
+    &__icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      opacity: .4;
+    }
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    @include down(md) {
+      display: none;
+    }
+
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-button-next {
+    right: 0;
+  }
+
+  &-nav {
+    @include down(md) {
+      display: none;
+    }
+
+    position: absolute;
+    bottom: .4rem;
+    left: .4rem;
+    right: .4rem;
+
+    .swiper-slide {
+      width: 5rem;
+      padding: .4rem;
+      cursor: pointer;
+      @include transition(opacity);
+
+      @include hover {
+        opacity: 1 !important;
+      }
+
+      &:not(.swiper-slide-thumb-active) {
+        opacity: .5;
+      }
+    }
+  }
+}

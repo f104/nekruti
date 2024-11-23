@@ -538,6 +538,13 @@
   line-height: 1.2;
   width: 100%;
 
+
+  &__inner {
+    #{$root}._is-number & {
+      padding-inline: 3.6rem;
+    }
+  }
+
   &__input {
     background: transparent;
     border-color: $color-text-gray-50;
@@ -810,8 +817,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 0;
-    color: var(--control-default-typo01);
+    bottom: 0;
+    color: $color-text-gray;
+
+    @include transition(color);
+
+    &:disabled {
+      color: $color-text-gray-50;
+    }
+
+    &:not(:disabled) {
+      @include hover {
+        color: $color-text;
+      }
+    }
+
+    .svgsprite {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+
+    &._minus {
+      left: 0;
+    }
+
+    &._plus {
+      right: 0;
+    }
   }
 
   &__file-item {

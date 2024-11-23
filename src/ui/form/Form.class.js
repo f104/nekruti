@@ -33,6 +33,7 @@ import { CheckboxGroupClass } from '../checkbox-group/CheckboxGroup.class'
 import { formDataToObject } from '../../js/functions/formDataToObject'
 import FormPreloaderClass from '../form-message/FormPreloader.class'
 import InputFileClass from '../input/input-file/InputFile.class'
+import { RatingInputClass } from '../input/rating/Rating.class'
 
 export default class FormClass {
   constructor(config) {
@@ -79,7 +80,7 @@ export default class FormClass {
       let errors = false
       const action = form.getAttribute('action')
       const formElements = form.querySelectorAll(
-        `.${FORM_INPUT_CLASS}, .${FILE_DROPZONE_CLASS}, .${DATEPICKER_COMPONENT}, .${MULTISELECT_COMPONENT}, .${RATING_ROW}, .${CHECKBOX_GROUP_CLASS}, .${NUMBER_INPUT_CLASS}, .${INPUTMASK_CLASS_NAME}, .${INTL_TEL_INPUT_CLASS_NAME}, .${FILE_DROPZONE_CLASS}`,
+        `.${FORM_INPUT_CLASS}, .${FILE_DROPZONE_CLASS}, .${DATEPICKER_COMPONENT}, .${MULTISELECT_COMPONENT}, .${RATING_ROW}, .${CHECKBOX_GROUP_CLASS}, .${NUMBER_INPUT_CLASS}, .${INPUTMASK_CLASS_NAME}, .${INTL_TEL_INPUT_CLASS_NAME}, .${FILE_DROPZONE_CLASS}, .${RATING_ROW}`,
       )
       const dataNativeAction = form.hasAttribute(DATA_NATIVE_ACTION)
       const formElementsClasses = []
@@ -141,6 +142,8 @@ export default class FormClass {
           formElementsClasses.push(new InputClass({ element }))
         } else if (element.classList.contains(CHECKBOX_GROUP_CLASS)) {
           formElementsClasses.push(new CheckboxGroupClass({ element }))
+        } else if (element.classList.contains(RATING_ROW)) {
+          formElementsClasses.push(new RatingInputClass({ element }))
         }
       })
 
@@ -234,6 +237,7 @@ export default class FormClass {
               }
             } else {
               let value = el.value
+              console.log(value)
 
               if (value && el.datepicker) {
                 value = window.app.dayjs(value).format(DATE_FORMAT)

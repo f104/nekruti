@@ -65,6 +65,7 @@
 	},
 	"target": "web",
 	"dependencies": {
+		"@fancyapps/ui": "^5.0.36",
 		"@sentry/browser": "^7.108.0",
 		"@sentry/tracing": "^7.108.0",
 		"air-datepicker": "^3.2.12",
@@ -77,6 +78,7 @@
 		"macy": "^2.5.1",
 		"mustache": "^4.2.0",
 		"seamless-scroll-polyfill": "^2.3.4",
+		"simple-notify": "^1.0.5",
 		"swiper": "^11.0.7",
 		"tom-select": "^2.1.2",
 		"vue": "^3.4.21",

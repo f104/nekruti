@@ -23,6 +23,7 @@ import HttpClass from './components/Http'
 import SlidersClass from './components/Sliders'
 import ShareClass from './components/Share'
 import MapClass from './components/Map'
+import MessageClass from './components/Message'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
 // import PopupClass from '../ui/popup/Popup.class'
@@ -34,6 +35,7 @@ import VideoClass from '../ui/video/Video.class'
 // import FilterClass from '../ui/listing/Filter.class'
 import { checkUseMouse } from './functions/checkUseMouse'
 import mustache from 'mustache'
+import { Fancybox } from '@fancyapps/ui'
 import utc from 'dayjs/plugin/utc.js'
 
 if (!('scrollBehavior' in window.document.documentElement.style)) {
@@ -136,6 +138,7 @@ class App {
       const http = new HttpClass()
 
       this.http = http.axios
+      this.message = new MessageClass()
 
       // include components here
 
@@ -151,6 +154,8 @@ class App {
       // new Dropdown()
       // new FilterClass()
       // new AlternativeVersionClass() // вызывать после всех остальных компонентов
+
+      Fancybox.bind()
 
       if (this.isLighthouse) {
         setTimeout(() => {

@@ -30,8 +30,8 @@ export class InputNumberClass extends InputClass {
   }
 
   initNumber() {
-    const btnMinus = this.element.querySelector(`.${FORM_INPUT_BUTTON_MINUS_CLASS}`)
-    const btnPlus = this.element.querySelector(`.${FORM_INPUT_BUTTON_PLUS_CLASS}`)
+    this.btnMinus = this.element.querySelector(`.${FORM_INPUT_BUTTON_MINUS_CLASS}`)
+    this.btnPlus = this.element.querySelector(`.${FORM_INPUT_BUTTON_PLUS_CLASS}`)
     this.min = Number(this.input.getAttribute('min') ?? -Infinity)
     this.max = Number(this.input.getAttribute('max')) || Infinity
     this.step = Number(this.input.getAttribute('step')) || 1
@@ -39,8 +39,8 @@ export class InputNumberClass extends InputClass {
     this.maxErrMsg = this.input.getAttribute(DATA_MAX_NUM_ERROR_MESSAGE) || ''
     this.stepErrMsg = this.input.getAttribute(DATA_STEP_NUM_ERROR_MESSAGE) || ''
 
-    if (btnMinus) {
-      btnMinus.addEventListener('click', () => {
+    if (this.btnMinus) {
+      this.btnMinus.addEventListener('click', () => {
         const val = Number(this.input.value)
         let result = val - this.step
         result = getRoundedValue(result, this.step)
@@ -58,8 +58,8 @@ export class InputNumberClass extends InputClass {
       })
     }
 
-    if (btnPlus) {
-      btnPlus.addEventListener('click', () => {
+    if (this.btnPlus) {
+      this.btnPlus.addEventListener('click', () => {
         const val = Number(this.input.value)
         let result = val + this.step
         result = getRoundedValue(result, this.step)
@@ -112,6 +112,16 @@ export class InputNumberClass extends InputClass {
     if (this.input) {
       if (this.isNumber) {
         this.value = Number(this.input.value)
+      }
+
+      if (this.btnMinus) {
+        this.value <= this.min
+          ? this.btnMinus.setAttribute('disabled', true)
+          : this.btnMinus.removeAttribute('disabled')
+      }
+
+      if (this.btnPlus) {
+        this.value >= this.max ? this.btnPlus.setAttribute('disabled', true) : this.btnPlus.removeAttribute('disabled')
       }
 
       if (serverError) {

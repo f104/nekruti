@@ -14,24 +14,54 @@
   color: $color-white;
   font-size: 1.6rem;
   font-weight: 500;
-  @include transition(background);
+  @include transition((background, opacity));
   min-width: 20rem;
 
   @include hover {
-    color: $color-white;
     background: $color-primary;
   }
 
-  &._icon-right {
-    padding-right: .8rem;
+  &:disabled,
+  &._disabled {
+    opacity: .7;
+
+    @include hover {
+      background: $color-text;
+    }
   }
 
-  &._icon-left {
-    padding-left: .8rem;
+
+  &._primary {
+    background: $color-primary;
+
+    @include hover {
+      background: $color-text;
+    }
+
+    &:disabled,
+    &._disabled {
+      @include hover {
+        background: $color-primary;
+      }
+    }
   }
 
   &__icon {
     width: 2.4rem;
     height: 2.4rem;
+
+    &:first-child {
+      margin-left: -.8rem;
+    }
+
+    &:last-child {
+      margin-right: -.8rem;
+    }
+  }
+
+  &._wide-sm {
+    @include down(sm) {
+      width: 100%;
+    }
   }
 }

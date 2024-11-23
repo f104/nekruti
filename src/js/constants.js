@@ -331,7 +331,10 @@ export const SWIPER_FRACTION_LANG_RU = 'из'
 export const SWIPER_FRACTION_LANG_EN = 'of'
 export const SWIPER_SLIDE_CLASS = 'swiper-slide'
 export const MAIN_SLIDER_CLASS = 'js-main-slider'
+export const PRODUCTS_SLIDER_CLASS = 'js-products-slider'
 export const PRODUCT_SLIDER_CLASS = 'js-product-slider'
+export const PRODUCT_SLIDER_MAIN_CLASS = 'js-product-slider__main'
+export const PRODUCT_SLIDER_NAV_CLASS = 'js-product-slider__nav'
 
 // share
 export const SHARE_NETWORK_CLASS = 'js-share'

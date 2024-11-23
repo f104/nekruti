@@ -7,6 +7,17 @@
 @import 'components/rte';
 // @import 'components/alternative';
 
+@import '/node_modules/@fancyapps/ui/dist/fancybox/fancybox.css';
+@import '/node_modules/simple-notify/dist/simple-notify.css';
+
+.sn-notify-title {
+  font-size: 1.8rem;
+}
+
+.sn-notify-text {
+  font-size: 1.4rem;
+}
+
 // ui kit
 @import "../ui/input/input";
 // @import "../ui/input/input-tel/input-tel";

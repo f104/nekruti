@@ -273,6 +273,16 @@
   }
 }
 
+@mixin link-primary-dark {
+  text-decoration: none;
+  color: $color-primary-dark;
+  @include transition(color);
+
+  @include hover() {
+    color: $color-primary-hover;
+  }
+}
+
 @mixin link-hover {
   text-decoration: none;
   @include transition(color);
