@@ -1,0 +1,60 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Каталог"
+
+block append head
+  if !isDev
+    link(href="css/critical/catalog.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/catalog.scss" rel='stylesheet')
+
+block content
+  .container.page-header
+    +breadcrumbs(['Главная', 'Каталог'])
+    h1.h1 Каталог
+
+  .main-grid
+
+    section.main-grid__section.js-filter-form__wrap
+      .catalog 
+        form(
+          id="filter_form"
+          novalidate 
+          autocomplete="off"
+        ).catalog__sticky.js-filter-form
+          .container
+            .catalog-filter.js-checkbox-group
+              -
+                var data = [
+                  {label: 'Шампуры-самокруты', value: 1},
+                  {label: 'Аксессуары', value: 2},
+                ]
+              each item in data
+                .catalog-checkbox
+                  input(
+                    type="checkbox"
+                    name="category"
+                    value=item.value
+                    id=`catalog_filter_${item.value}`
+                    aria-labelledby=`catalog_filter_label_${item.value}`
+                  ).js-checkbox-group__input
+                  label(
+                    for=`catalog_filter_${item.value}`
+                    id=`catalog_filter_label_${item.value}`
+                  )= item.label
+
+        .catalog__content.container.page__content-wrap
+          .page__content.js-page(
+            aria-live='assertive'
+            aria-atomic='true'
+          )
+            .js-page__inner
+              include _includes/blocks/pages/main/products
+          +page-preloader()
+
+    section.main-grid__section.container._narrow.rte
+      p SEO-текст для поисковиков
+      p Continually supply go forward value for virtual initiatives. Dynamically integrate go forward convergence with enterprise markets. Efficiently formulate high standards in deliverables without standards compliant initiatives. Credibly network market-driven networks vis-a-vis multimedia based partnerships. Holisticly productivate world-class collaboration and idea-sharing whereas one-to-one infrastructures.
+      p Proactively leverage existing an expanded array of ROI vis-a-vis long-term high-impact total linkage. Enthusiastically transition alternative e-business without cutting-edge supply chains. Objectively procrastinate superior human capital and extensive materials. Energistically disintermediate covalent services for functionalized relationships. Appropriately matrix frictionless scenarios with progressive e-tailers.

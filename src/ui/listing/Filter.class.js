@@ -1,5 +1,6 @@
 import {
   CHECKBOX_GROUP_CLASS,
+  CUSTOM_EVENT_FILTER_LOADED,
   DATA_FILTER_STATIC_PARAMS,
   DATA_ID,
   DATEPICKER_COMPONENT,
@@ -56,23 +57,23 @@ export default class FilterClass {
 
       if (!form) return
 
-      const multiselectEl = document.querySelector(`.${MULTISELECT_COMPONENT}`)
-      const calendarEl = document.querySelector(`.${DATEPICKER_COMPONENT}`)
+      // const multiselectEl = document.querySelector(`.${MULTISELECT_COMPONENT}`)
+      // const calendarEl = document.querySelector(`.${DATEPICKER_COMPONENT}`)
 
-      if (multiselectEl && !window.app.TomSelectLib) {
-        window.app.TomSelectLib = (await import('tom-select/build/js/tom-select.base.min')).default
-        const TomSelectLib_checkbox_options = (await import('tom-select/build/js/plugins/checkbox_options')).default
-        const TomSelectLib_dropdown_input = (await import('tom-select/build/js/plugins/dropdown_input')).default
-        const TomSelectLib_no_backspace_delete = (await import('tom-select/build/js/plugins/no_backspace_delete'))
-          .default
-        window.app.TomSelectLib.define('checkbox_options', TomSelectLib_checkbox_options)
-        window.app.TomSelectLib.define('dropdown_input', TomSelectLib_dropdown_input)
-        window.app.TomSelectLib.define('no_backspace_delete', TomSelectLib_no_backspace_delete)
-      }
+      // if (multiselectEl && !window.app.TomSelectLib) {
+      //   window.app.TomSelectLib = (await import('tom-select/build/js/tom-select.base.min')).default
+      //   const TomSelectLib_checkbox_options = (await import('tom-select/build/js/plugins/checkbox_options')).default
+      //   const TomSelectLib_dropdown_input = (await import('tom-select/build/js/plugins/dropdown_input')).default
+      //   const TomSelectLib_no_backspace_delete = (await import('tom-select/build/js/plugins/no_backspace_delete'))
+      //     .default
+      //   window.app.TomSelectLib.define('checkbox_options', TomSelectLib_checkbox_options)
+      //   window.app.TomSelectLib.define('dropdown_input', TomSelectLib_dropdown_input)
+      //   window.app.TomSelectLib.define('no_backspace_delete', TomSelectLib_no_backspace_delete)
+      // }
 
-      if (calendarEl && !window.app.AirDatepickerLib) {
-        window.app.AirDatepickerLib = (await import('air-datepicker/dist/air-datepicker')).default
-      }
+      // if (calendarEl && !window.app.AirDatepickerLib) {
+      //   window.app.AirDatepickerLib = (await import('air-datepicker/dist/air-datepicker')).default
+      // }
 
       let action = form.getAttribute('action') || window.location.origin + window.location.pathname
       const formElements = form.querySelectorAll(
@@ -248,6 +249,7 @@ export default class FilterClass {
 
             if (pageContainer && pageListContainer) {
               //здесь нужно заново инициализировать компоненты, при необходимости
+              window.dispatchEvent(new CustomEvent(CUSTOM_EVENT_FILTER_LOADED))
 
               pageContainer.classList.remove(HIDDEN_CLASS_NAME)
             }

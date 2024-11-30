@@ -1,4 +1,5 @@
 import {
+  CUSTOM_EVENT_FILTER_LOADED,
   CUSTOM_EVENT_OPTIMIZED_RESIZE,
   HIDDEN_CLASS_NAME,
   MAIN_SLIDER_CLASS,
@@ -42,6 +43,10 @@ export default class SlidersClass {
     this.initMainSlider()
     this.initProductsSlider()
     this.initProductSlider()
+
+    window.addEventListener(CUSTOM_EVENT_FILTER_LOADED, () => {
+      this.initProductsSlider()
+    })
   }
 
   renderFraction(currentClass, totalClass) {
@@ -104,14 +109,13 @@ export default class SlidersClass {
           swiper = null
         }
       }
-
       if (!isFullList || window.app.isMobile || window.app.isTablet) {
         init(el)
       }
 
       if (isFullList) {
         window.addEventListener(CUSTOM_EVENT_OPTIMIZED_RESIZE, () => {
-          window.app.isMobile ? init() : destroy()
+          window.app.isMobile || window.app.isTablet ? init() : destroy()
         })
       }
     })

@@ -1,0 +1,42 @@
+.catalog-checkbox {
+  $root: &;
+
+
+  display: inline-block;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    white-space: nowrap;
+    background: $color-white;
+    background: $color-gray-light;
+    height: 3.8rem;
+    font-size: 1.8rem;
+    line-height: 1;
+    text-transform: uppercase;
+    padding-inline: 1rem;
+    cursor: pointer;
+
+    @include transition((color, background));
+
+    @include hover {
+      background: $color-white;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    appearance: none;
+
+    &:checked~label {
+      background: $color-primary;
+      color: $color-white;
+
+      @include hover {
+        background: $color-primary-hover;
+      }
+    }
+  }
+}

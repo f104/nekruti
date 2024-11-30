@@ -310,6 +310,7 @@ export const FILTER_PAGE = 'page'
 export const FILTER_LIMIT = 'limit'
 export const PAGE_INNER_CLASS = 'js-page__inner'
 export const PAGE_CLASS = 'js-page'
+export const CUSTOM_EVENT_FILTER_LOADED = 'filterLoaded'
 
 // empty
 export const EMPTY_RESULTS_CLASS = 'js-empty-result'

@@ -21,11 +21,11 @@
   &__inner {
     width: 6rem;
     height: 6rem;
-    border-right: .5rem solid var(--surface-light, #FFF);
+    border-right: .5rem solid $color-primary;
     border-radius: 50%;
-    border-top: .5rem solid var(--surface-light, #FFF);
-    border-left: .5rem solid var(--surface-light, #FFF);
-    border-bottom: .5rem solid var(--surface-light, #FFF);
+    border-top: .5rem solid $color-bg;
+    border-left: .5rem solid $color-bg;
+    border-bottom: .5rem solid $color-bg;
     animation: spin 1s cubic-bezier(0.34, 0.15, 0.54, 0.75) infinite;
     margin: auto;
     position: absolute;

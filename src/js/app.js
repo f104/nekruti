@@ -32,7 +32,7 @@ import MessageClass from './components/Message'
 import FormClass from '../ui/form/Form.class'
 import VideoClass from '../ui/video/Video.class'
 // import Dropdown from '../ui/dropdown/Dropdown.class'
-// import FilterClass from '../ui/listing/Filter.class'
+import FilterClass from '../ui/listing/Filter.class'
 import { checkUseMouse } from './functions/checkUseMouse'
 import mustache from 'mustache'
 import { Fancybox } from '@fancyapps/ui'
@@ -152,7 +152,7 @@ class App {
       new FormClass()
       new VideoClass()
       // new Dropdown()
-      // new FilterClass()
+      new FilterClass()
       // new AlternativeVersionClass() // вызывать после всех остальных компонентов
 
       Fancybox.bind()

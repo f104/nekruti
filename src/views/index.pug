@@ -9,18 +9,46 @@ block append head
 
 block append styles
   link(href="/src/scss/main-page.scss" rel='stylesheet')
+  style.
+    .dev-links {
+      font-size: 2rem; 
+      margin-top: 2rem;
+    }
+    .dev-muted {
+      color: lightgray;
+    }
 
 block content
-  .container(style='font-size: 2rem; margin-top: 2rem')
+  .container.dev-links
     ul
       li
         a(href='main-page.html') Главная
       li
-        a(href='contacts.html') Контакты
-      li
         a(href='content.html') Контентная
       li
-        a(href='product.html') Товар
+        a(href='catalog.html') Каталог
+      li
+        a(href='category.html') Каталог - категория
+      li
+        a(href='product.html') Каталог - товар
+      li
+        a(href='contacts.html') Контакты
+      li
+        span.dev-muted Фото
+      li
+        span.dev-muted Видео
+      li
+        span.dev-muted Корзина, оформление заказа
+      li
+        span.dev-muted Заказ оформлен
+      li
+        span.dev-muted Авторизация/регистрация
+      li
+        span.dev-muted ЛК - заказы
+      li
+        span.dev-muted ЛК - профиль
+      li
+        span.dev-muted ЛК - отзывы
       li
         br
         a(href='ui.html') UI

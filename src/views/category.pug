@@ -1,0 +1,97 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Категория товаров"
+
+block append head
+  if !isDev
+    link(href="css/critical/category.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/category.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Каталог', 'Шампуры-самокруты'])
+    h1.h1 Шампуры-самокруты
+    p.page-header__lead Шампуры-самокруты разработаны специально для эксплуатации совместно с любым из устройств, предназначенных для приготовления пищи на углях (мангал, барбекю, гриль и т.п.). Возможно использование на самодельных очагах, собранных из подручных материалов (кирпичей) или просто в яме, обустроенной в земле.
+
+  .main-grid
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        include _includes/blocks/pages/main/products
+
+    section.main-grid__section.article-grid
+      .container._narrow.rte
+        p Для того что бы быстро и вкусно приготовить шашлык мы разработали и выпустили в производство набор для вращения шампуров под названием Механизм Вращения Шампуров (МВШ).
+
+      section.container._narrow
+        +picture({
+          url: 'assets/img/content/picture.jpg',
+          alt: 'Alt text',
+          _0: {width: 359},
+          _400: {width: 727},
+          _768: {width: 983},
+          _1024: {width: 1239},
+          _1280: {width: 1035},
+        })
+
+      .container._narrow.rte
+        p При приготовлении шашлыка кому-то обязательно приходиться сидеть и контролировать, чтобы мясо не сгорело. Много времени и стараний уходит на вращение шампуров вручную. Механизм Вращения Шампуров сделает это за вас — автоматически. А самое главное — он не даст сгореть мясу и ваши друзья будут всегда довольны вашим мастерством!
+
+      .container._narrow
+        +video-common({
+          iframe: 'https://www.youtube.com/embed/o-hmPl7CX4M?si=KqmANyUoLGXq3Lev',
+          picture: {
+            url: 'assets/video/poster.jpg',
+            _0: {width: 359, height: 202},
+            _400: {width: 727, height: 409},
+            _768: {width: 983, height: 553},
+            _1024: {width: 1239, height: 697},
+            _1280: {width: 1035, height: 582},
+          },
+        })
+
+      .container._narrow.rte
+        p Конструкция собирается в виде рамки, легко и быстро, без всякого инструмента. Сборка занимает одну минуту. На рамку устанавливаются шампуры-самокруты с продуктами (мясо, грибы, крылышки, овощи и т.п.). Затем конструкцию размещают на мангал, гриль или барбекю. Теперь вы можете отдыхать, шампуры-самокруты все сделают за вас. При таком способе готовки мясо само себя поливает жиром, поэтому оно получается более сочным, не подгорает, а угли значительно реже горят.
+
+      .container._narrow.rte
+        p Принцип работы устройства заключается в том, что привод, работающий от батарейки (1.5 V) медленно вращает шампуры. Посредством автоматического вращения шашлык обжаривается со всех сторон равномерно и это не позволяет вытекать соку из мяса, что делает ваш шашлык сочным и мягким.
+
+      .container._narrow
+        a(
+          href="assets/img/content/mvsh-schema.png"
+          data-fancybox
+        )
+          +picture({
+            url: 'assets/img/content/mvsh-schema.png',
+            alt: 'Alt text',
+            _0: {width: 359},
+            _400: {width: 727},
+            _768: {width: 983},
+            _1024: {width: 1239},
+            _1280: {width: 1035},
+          })
+
+      .container._narrow.rte
+        p Механизм Вращения Шампуров сделан из нержавеющей стали и представляет собой насадку, которую можно ставить на мангал, гриль, барбекю, кирпичи. Механизм легко собирается и разбирается, и упаковывается в пластиковый тубус.
+
+      .container._narrow
+        +picture({
+          url: 'assets/img/content/picture.jpg',
+          alt: 'Alt text',
+          _0: {width: 359},
+          _400: {width: 727},
+          _768: {width: 983},
+          _1024: {width: 1239},
+          _1280: {width: 1035},
+        })
+
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        h3.h3.main-grid__h3 Статьи о шампурах-самокрутах
+        include _includes/blocks/pages/main/articles
+        a(href="#").btn.main-grid__btn
+          span Все статьи
+          +svgsprite('arrow-right').btn__icon
