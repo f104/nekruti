@@ -3,6 +3,10 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 5.4rem;
 
+  @include up(xxl) {
+    gap: 6.2rem;
+  }
+
   &__section {
     &__inner {
       display: grid;

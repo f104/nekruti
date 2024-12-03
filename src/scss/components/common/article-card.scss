@@ -10,6 +10,39 @@
     align-items: flex-start;
   }
 
+  &._accent {
+    @include down(md) {
+      background: $color-white;
+      padding: map-get($container-paddings, md);
+    }
+
+    @include down(sm) {
+      padding: map-get($container-paddings, sm);
+    }
+
+    .container & {
+      @include down(md) {
+        margin-inline: -#{map-get($container-paddings, md)};
+      }
+
+      @include down(sm) {
+        margin-inline: -#{map-get($container-paddings, sm)};
+      }
+
+    }
+
+    gap: 1.2rem;
+
+    @include up(lg) {
+      gap: 2.4rem;
+    }
+
+    @include up(xl) {
+      gap: 3.6rem;
+    }
+
+  }
+
   @include hover {
     #{$root}__picture img {
       transform: scale(1.1);
@@ -25,6 +58,7 @@
     flex-shrink: 0;
     overflow: hidden;
     @include aspect(320, 218);
+    border: 0.1rem solid $color-gray-light;
 
     @include up(lg) {
       width: 22rem;
@@ -37,6 +71,16 @@
     img {
       transition: transform .5s ease-in-out;
     }
+
+    #{$root}._accent & {
+      @include up(lg) {
+        width: 22rem * 1.5;
+      }
+
+      @include up(xl) {
+        width: 26.6rem * 2;
+      }
+    }
   }
 
   &__content {
@@ -48,11 +92,47 @@
   &__title {
     font-size: 1.6rem;
     font-weight: 500;
+    line-height: 1.2;
     @include transition(color);
+
+    @include up(xl) {
+      font-size: 1.8rem;
+    }
+
+    #{$root}._accent & {
+      font-size: 2.4rem;
+      letter-spacing: -.02em;
+
+      @include up(xl) {
+        font-size: 4.2rem;
+      }
+    }
   }
 
   &__text {
     font-size: 1.4rem;
     color: $color-text-gray;
+    @include line-clamp(6);
+
+    @include up(lg) {
+      @include line-clamp(4);
+      margin-top: auto;
+    }
+
+    @include up(xl) {
+      @include line-clamp(5);
+    }
+
+    @include up(xxl) {
+      @include line-clamp(6);
+    }
+
+    #{$root}._accent & {
+      font-size: 1.8rem;
+
+      @include up(xl) {
+        font-size: 2.4rem;
+      }
+    }
   }
 }

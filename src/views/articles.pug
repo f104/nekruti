@@ -1,0 +1,68 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Статьи"
+  -
+    var data = [
+      {
+        image: 'assets/img/articles/1.jpg',
+        title: 'Мы на Первом канале... или видеоинструкция о том, как делать нельзя',
+        text: 'Когда до нас дошла весть, что сюжет о нашей продукции был показан на Самом Главном Канале Страны, мы одновременно и обрадовались, и испугались. Ну как раскритикуют? Как оказалось, зря испугались.',
+      },
+      {
+        image: 'assets/img/articles/2.jpg',
+        title: 'Готовь сани летом, а... шампуры зимой',
+        text: 'Совсем скоро 2022 год и самые дальновидные уже задумались над тем, что же подарить друзьям и родственникам на Новый год. Одни стараются подобрать презенты по интересам — рыбаку рыбаково, кулинару — кулинарово. Вторые делают ставку на полезные в быту предметы, третьи, наоборот, на разнообразные безделушки.',
+      },
+      {
+        image: 'assets/img/articles/3.jpg',
+        title: 'Автопутешествие: что взять в дорогу?',
+        text: 'Туристические поездки на своем авто довольно популярны. Что вполне объяснимо — чаще всего это дешевле, и уж точно увлекательнее большинства банальных маршрутов. Вы и только вы решаете, куда и как ехать, а также где и на сколько остановиться. Словом, отличный выбор для смелых, открытых для экспериментов и приключений натур. Однако такая поездка порождает и целый ряд сложностей в подготовке. Ведь машина одна, а вещей много. Постараемся дать несколько дельных советов по поводу того, что взять с собой в дорогу.',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/articles.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/articles.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Статьи'])
+    h1.h1 Статьи
+
+  .main-grid
+    section.main-grid__section
+      .container
+        +article-card(data[2])._accent
+
+    section.main-grid__section
+      .container.js-filter-form__wrap
+        form(
+          id="filter_form"
+          novalidate 
+          autocomplete="off"
+        ).js-filter-form
+        .page__content-wrap
+          .page__content.js-page(
+            aria-live='assertive'
+            aria-atomic='true'
+          )
+            .article-list.js-page__inner
+              each item in [...data, ...data]
+                +article-card(item)
+          +page-preloader()
+        +pagination({
+          page: 1,
+          pages: 10
+        })
+
+    section.main-grid__section
+      .main-grid__section__inner.container
+        include _includes/blocks/products
+        a(href="#").btn.main-grid__btn
+          span Все товары
+          +svgsprite('arrow-right').btn__icon

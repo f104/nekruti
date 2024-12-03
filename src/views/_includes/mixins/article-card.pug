@@ -1,5 +1,5 @@
 mixin article-card(data)
-  a(href="#").article-card
+  a(href="#").article-card&attributes(attributes)
     +picture({
       url: data.image,
       alt: data.title,

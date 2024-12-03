@@ -1,7 +1,7 @@
 import { DATA_PAGE, DATA_PAGES, PAGINATION_COMMON_ITEM_CLASS } from '../../js/constants'
 
 export const paginationItem = (pages, page, isActive = false, more = false) => {
-  const content = more ? '...' : page < 10 ? `0${page}` : page
+  const content = more ? '...' : page < 10 ? `${page}` : page
   let classList = ''
   let attrs = ''
   let tag = 'button'
