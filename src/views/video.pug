@@ -1,0 +1,108 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Видео"
+  -
+    var data = [
+      {
+        title: 'Шашлык из свиной шеи, жарим на шампурах самокрутах, ленивый шашлычник',
+        duration: '30:18',
+        channel: 'Akopoff',
+        views: '47 тыс. просмотров',
+        url: 'https://www.youtube.com/watch?v=mhRXYvYu7Qg',
+        src: 'assets/img/video/1.jpg',
+      },
+      {
+        title: 'Мой любимый рецепт шашлыка из свиной шеи на 2016 год',
+        duration: '25:21',
+        channel: 'oblomoff',
+        views: '2,9 млн просмотров',
+        url: 'https://www.youtube.com/watch?v=6GuslMDFT9Y',
+        src: 'assets/img/video/2.jpg',
+      },
+      {
+        title: 'ПОХОД! ГОТОВЛЮ ШАШЛЫК НА АВТОМАТИЧЕСКОМ МАНГАЛЕ',
+        duration: '15:14',
+        channel: 'Vitalik Ignatyuk',
+        views: '378 тыс. просмотров',
+        url: 'https://www.youtube.com/watch?v=Ln1fD2BKvpk',
+        src: 'assets/img/video/3.jpg',
+      },
+      {
+        title: 'Сочный шашлык из баранины с маринованным луком и помидорами. (Закрыли сезон)',
+        duration: '14:11',
+        channel: 'Грильков',
+        views: '94 тыс. просмотров',
+        url: 'https://www.youtube.com/watch?v=xLzeqhinx-Q',
+        src: 'assets/img/video/4.jpg',
+      },
+      {
+        title: 'Шашлык из бараньей корейки',
+        duration: '21:46',
+        channel: 'IMHO VIDEO',
+        views: '52 тыс. просмотров',
+        url: 'https://www.youtube.com/watch?v=TChGu60VJ4o',
+        src: 'assets/img/video/5.jpg',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/video.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/video.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Видео'])
+    h1.h1 Видео
+    p.page-header__lead Описание для поисковиков. Professionally develop exceptional niche markets via extensible "outside the box" thinking. Efficiently iterate strategic benefits rather than focused paradigms.
+
+  .main-grid
+    section.main-grid__section
+      .container.js-filter-form__wrap
+        form(
+          id="filter_form"
+          novalidate 
+          autocomplete="off"
+        ).js-filter-form
+        .page__content-wrap
+          .page__content.js-page(
+            aria-live='assertive'
+            aria-atomic='true'
+          ) 
+            .video-grid.js-page__inner
+              each item in [...data, ...data, ...data].splice(0, 12)
+                a(href=item.url data-fancybox="gallery").video-card
+                  .video-card__picture-wrapper
+                    +picture({
+                      url: item.src,
+                      alt: item.title,
+                      _0: {width: 359},
+                      _400: {width: 727},
+                      _768: {width: 480},
+                      _1024: {width: 397},
+                      _1280: {width: 332},
+                    })
+                    span.video-card__picture-wrapper__duration= item.duration
+                  .video-card__content
+                    h6.video-card__title=item.title
+                    p.video-card__info
+                      span=item.channel 
+                      br
+                      = item.views
+          +page-preloader()
+        +pagination({
+          page: 1,
+          pages: 10
+        })
+
+    section.main-grid__section
+      .main-grid__section__inner.container
+        h3.h3.main-grid__h3 Рекомендуем
+        include _includes/blocks/products
+        a(href="#").btn.main-grid__btn
+          span Все товары
+          +svgsprite('arrow-right').btn__icon

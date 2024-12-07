@@ -28,8 +28,6 @@ mixin product-card(data)
           onclick="this.closest('.product-card').classList.add('_in-cart'); this.closest('form').querySelector('input[type=number]').value = 1; this.closest('form').querySelectorAll('.input-common__button-number').forEach(el => el.removeAttribute('disabled'))"
         ).btn._primary.product-card__buy Купить
         +input-number({
-          id: 'form_number',
-          errorMessage: 'Error message',
           classes: 'product-card__in-cart',
         })(
           type='number'

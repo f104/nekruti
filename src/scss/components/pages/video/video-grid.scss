@@ -1,0 +1,14 @@
+.video-grid {
+  $root: &;
+
+  display: grid;
+  gap: 2.4rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
