@@ -1,0 +1,86 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Галерея"
+  -
+    var data = [
+      {
+        url: 'assets/img/photos/1.jpg',
+        src: 'assets/img/photos/1.jpg',
+        caption: 'Опциональное описание',
+      },
+      {
+        url: 'assets/img/photos/2.jpg',
+        src: 'assets/img/photos/2.jpg',
+        caption: 'Distinctively restore compelling web-readiness without cross-unit process improvements.',
+      },
+      {
+        url: 'assets/img/photos/3.jpg',
+        src: 'assets/img/photos/3.jpg',
+      },
+      {
+        url: 'assets/img/photos/4.jpg',
+        src: 'assets/img/photos/4.jpg',
+      },
+      {
+        url: 'assets/video/1.mp4',
+        src: 'assets/img/photos/5.jpg',
+        isVideo: 'true',
+      },
+      {
+        url: 'assets/img/photos/6.jpg',
+        src: 'assets/img/photos/6.jpg',
+      },
+      {
+        url: 'assets/img/photos/7.jpg',
+        src: 'assets/img/photos/7.jpg',
+      },
+      {
+        url: 'assets/img/photos/8.jpg',
+        src: 'assets/img/photos/8.jpg',
+      },
+    ]
+
+block append head
+  if !isDev
+    link(href="css/critical/gallery.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/gallery.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Галерея'])
+    h1.h1 Галерея
+    p.page-header__lead Фото и видео. Описание для поисковиков. Любые пропорции фото. Опциональное описание. Может быть видео.
+
+  .main-grid
+    section.main-grid__section
+      .main-grid__section__inner.container 
+        .gallery 
+          each item in [...data, ...data]
+            a(href=item.url data-fancybox="gallery" data-caption=item.caption).gallery__item
+              figure.gallery__item__figure
+                +picture({
+                  url: item.src,
+                  alt: item.caption,
+                  _0: {width: 359},
+                  _400: {width: 727},
+                  _768: {width: 480},
+                  _1024: {width: 397},
+                  _1280: {width: 332},
+                })
+                if item.caption
+                  figcaption.gallery__item__figure__caption= item.caption
+              if item.isVideo
+                span.gallery__item__icon(aria-hidden="true")
+                  +svgsprite('play')
+
+    section.main-grid__section
+      .main-grid__section__inner.container
+        h3.h3.main-grid__h3 Рекомендуем
+        include _includes/blocks/products
+        a(href="#").btn.main-grid__btn
+          span Все товары
+          +svgsprite('arrow-right').btn__icon

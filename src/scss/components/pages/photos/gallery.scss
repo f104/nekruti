@@ -1,0 +1,62 @@
+.gallery {
+  $root: &;
+
+  @include up(md) {
+    column-count: 2;
+    column-gap: 2.4rem;
+  }
+
+  @include up(lg) {
+    column-count: 3;
+  }
+
+  @include up(xl) {
+    column-count: 4;
+  }
+
+  &__item {
+    display: block;
+    margin-bottom: 2.4rem;
+
+    picture {
+      @include transition(opacity);
+    }
+
+    @include hover {
+      picture {
+        opacity: .8;
+      }
+    }
+
+    &__figure {
+      &__caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2.4rem 1.2rem 1.2rem;
+        background: linear-gradient(to top, $color-text, transparent);
+        color: $color-white;
+        font-size: 1.4rem;
+      }
+    }
+
+    &__icon {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 3.6rem;
+      height: 3.6rem;
+      display: flex;
+      border-radius: 50%;
+      background: $color-primary;
+      color: $color-white;
+
+      .svgsprite {
+        width: 2.4rem;
+        height: 2.4rem;
+        margin: auto;
+      }
+    }
+  }
+}
