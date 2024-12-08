@@ -1,0 +1,18 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Сервер временно недоступен"
+
+block append head
+  if !isDev
+    link(href="css/critical/503.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/error-page.scss" rel='stylesheet')
+
+block header
+block footer
+block content
+  .container.error-page
+    h1.error-page__title 503
+    p.error-page__text Сервер временно недоступен

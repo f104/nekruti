@@ -1,0 +1,23 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Страница не найдена"
+
+block append head
+  if !isDev
+    link(href="css/critical/404.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/error-page.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Видео'])
+
+  .container.error-page
+    h1.error-page__title 404
+    p.error-page__text Возможно вы ввели неправильный адрес или страница была удалена.
+    a(href="#").btn
+      span Вернуться на главную
+      +svgsprite('arrow-right').btn__icon

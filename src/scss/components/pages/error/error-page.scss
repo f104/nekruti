@@ -1,0 +1,22 @@
+.error-page {
+  $root: &;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+
+  &__title {
+    font-size: 10rem;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+  }
+}
