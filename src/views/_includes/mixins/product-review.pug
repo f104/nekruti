@@ -1,0 +1,35 @@
+mixin product-review(props = {})
+  -
+    var lexicon = {
+      like: 'Понравилось',
+      dislike: 'Не понравилось',
+      text: 'Общие впечатления',
+      comment: 'Комментарий производителя',
+    }
+    var {
+      product,
+      name,
+      date,
+      stars,
+      published,
+    } = props
+  .product-reviews__card&attributes(attributes)
+    .product-reviews__card__header
+      if product
+        a(href="#").product-reviews__product= product
+        +svgsprite(!published ? 'hourglass' : 'check', !published ? 'Пока не опубликован' : 'Опубликован')(
+          class= published ? '_published' : '_muted'
+        ).product-reviews__card__header__icon
+      if name
+        .product-reviews__name= name
+        +svgsprite('comment')(aria-hidden="true").product-reviews__card__header__icon
+      .product-reviews__date= date
+      .product-reviews__stars
+        each num in [1,2,3,4,5]
+          +svgsprite('star')(class= num<=stars ? '_filled' : '')
+    .product-reviews__card__content
+      each key in ['like', 'dislike', 'text', 'comment']
+        if props[key]
+          .product-reviews__block
+            p.product-reviews__block__title= lexicon[key]
+            p.product-reviews__block__text= props[key]

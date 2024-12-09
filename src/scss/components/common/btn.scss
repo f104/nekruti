@@ -14,7 +14,8 @@
   color: $color-white;
   font-size: 1.6rem;
   font-weight: 500;
-  @include transition((background, opacity));
+  line-height: 1;
+  @include transition((background, opacity, border-color));
   min-width: 20rem;
 
   @include hover {
@@ -30,6 +31,17 @@
     }
   }
 
+  &._sm {
+    height: 3.2rem;
+    padding: 0 1.8rem;
+    justify-content: center;
+    align-items: center;
+    gap: .8rem;
+    flex-shrink: 0;
+    border-radius: 2.5rem;
+    font-size: 1.4rem;
+    min-width: unset;
+  }
 
   &._primary {
     background: $color-primary;
@@ -42,6 +54,24 @@
     &._disabled {
       @include hover {
         background: $color-primary;
+      }
+    }
+  }
+
+  &._outline {
+    background: $color-white;
+    color: $color-text;
+    border: .1rem solid $color-text-gray-50;
+
+    @include hover {
+      border-color: $color-text;
+      background: $color-white;
+    }
+
+    &:disabled,
+    &._disabled {
+      @include hover {
+        border-color: $color-text-gray-50;
       }
     }
   }

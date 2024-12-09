@@ -614,6 +614,26 @@
       }
     }
 
+    &[type="password"] {
+      ~#{$root}__button-password {
+        .svgsprite._hide {
+          display: none;
+        }
+      }
+    }
+
+    &[type="text"] {
+      ~#{$root}__button-password {
+        .svgsprite._show {
+          display: none;
+        }
+      }
+    }
+
+    #{$root}._is-password & {
+      padding-right: 4rem;
+    }
+
     &[aria-expanded="true"]~#{$root}__icon {
       transform: rotate(180deg);
     }
@@ -650,7 +670,7 @@
     &:disabled {
       cursor: not-allowed;
       border-bottom-color: $color-text-gray-30;
-      color: $color-text-gray-30;
+      color: $color-text-gray-50;
 
       &::placeholder {
         border-bottom-color: $color-text-gray-30;
@@ -676,7 +696,6 @@
 
     #{$root}._disabled & {
       cursor: not-allowed;
-      color: $color-text-gray-50;
     }
 
     #{$root}._is-time & {
@@ -739,11 +758,13 @@
   }
 
   &__caption {
-    color: var(--control-default-typo02);
+    color: $color-text-gray;
+    font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
     line-height: 1.4;
     display: block;
+    margin-top: .4rem;
 
     &._hidden {
       display: none;
@@ -949,6 +970,25 @@
           @include size-l(false);
         }
       }
+    }
+  }
+
+  &__button-password {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3.6rem;
+    height: 3.6rem;
+    color: $color-text-gray;
+    @include transition(color);
+
+    @include hover {
+      color: $color-text;
+    }
+
+    .svgsprite {
+      width: 100%;
+      height: 100%;
     }
   }
 }

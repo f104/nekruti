@@ -27,7 +27,7 @@ import MessageClass from './components/Message'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
 // import PopupClass from '../ui/popup/Popup.class'
-// import CollapseClass from '../ui/accordion/Collapse.class'
+import CollapseClass from '../ui/accordion/Collapse.class'
 // import { BtnUpClass } from '../ui/btn-scroll-up/BtnUp.class'
 import FormClass from '../ui/form/Form.class'
 import VideoClass from '../ui/video/Video.class'
@@ -147,7 +147,7 @@ class App {
       new MapClass()
       // new TabsClass()
       // new PopupClass()
-      // new CollapseClass()
+      new CollapseClass()
       // new BtnUpClass()
       new FormClass()
       new VideoClass()

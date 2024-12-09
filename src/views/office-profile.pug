@@ -1,0 +1,83 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "ЛК - профиль"
+
+block append head
+  if !isDev
+    link(href="css/critical/office-profile.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/office.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Личный кабинет'])
+
+  +office-nav('profile')
+
+  .office.container
+    form.form._profile.js-form(
+      novalidate 
+      autocomplete="off" 
+      action="assets/ajax/success.json"
+      data-success-without-reset-form
+      data-app-message
+    )
+      .form__inner
+        +input-mask({
+          label: 'E-mail',
+          placeholder: 'user@host.com',
+          id: 'profile_form_email',
+          caption: 'E-mail изменить нельзя',
+        })(
+          type='text'
+          name='email2'
+          required
+          disabled
+          data-inputmask-alias="email"
+          data-inputmask-inputmode="email"
+          value="user@host.com"
+        )
+
+        +input-mask({
+          label: 'Телефон',
+          placeholder: '+7 (999) 999-99-99',
+          id: 'profile_form_tel',
+          errorMessage: 'Укажите корректный номер телефона',
+        })(
+          type='tel'
+          name='tel'
+          required
+          data-inputmask-alias="tel"
+          data-inputmask-inputmode="tel"
+          value="+7 (927) 111-11-11"
+        )
+
+        +input({
+          label: 'Пароль',
+          id: 'profile_form_password',
+          caption: 'Вы можете указать новый пароль',
+        })(
+          name="password"
+          type="password"
+          autocomplete="off"
+        )
+
+        .form__footer
+          button(type="submit").btn
+            span Сохранить
+
+      -
+        var successData = {
+          title: 'Спасибо за Ваше обращение!',
+          text: 'Ваше обращение отправлено',
+          btnText: 'Отправить заново',
+        }
+        var errorData = {
+          title: 'Произошла ошибка',
+          text: 'Попробуйте повторить действие чуть позже',
+          btnText: 'Попробовать снова',
+        }
+      +form-message(undefined, errorData, true)

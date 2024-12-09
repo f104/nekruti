@@ -1,0 +1,7 @@
+.order-list {
+  $root: &;
+
+  display: grid;
+  gap: 4.8rem;
+  max-width: 80rem;
+}

@@ -67,6 +67,7 @@ mixin input(params)
     var isFile = attributes && attributes.type === 'file'
     var isNumber = attributes && attributes.type === 'number'
     var isTime = attributes && attributes.type === 'time'
+    var isPassword = attributes && attributes.type === 'password'
     var classResult = classes || ''
 
     classResult += iconLeft ? ' _with-icon-left' : ''
@@ -79,6 +80,7 @@ mixin input(params)
     classResult += !isFile ? ' js-input' : ''
     classResult += isNumber ? ' _is-number' : ''
     classResult += isTime ? ' _is-time' : ''
+    classResult += isPassword ? ' _is-password' : ''
 
   .input-common(
     class=classResult
@@ -151,10 +153,25 @@ mixin input(params)
         )
           +svgsprite('plus')
 
+      if isPassword
+        button(
+          tabindex='-1'
+          aria-hidden='true'
+          type='button'
+          class='input-common__button-password js-input__button-password'
+        )
+          +svgsprite('view')._show
+          +svgsprite('view-hide')._hide
+
+    if caption
+      span(
+        id=id + '_caption'
+      ).input-common__caption= caption  
+
     span(
       id=id + '_error'
       aria-hidden='true'
-    ).input-common__message._hidden.js-input__error-message= errorMessage
+    ).input-common__message._hidden.js-input__error-message!= errorMessage || '&nbsp;'
 
     if isDatepicker
       span(
@@ -171,11 +188,6 @@ mixin input(params)
         | Переход на 10 лет вперед: Alt + стрелка вправо или стрелка вверх.
         | Переход на 10 лет назад: Alt + стрелка влево или стрелка вниз.
         | Смена представления, от дней до декад: Ctrl + Shift + стрелка вверх.
-
-    if caption
-      span(
-        id=id + '_caption'
-      ).input-common__caption= caption  
 
     if isFile
       span.input-common__caption.js-dropzone__caption._hidden

@@ -1,0 +1,57 @@
+.office-nav {
+  $root: &;
+  border-bottom: .1rem solid;
+
+  &__inner {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: -.1rem;
+
+    @include down(sm) {
+      margin-inline: -#{map-get($container-paddings, sm)};
+      padding-inline: map-get($container-paddings, sm);
+      overflow: auto;
+    }
+  }
+
+  &__button {
+    display: inline-flex;
+    gap: .4rem;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: .1rem solid $color-text;
+    background: $color-bg;
+    @include transition((background, opacity));
+
+    @include hover {
+      background: $color-white;
+    }
+
+    .svgsprite {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    &._active {
+      color: $color-primary;
+      pointer-events: none;
+      border-bottom-color: $color-bg;
+    }
+
+    &._exit {
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: $color-red;
+      opacity: .8;
+      margin-left: auto;
+      align-self: center;
+
+      @include hover {
+        opacity: 1;
+      }
+    }
+  }
+}

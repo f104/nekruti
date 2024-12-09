@@ -26,6 +26,14 @@
         left: 0;
         width: 2.4rem;
         height: 2.4rem;
+
+        &._published {
+          color: $color-primary-dark;
+        }
+
+        &._muted {
+          color: $color-text-gray;
+        }
       }
     }
 
@@ -47,6 +55,16 @@
 
   &__name {
     font-size: 1.8rem;
+  }
+
+  &__product {
+    font-size: 1.8rem;
+    color: $color-primary;
+    @include transition(color);
+
+    @include hover {
+      color: $color-primary-hover;
+    }
   }
 
   &__date {

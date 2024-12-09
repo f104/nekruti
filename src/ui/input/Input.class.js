@@ -9,6 +9,7 @@ import {
   DISABLED_CLASS_NAME,
   ERROR_CLASS_NAME,
   FILLED_CLASS_NAME,
+  FORM_INPUT_BUTTON_PASSWORD_CLASS,
   FORM_INPUT_BUTTONS_CLASS,
   FORM_INPUT_CLEAR_CLASS,
   FORM_INPUT_ERROR_MESSAGE_CLASS,
@@ -183,6 +184,14 @@ export class InputClass {
           if (this.form) {
             this.form.dispatchEvent(new Event('input', { bubbles: true }))
           }
+        })
+      }
+
+      const passwordBtn = this.element.querySelector(`.${FORM_INPUT_BUTTON_PASSWORD_CLASS}`)
+      if (passwordBtn) {
+        passwordBtn.addEventListener('click', () => {
+          const type = this.input.getAttribute('type')
+          type === 'password' ? this.input.setAttribute('type', 'text') : this.input.setAttribute('type', 'password')
         })
       }
     }

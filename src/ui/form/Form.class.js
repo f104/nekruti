@@ -4,6 +4,7 @@ import {
   CUSTOM_EVENT_FORM_SEND_SUCCESS,
   CUSTOM_EVENT_HANDLE_CLOSE,
   CUSTOM_EVENT_HANDLE_OPEN,
+  DATA_APP_MESSAGE,
   DATA_NATIVE_ACTION,
   DATA_POPUP_ID,
   DATA_SUCCESS_WITHOUT_RESET_FORM,
@@ -92,6 +93,7 @@ export default class FormClass {
       const popupStatus = popupStatusId ? document.querySelector(`.${POPUP_CLASS}#${popupStatusId}`) : null
       let inputStartTime
       const dataSuccessWithoutResetForm = form.hasAttribute(DATA_SUCCESS_WITHOUT_RESET_FORM)
+      const dataAppMessage = form.hasAttribute(DATA_APP_MESSAGE)
       let isLoading = false
 
       if (!preloaderEl && (popupEl || popupStatus)) {
@@ -237,7 +239,6 @@ export default class FormClass {
               }
             } else {
               let value = el.value
-              console.log(value)
 
               if (value && el.datepicker) {
                 value = window.app.dayjs(value).format(DATE_FORMAT)
@@ -273,7 +274,7 @@ export default class FormClass {
                   preloader.showError(message, '', formDataToObject(formData))
                 }
               } else {
-                if (preloader) {
+                if (preloader && !dataAppMessage) {
                   this.hide(form)
                   preloader.showSuccess('', '', formDataToObject(formData))
                 }
@@ -281,6 +282,11 @@ export default class FormClass {
                 if (!dataSuccessWithoutResetForm) {
                   formElementsClasses.forEach((el) => el.reset(true))
                   form.reset()
+                }
+
+                if (dataAppMessage && message) {
+                  preloader?.hide()
+                  window.app.message.success({ title: message })
                 }
 
                 form.dispatchEvent(

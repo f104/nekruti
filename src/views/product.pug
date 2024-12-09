@@ -177,7 +177,7 @@ block content
                 stars: 4,
                 like: 'Мясо прожаривается равномерно',
                 dislike: 'Тонкий металл',
-                text: 'Первая ручка с механизмом расплавилась. Следите за рассмотрением между ручкой и огнем.',
+                text: 'Первая ручка с механизмом расплавилась. Следите за расстоянием между ручкой и огнем.',
                 comment: '',
               },
               {
@@ -190,27 +190,8 @@ block content
                 comment: 'Спасибо за отзыв. Мы уверены, что вы смогли бы сделать подобную конструкцию дешевле. В интернете масса подобных примеров. Но наше производство все-таки не мелкосерийное, поэтому «гаражный» вариант «на коленке» нам не подходит. Мы арендуем помещения, платим заработную плату и налоги, закладываем средства на развитие и рекламу. Поэтому себестоимость изделия составляет ровно половину от конечной цены. Вопрос увеличения толщины металла лежит в этой же плоскости — соотношение цены и качества. На жесткости конструкции это вряд ли скажется, а вот к увеличению стоимости неизбежно приведет.',
               },
             ]
-            var lexicon = {
-              like: 'Понравилось',
-              dislike: 'Не понравилось',
-              text: 'Общие впечатления',
-              comment: 'Комментарий производителя',
-            }
           each item in data
-            .product-reviews__card
-              .product-reviews__card__header
-                .product-reviews__name= item.name
-                .product-reviews__date= item.date
-                +svgsprite('comment')(aria-hidden="true").product-reviews__card__header__icon
-                .product-reviews__stars
-                  each num in [1,2,3,4,5]
-                    +svgsprite('star')(class= num<=item.stars ? '_filled' : '')
-              .product-reviews__card__content
-                each key in ['like', 'dislike', 'text', 'comment']
-                  if item[key]
-                    .product-reviews__block
-                      p.product-reviews__block__title= lexicon[key]
-                      p.product-reviews__block__text= item[key]
+            +product-review(item)
           // ._no-reviews, если нет отзывов
           .product-reviews__card._add
             .product-reviews__card__content

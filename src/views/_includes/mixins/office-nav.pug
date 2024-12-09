@@ -1,0 +1,32 @@
+mixin office-nav(activeTab)
+  - 
+    var data = [
+      {
+        url: 'office-profile.html',
+        text: 'Профиль',
+        key: 'profile',
+      },
+      {
+        url: 'office-orders.html',
+        text: 'Заказы',
+        key: 'orders',
+      },
+      {
+        url: 'office-reviews.html',
+        text: 'Отзывы',
+        key: 'reviews',
+      },
+      {
+        url: 'index.html',
+        text: 'Выход',
+        class: '_exit',
+        icon: 'logout',
+      },
+    ]
+  .office-nav&attributes(attributes)
+    .container
+      .office-nav__inner 
+        each item in data
+          a(href=item.url class=item.key === activeTab ? '_active' : '' class=item.class).office-nav__button= item.text
+            if item.icon
+              +svgsprite(item.icon)(aria-hidden="true")

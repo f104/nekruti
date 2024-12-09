@@ -1,0 +1,159 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "ЛК - заказы"
+
+block append head
+  if !isDev
+    link(href="css/critical/office-profile.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/office.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Личный кабинет'])
+
+  +office-nav('orders')
+
+  .office.container
+    -
+      var data = [
+        {
+          id: 1,
+          num: '#2310/6',
+          date: '20 октября 2023',
+          status: 'Новый',
+          statusClass: '_1',
+          cost: '3 700 ₽',
+          payment: 'Оплата банковской картой',
+          delivery: 'Самовывоз',
+          products: [
+            {
+              name: 'Шампуры-самокруты МВШ-5',
+              count: '1',
+              cost: '4 000 ₽',
+              image: 'assets/img/products/1.jpg',
+            },
+            {
+              name: 'Стартер для угля',
+              count: '1',
+              cost: '1 950 ₽',
+              image: 'assets/img/products/2.jpg',
+            },
+          ],
+        },
+        {
+          id: 2,
+          num: '#2309/4',
+          date: '9 сентября 2022',
+          status: 'Отправлен',
+          statusClass: '_3',
+          cost: '4 447 ₽',
+          payment: 'Наложенный платеж',
+          delivery: 'Почтовая доставка',
+          deliveryAddress: 'Россия, 665660, Иркутская область, Видим, Чистополянский, Гагарина, 28, кв. 2',
+          deliveryCost: '547 ₽',
+          products: [
+            {
+              name: 'Шампуры-самокруты МВШ-5',
+              count: '1',
+              cost: '4 000 ₽',
+              image: 'assets/img/products/1.jpg',
+            },
+          ],
+        },
+        {
+          id: 3,
+          num: '#2109/4',
+          date: '9 сентября 2021',
+          status: 'Выполнен',
+          statusClass: '_5',
+          cost: '4 447 ₽',
+          payment: 'Наложенный платеж',
+          delivery: 'Почтовая доставка',
+          deliveryAddress: 'Россия, 665660, Иркутская область, Видим, Чистополянский, Гагарина, 28, кв. 2',
+          deliveryCost: '547 ₽',
+          products: [
+            {
+              name: 'Шампуры-самокруты МВШ-5',
+              count: '1',
+              cost: '4 000 ₽',
+              image: 'assets/img/products/1.jpg',
+            },
+            {
+              name: 'Стартер для угля',
+              count: '1',
+              cost: '1 950 ₽',
+              image: 'assets/img/products/2.jpg',
+            },
+          ],
+        },
+        {
+          id: 4,
+          num: '#1709/10',
+          date: '12 сентября 2017',
+          status: 'Отменен',
+          statusClass: '_4',
+          cost: '4 030 ₽',
+          payment: 'Наложенный платеж',
+          delivery: 'СДЭК',
+          deliveryAddress: 'Россия, Крым респ., Керчь, Советская, 15',
+          deliveryCost: '330 ₽',
+          products: [
+            {
+              name: 'Стартер для угля',
+              count: '1',
+              cost: '1 950 ₽',
+              image: 'assets/img/products/2.jpg',
+            },
+          ],
+        },
+      ]
+    .order-list.js-common-collapse
+      each item in data
+        .order-card.js-common-collapse__item
+          .order-card__header
+            button(
+              type="button"
+              aria-controls= item.id
+              aria-expanded="false"
+            ).order-card__num.js-common-collapse__item__toggle-btn._collapsed Заказ 
+              = item.num
+              +svgsprite('expand-right')(aria-hidden="true")
+            span.order-card__date от 
+              = item.date
+            span(class=item.statusClass).order-card__status= item.status
+            span.order-card__cost= item.cost 
+          .order-card__info
+            p.order-card__info__line
+              span.order-card__info__caption Оплата: 
+              = item.payment
+            p.order-card__info__line
+              span.order-card__info__caption Доставка: 
+              = item.delivery
+            if item.deliveryAddress
+              p.order-card__info__line
+                span.order-card__info__caption Адрес доставки: 
+                = item.deliveryAddress
+            if item.deliveryCost
+              p.order-card__info__line
+                span.order-card__info__caption Стоимость доставки: 
+                = item.deliveryCost
+          .order-card__product-list._height-null.js-common-collapse__item__toggle-container(id= item.id)
+            .order-card__product-list__inner
+              each product in item.products
+                .order-card__product
+                  +picture({
+                    url: product.image,
+                    alt: product.name,
+                    _0: {width: 200, height: 200},
+                  }).order-card__product__picture
+                  a(href="#").order-card__product__name= product.name
+                  span.order-card__product__count= product.count 
+                    |
+                    | шт
+                  span.order-card__product__cost= product.cost
+          button(type="button").btn._sm._outline.order-card__repeat-btn Повторить заказ
+

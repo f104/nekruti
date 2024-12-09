@@ -1,0 +1,14 @@
+@use 'sass:math';
+
+@import "base/vars";
+@import "base/mixins";
+@import "base/grid";
+
+@import "components/pages/office/office-nav";
+@import "components/pages/office/order-list";
+@import "components/pages/office/order-card";
+@import "components/pages/product/product-reviews";
+
+.office {
+  padding-block: 3.6rem;
+}
