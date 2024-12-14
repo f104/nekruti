@@ -1,0 +1,72 @@
+.checkout {
+  $root: &;
+
+  display: grid;
+  gap: 2.4rem;
+
+  @include up(md) {
+    grid-template-columns: 1fr 25rem;
+  }
+
+  @include up(lg) {
+    gap: 3.8rem;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 3.8rem;
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    margin-bottom: 1.4rem;
+
+    @include up(md) {
+      font-size: 3.6rem;
+    }
+  }
+
+  &__fieldset {
+    display: grid;
+    gap: 1.2rem;
+    margin-bottom: -1.6rem;
+
+    #{$root}__radios {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__radios {
+    display: grid;
+    gap: 1rem;
+
+    @include up(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__aside {
+    @include down(sm) {
+      position: sticky;
+      bottom: map-get($container-paddings, sm);
+    }
+
+    &__inner {
+      @include up(md) {
+        position: sticky;
+      }
+
+      @each $key in $medias {
+        @include up($key) {
+          top: map-get($header-height, $key) + 1.8rem;
+        }
+      }
+    }
+  }
+
+  &__note {
+    font-size: 1.2rem;
+  }
+}

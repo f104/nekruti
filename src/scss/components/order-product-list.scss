@@ -1,0 +1,107 @@
+.order-product-list {
+  $root: &;
+
+  display: grid;
+  gap: 1.2rem;
+
+  &__product {
+    display: grid;
+    align-items: start;
+    column-gap: 1.6rem;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    grid-template-columns: 10rem 1fr;
+
+    @include up(lg) {
+      grid-template-columns: 10rem 4fr 1fr 1fr;
+      gap: 2.4rem;
+    }
+
+    #{$root}._checkout & {
+      @include up(lg) {
+        grid-template-columns: 10rem 3fr max-content 1fr min-content;
+        align-items: center
+      }
+    }
+
+    &__picture {
+      @include aspect(264, 180);
+      width: 10rem;
+      border: .1rem solid $color-text-gray-30;
+
+      @include down(md) {
+        grid-row-end: span 3;
+      }
+    }
+
+    &__name {
+      width: fit-content;
+      color: $color-primary;
+      @include transition(color);
+
+      @include hover {
+        color: $color-primary-hover;
+      }
+
+      #{$root}._checkout & {
+        @include down(md) {
+          padding-right: 4rem;
+        }
+      }
+    }
+
+    &__count {
+      color: $color-text-gray;
+    }
+
+    &__count-form {
+      width: fit-content;
+      margin-bottom: .8rem;
+
+      @include up(lg) {
+        margin-bottom: 0;
+      }
+
+      .input-common__message {
+        display: none;
+      }
+    }
+
+    &__cost {
+      @include up(lg) {
+        text-align: right;
+      }
+    }
+
+    &__remove {
+      @include down(md) {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      &__button {
+        width: 3.2rem;
+        height: 3.2rem;
+        color: $color-text-gray-50;
+
+        @include transition(color);
+
+        &:disabled {
+          color: $color-text-gray-30;
+        }
+
+        &:not(:disabled) {
+          @include hover {
+            color: $color-text;
+          }
+        }
+
+        .svgsprite {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,257 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Оформление заказа"
+
+block append head
+  if !isDev
+    link(href="css/critical/checkout.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/checkout.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Оформление заказа'])
+
+  .container._narrow.checkout
+    .checkout__grid
+      .checkout__grid__section
+        h3.checkout__title Товары
+        +order-product-list({
+          products: products.splice(0, 3),
+          checkout: true,
+        })
+
+      form(id="msOrder" data-native-action).checkout__grid.ms2_form.js-form
+        .checkout__grid__section
+          h3.checkout__title Данные получателя
+          .checkout__fieldset
+            +input({
+              label: 'Представьтесь, пожалуйста',
+              placeholder: 'Иванов Иван Иванович',
+              id: 'order_receiver',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="receiver"
+              required
+            )
+            +input-mask({
+              label: 'E-mail',
+              placeholder: 'user@host.com',
+              id: 'order_email',
+              errorMessage: 'Необходимо указать электронную почту',
+            })(
+              type='text'
+              name='email'
+              required
+              data-inputmask-alias="email"
+              data-inputmask-inputmode="email"
+              value="user@host.com"
+            )
+            +input-mask({
+              label: 'Телефон',
+              placeholder: '+7 (999) 999-99-99',
+              id: 'order_tel',
+              errorMessage: 'Укажите корректный номер телефона',
+              caption: 'Может потребоваться для уточнения параметров заказа',
+            })(
+              type='tel'
+              name='tel'
+              data-inputmask-alias="tel"
+              data-inputmask-inputmode="tel"
+            )
+            +input({
+              label: 'Комментарий',
+              placeholder: '',
+              id: 'order_comment',
+              errorMessage: 'Это поле обязательно',
+              caption: 'Любая дополнительная информация, которую вы посчитаете нужным сообщить',
+            })(
+              type='textarea',
+              name='comment',
+              required
+            )
+
+        .checkout__grid__section
+          h3.checkout__title Доставка
+          -
+            var data = [
+              {
+                id: 1,
+                title: 'СДЭК',
+                text: 'Доставка транспортной компанией по России. Возможна доставка непосредственно «до двери». Стоимость рассчитывается автоматически во время оформления заказа. Отгрузка товара осуществляется в течение пяти рабочих дней.',
+              },
+              {
+                id: 2,
+                title: 'Почтовая доставка',
+                text: 'Стоимость рассчитывается <a href="#" class="link">по тарифам Почты России</a> автоматически во время оформления заказа. Отгрузка товара осуществляется в течение пяти рабочих дней.',
+              },
+              {
+                id: 3,
+                title: 'EMS – курьерская служба Почты России',
+                text: 'EMS Почта России — филиал ФГУП «Почта России», оператор экспресс-доставки.',
+              },
+              {
+                id: 4,
+                title: 'Самовывоз',
+                text: 'Вы можете самостоятельно получить заказ на нашем складе в Саратове. Адрес и схема проезда указана в разделе <a href="#" class="link">«Контакты».</a>',
+              },
+              {
+                id: 5,
+                title: 'Курьерская доставка',
+                text: 'В Саратове и Энгельсе мы осуществляем бесплатную курьерскую доставку товаров. Время доставки согласовывается предварительно по телефону.',
+              },
+            ]
+          .checkout__radios 
+            each item in data
+              .checkout-radio
+                input(
+                  type="radio"
+                  name="delivery"
+                  id=`delivery_${item.id}`
+                  value=item.id
+                  checked= item.id==1 || undefined
+                )
+                label(for=`delivery_${item.id}`).checkout-radio__label
+                  span.checkout-radio__label__title= item.title
+                  span!= item.text
+
+        .checkout__grid__section
+          h3.checkout__title Адрес доставки
+          .checkout__fieldset
+            +input({
+              label: 'Город доставки',
+              id: 'order_sdek_city',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="sdek_city"
+              required
+            )
+            -
+              var data = [
+                {
+                  id: 1,
+                  title: 'Доставка «до склада»',
+                },
+                {
+                  id: 2,
+                  title: 'Доставка «до двери»',
+                },
+              ]
+            .checkout__radios 
+              each item in data
+                .checkout-radio
+                  input(
+                    type="radio"
+                    name="sdek_tariff_id"
+                    id=`sdek_tariff_id_${item.id}`
+                    value=item.id
+                    checked= item.id==1 || undefined
+                  )
+                  label(for=`sdek_tariff_id_${item.id}`).checkout-radio__label
+                    span.checkout-radio__label__title= item.title
+            +input({
+              label: 'Почтовый индекс',
+              id: 'order_index',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="index"
+              required
+            )
+            +input({
+              label: 'Область, край',
+              id: 'order_region',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="region"
+              required
+            )
+            +input({
+              label: 'Город',
+              id: 'order_city',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="city"
+              required
+            )
+            +input({
+              label: 'Адрес',
+              id: 'order_street',
+              placeholder: 'Улица, дом, квартира, офис',
+              errorMessage: 'Это поле обязательно',
+            })(
+              type="text"
+              name="street"
+              required
+            )
+
+        .checkout__grid__section
+          h3.checkout__title Оплата
+          -
+            var data = [
+              {
+                id: 1,
+                title: 'Оплата банковской картой',
+                text: 'Оплата происходит через защищенное соединение. Мы не видим и не сохраняем данные вашей банковской карты.',
+              },
+              {
+                id: 2,
+                title: 'Наложенный платеж',
+                text: 'Оплата товара при получении.<br>Почта России взимает комиссию за наложенный платеж. Сумма комиссии зависит от стоимости заказа и составляет от 2% (но не менее 50 рублей).',
+              },
+              {
+                id: 3,
+                title: 'Оплата наличными',
+                text: 'Возможна при получение товара на складе и при курьерской доставке.',
+              },
+            ]
+          .checkout__radios 
+            each item in data
+              .checkout-radio
+                input(
+                  type="radio"
+                  name="payment"
+                  id=`payment_${item.id}`
+                  value=item.id
+                  checked= item.id==1 || undefined
+                )
+                label(for=`payment_${item.id}`).checkout-radio__label
+                  span.checkout-radio__label__title= item.title
+                  span!= item.text
+
+        .checkout__grid__section
+          p.checkout__note Оформляя заказ, вы соглашаетесь с <a href="#" class="link">условиями обработки персональных данных</a>.
+
+    .checkout__aside
+      .checkout__aside__inner.checkout-summary
+        .checkout-summary__row
+          span Стоимость товаров
+          span.checkout-summary__cost 12 540 ₽
+        .checkout-summary__row
+          span Доставка
+          span.checkout-summary__cost 1 540 ₽
+        .checkout-summary__row._discount
+          span Скидка
+          span.checkout-summary__cost 500 ₽
+        .checkout-summary__row._summary
+          span Итого
+          span.checkout-summary__cost 14 540 ₽
+        form.checkout-summary__promo
+          input(placeholder="Промокод").checkout-summary__promo__input
+          button(type="submit").checkout-summary__promo__button Применить
+        //-form.checkout-summary__promo
+          input(value="PROMO2024" disabled).checkout-summary__promo__input
+          button(type="type").checkout-summary__promo__button Удалить
+        .checkout-summary__footer
+          button(type="submit" form="msOrder").btn._primary Оформить заказ
+          a(href="#").btn._link-muted._sm
+            span Продолжить покупки
+            +svgsprite('arrow-right').btn__icon
+

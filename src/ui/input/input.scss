@@ -839,12 +839,12 @@
     align-items: center;
     justify-content: center;
     bottom: 0;
-    color: $color-text-gray;
+    color: $color-text-gray-50;
 
     @include transition(color);
 
     &:disabled {
-      color: $color-text-gray-50;
+      color: $color-text-gray-30;
     }
 
     &:not(:disabled) {

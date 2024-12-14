@@ -1,0 +1,43 @@
+mixin order-product-list(params)
+  -
+    var {
+      products,
+      checkout,
+    } = params
+  .order-product-list(class= checkout ? '_checkout' : '')&attributes(attributes)
+    each product in products
+      .order-product-list__product
+        +picture({
+          url: product.image,
+          alt: product.title,
+          _0: {width: 200, height: 200},
+        }).order-product-list__product__picture
+        a(href="#").order-product-list__product__name= product.title
+        if checkout
+          form.ms2_form.js-form.order-product-list__product__count-form(data-native-action)
+            input(type="hidden" name="key" value="").js-hidden-input
+            +input-number({
+            })(
+              type='number'
+              name='number'
+              min='0'
+              max='10'
+              value=product.count
+              step='1'
+            )
+        else
+          span.order-product-list__product__count= product.count 
+            |
+            | шт
+        span.order-product-list__product__cost= product.cost
+        if checkout
+          form.ms2_form.order-product-list__product__remove
+            input(type="hidden" name="key" value="").js-hidden-input
+            input(type="hidden" name="key" value="").js-hidden-input
+            button(
+              type="submit" 
+              name="ms2_action" 
+              value="cart/remove" 
+              title="Удалить"
+            ).order-product-list__product__remove__button
+              +svgsprite('delete')

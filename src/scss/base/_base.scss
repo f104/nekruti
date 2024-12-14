@@ -83,7 +83,7 @@ html {
   &._narrow {
     @include up(xl) {
       max-width: 103.5rem;
-      padding: 0;
+      padding-inline: 0;
     }
   }
 }

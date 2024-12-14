@@ -16,6 +16,8 @@ block config
         price: '4 000 ₽',
         priceOld: '4 600 ₽',
         text: 'Компактный набор из пяти шампуров. Идеален для пикника в небольшой компании.',
+        count: 1,
+        cost: '4 000 ₽',
       },
       {
         image: 'assets/img/products/2.jpg',
@@ -24,12 +26,16 @@ block config
         priceOld: '2 300 ₽',
         text: 'Предназначен для быстрого и безопасного приготовления углей. Позволяет быстро разжечь угли не пр...',
         inCart: true,
+        count: 2,
+        cost: '3 900 ₽',
       },
       {
         image: 'assets/img/products/3.jpg',
         title: 'Универсальный механизм вращения',
         price: '14 000 ₽',
         text: 'Предназначен для эксплуатации со всеми видами шампуров, а также с валиками для гриль-булочек...',
+        count: 2,
+        cost: '14 000 ₽',
       },
       {
         image: 'assets/img/products/4.jpg',
@@ -78,6 +84,7 @@ include ../_includes/mixins/product-review
 include ../_includes/mixins/article-card
 include ../_includes/mixins/promo-alert
 include ../_includes/mixins/office-nav
+include ../_includes/mixins/order-product-list
 
 doctype html
 html(lang="ru" data-zoom='100')

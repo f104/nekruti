@@ -24,7 +24,7 @@ mixin office-nav(activeTab)
       },
     ]
   .office-nav&attributes(attributes)
-    .container
+    .container._narrow
       .office-nav__inner 
         each item in data
           a(href=item.url class=item.key === activeTab ? '_active' : '' class=item.class).office-nav__button= item.text

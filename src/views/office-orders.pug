@@ -17,7 +17,7 @@ block content
 
   +office-nav('orders')
 
-  .office.container
+  .office._narrow.container
     -
       var data = [
         {
@@ -31,13 +31,13 @@ block content
           delivery: 'Самовывоз',
           products: [
             {
-              name: 'Шампуры-самокруты МВШ-5',
+              title: 'Шампуры-самокруты МВШ-5',
               count: '1',
               cost: '4 000 ₽',
               image: 'assets/img/products/1.jpg',
             },
             {
-              name: 'Стартер для угля',
+              title: 'Стартер для угля',
               count: '1',
               cost: '1 950 ₽',
               image: 'assets/img/products/2.jpg',
@@ -57,7 +57,7 @@ block content
           deliveryCost: '547 ₽',
           products: [
             {
-              name: 'Шампуры-самокруты МВШ-5',
+              title: 'Шампуры-самокруты МВШ-5',
               count: '1',
               cost: '4 000 ₽',
               image: 'assets/img/products/1.jpg',
@@ -77,13 +77,13 @@ block content
           deliveryCost: '547 ₽',
           products: [
             {
-              name: 'Шампуры-самокруты МВШ-5',
+              title: 'Шампуры-самокруты МВШ-5',
               count: '1',
               cost: '4 000 ₽',
               image: 'assets/img/products/1.jpg',
             },
             {
-              name: 'Стартер для угля',
+              title: 'Стартер для угля',
               count: '1',
               cost: '1 950 ₽',
               image: 'assets/img/products/2.jpg',
@@ -103,7 +103,7 @@ block content
           deliveryCost: '330 ₽',
           products: [
             {
-              name: 'Стартер для угля',
+              title: 'Стартер для угля',
               count: '1',
               cost: '1 950 ₽',
               image: 'assets/img/products/2.jpg',
@@ -143,17 +143,8 @@ block content
                 = item.deliveryCost
           .order-card__product-list._height-null.js-common-collapse__item__toggle-container(id= item.id)
             .order-card__product-list__inner
-              each product in item.products
-                .order-card__product
-                  +picture({
-                    url: product.image,
-                    alt: product.name,
-                    _0: {width: 200, height: 200},
-                  }).order-card__product__picture
-                  a(href="#").order-card__product__name= product.name
-                  span.order-card__product__count= product.count 
-                    |
-                    | шт
-                  span.order-card__product__cost= product.cost
+              +order-product-list({
+                products: item.products,
+              })
           button(type="button").btn._sm._outline.order-card__repeat-btn Повторить заказ
 

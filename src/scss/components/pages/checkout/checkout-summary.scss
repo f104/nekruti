@@ -1,0 +1,79 @@
+.checkout-summary {
+  $root: &;
+
+  border: .1rem solid $color-gray-light;
+  background: $color-white;
+  padding: .8rem 1.8rem;
+
+  @include up(md) {
+    padding: 1.8rem;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.8rem;
+    font-size: 1.4rem;
+
+    &._summary {
+      font-size: 1.8rem;
+    }
+
+    &._discount {
+      color: $color-primary;
+    }
+  }
+
+  &__cost {
+    font-weight: 600;
+  }
+
+  &__promo {
+    display: flex;
+    margin-block: .8rem;
+    font-size: 1.4rem;
+
+    &__input {
+      border: .1rem solid $color-gray-light;
+      padding: .4rem .8rem;
+      width: 60px;
+      flex: 1;
+      text-overflow: ellipsis;
+      @include transition(border-color);
+
+      &:not(:disabled) {
+        @include hover {
+          border-color: $color-gray-dark;
+        }
+      }
+    }
+
+    &__button {
+      background: $color-gray-light;
+      padding: .4rem .8rem;
+      @include transition(background);
+
+      &:not(:disabled) {
+        @include hover {
+          background: $color-gray-medium;
+        }
+      }
+    }
+  }
+
+  &__footer {
+    margin-top: 1.2rem;
+    // padding-top: .8rem;
+    // border-top: .1rem solid $color-gray-light;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    align-items: center;
+    justify-content: space-between;
+
+    @include up(md) {
+      margin-top: 1.2rem;
+      // padding-top: 1.2rem;
+    }
+  }
+}
