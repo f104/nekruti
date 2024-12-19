@@ -1,0 +1,102 @@
+extends _layouts/default
+
+block append config
+  - const pagetitle = "Оформление заказа"
+
+block append head
+  if !isDev
+    link(href="css/critical/checkout-success.css" rel='stylesheet')
+
+block append styles
+  link(href="/src/scss/checkout-success.scss" rel='stylesheet')
+
+block content
+
+  .container.page-header
+    +breadcrumbs(['Главная', 'Оформление заказа'])
+
+  .container._narrow.checkout
+    .checkout__grid
+      .checkout__grid__section
+        h3.checkout__title Заказ №2308/24 оформлен
+        p.checkout__lead Он будет выполнен в ближайшее время. Если потребуется, мы свяжемся с вами для уточнения параметров заказа.
+
+      .checkout__grid__section
+        h3.checkout__title Товары
+        +order-product-list({
+          products: products.splice(0, 3),
+          checkout: false,
+        })
+
+      form(id="msOrder" data-native-action).checkout__grid.ms2_form.js-form
+        .checkout__grid__section
+          h3.checkout__title Данные получателя
+          -
+            var data = [
+              {
+                caption: 'Получатель',
+                text: 'Иванов Иван Иванович',
+              },
+              {
+                caption: 'E-mail',
+                text: 'user@host.com',
+              },
+              {
+                caption: 'Телефон',
+                text: '+7 (999) 999-99-99',
+              },
+            ]
+          .checkout__info
+            each item in data
+              p.checkout__info__row
+                span.checkout__info__caption= item.caption
+                  | :
+                span.checkout__info__text= item.text
+
+        .checkout__grid__section
+          h3.checkout__title Доставка
+          -
+            var data = [
+              {
+                caption: 'Способ доставки',
+                text: 'Почтовая доставка',
+              },
+              {
+                caption: 'Почтовый индекс',
+                text: '410000',
+              },
+              {
+                caption: 'Город',
+                text: 'Саратов',
+              },
+              {
+                caption: 'Адрес',
+                text: 'ул. Ломоносова, д. 5, кв. 3',
+              },
+            ]
+          .checkout__info
+            each item in data
+              p.checkout__info__row
+                span.checkout__info__caption= item.caption
+                  | :
+                span.checkout__info__text= item.text
+
+        .checkout__grid__section
+          h3.checkout__title Оплата
+          -
+            var data = [
+              {
+                caption: 'Способ оплаты',
+                text: 'Оплата банковской картой',
+              },
+            ]
+          .checkout__info
+            each item in data
+              p.checkout__info__row
+                span.checkout__info__caption= item.caption
+                  | :
+                span.checkout__info__text= item.text
+
+    .checkout__aside
+      +checkout-summary(true).checkout__aside__inner
+

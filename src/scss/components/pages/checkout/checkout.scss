@@ -28,6 +28,14 @@
     }
   }
 
+  &__lead {
+    font-size: 1.4rem;
+
+    @include up(md) {
+      font-size: 2.2rem;
+    }
+  }
+
   &__fieldset {
     display: grid;
     gap: 1.2rem;
@@ -68,5 +76,20 @@
 
   &__note {
     font-size: 1.2rem;
+  }
+
+  &__info {
+    display: grid;
+    gap: 1.2rem;
+
+    &__caption {
+      display: block;
+      font-size: 1.4rem;
+      color: $color-text-gray;
+    }
+
+    &__text {
+      font-size: 1.8rem;
+    }
   }
 }

@@ -1,0 +1,32 @@
+mixin checkout-summary(isSuccess = false)
+  .checkout-summary&attributes(attributes)
+    .checkout-summary__row
+      span Стоимость товаров
+      span.checkout-summary__cost 12 540 ₽
+    .checkout-summary__row
+      span Доставка
+      span.checkout-summary__cost 1 540 ₽
+    .checkout-summary__row._discount
+      span Скидка
+      span.checkout-summary__cost 500 ₽
+    .checkout-summary__row._summary
+      span Итого
+      span.checkout-summary__cost 14 540 ₽
+
+    if isSuccess
+      .checkout-summary__footer
+        a(href="#").btn._primary._sm
+          span Продолжить покупки
+          +svgsprite('arrow-right').btn__icon
+    else
+      form.checkout-summary__promo
+        input(placeholder="Промокод").checkout-summary__promo__input
+        button(type="submit").checkout-summary__promo__button Применить
+      //-form.checkout-summary__promo
+        input(value="PROMO2024" disabled).checkout-summary__promo__input
+        button(type="type").checkout-summary__promo__button Удалить
+      .checkout-summary__footer
+        button(type="submit" form="msOrder").btn._primary Оформить заказ
+        a(href="#").btn._link-muted._sm
+          span Продолжить покупки
+          +svgsprite('arrow-right').btn__icon
