@@ -1,0 +1,49 @@
+.minicart {
+  $root: &;
+
+  width: 26rem;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: $color-primary;
+  box-shadow: .4rem .4rem .4rem rgba($color-text, .12);
+
+  &__product-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__product-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $color-white;
+    @include transition(opacity);
+
+    @include hover {
+      opacity: $link-hover-opacity;
+    }
+
+    &__picture {
+      aspect-ratio: 100 / 68;
+      width: 10rem;
+      flex-shrink: 0;
+      border: .1rem solid;
+    }
+
+    &__count {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  &__note {
+    font-size: 1rem;
+    color: $color-white;
+    text-align: center;
+  }
+}

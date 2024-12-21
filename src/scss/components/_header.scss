@@ -4,9 +4,8 @@
   z-index: $header-z-index;
   position: sticky;
   top: 0;
-  background-color: $color-white;
+  background-color: $color-primary-dark;
   height: map-get($header-height, sm);
-  border-bottom: .1rem solid;
 
   @each $key in (md, lg, xl) {
     @include up($key) {
@@ -19,8 +18,398 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1.8rem;
   }
 
+  &__right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @include up(md) {
+      gap: 1.5rem;
+    }
+  }
+
+  &__logo {
+    align-self: flex-start;
+
+    @include down(md) {
+      height: 100%;
+
+      * {
+        height: 100%;
+      }
+    }
+
+    &__bg {
+      position: absolute;
+      top: -.6rem;
+      left: .8rem;
+
+      @include down(md) {
+        display: none;
+      }
+    }
+  }
+
+  &__nav {
+    @include down(md) {
+      position: fixed;
+      z-index: $header-z-index - 1;
+      top: map-get($header-height, md);
+      left: 0;
+      right: 0;
+      height: calc(100vh - #{map-get($header-height, md)});
+      height: calc(100dvh - #{map-get($header-height, md)});
+      overflow: auto;
+    }
+
+    @include down(sm) {
+      top: map-get($header-height, sm);
+    }
+
+    @include up(lg) {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .body._loaded & {
+      @include transition((opacity, visibility));
+    }
+
+    .body:not(._menu-opened) & {
+      @include down(md) {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba($color-text, .6);
+
+      @include up(lg) {
+        display: none;
+      }
+    }
+
+  }
+
+  &__menu {
+    z-index: 2;
+    font-size: 1.4rem;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    background: $color-primary;
+
+    @include up(lg) {
+      gap: 1.2rem;
+      flex-direction: row;
+      background: transparent;
+    }
+
+    #{$root}__menu-wrapper & {
+      @include up(lg) {
+        background: $color-white;
+        border: $color-gray-light;
+        color: $color-text;
+        gap: .6rem;
+        border-radius: .8rem;
+        padding: .8rem 1.2rem;
+        flex-direction: column;
+        position: absolute;
+        top: 1.7rem;
+        left: -1.2rem;
+        width: max-content;
+        box-shadow: 0 .6rem 1rem rgba($color-text, .2);
+        @include transition((opacity, visibility));
+        opacity: 0;
+        visibility: hidden;
+
+        &::before {
+          content: '';
+          width: 100%;
+          height: .7rem;
+          position: absolute;
+          top: -.7rem;
+          left: 0;
+        }
+
+        &::after {
+          content: '';
+          background: $color-gray-light;
+          width: 1.4rem;
+          height: .7rem;
+          position: absolute;
+          top: -.7rem;
+          clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        }
+      }
+    }
+
+    &__item {
+      @include down(md) {
+        &:not(:last-child) {
+          border-bottom: .1rem solid rgba($color-white, .6);
+        }
+      }
+    }
+
+    &__link {
+      @include down(md) {
+        display: block;
+        padding: 1.1rem 2rem;
+      }
+
+      @include transition(opacity);
+
+      @include hover {
+        opacity: $link-hover-opacity;
+      }
+    }
+  }
+
+  &__menu-wrapper {
+    @include down(md) {
+      z-index: 2;
+      background: $color-primary;
+      border-top: .1rem solid rgba($color-white, .6);
+    }
+
+    @include up(lg) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.6rem;
+      height: 1rem;
+
+      @include hover {
+        #{$root}__menu {
+          opacity: 1;
+          visibility: inherit;
+          transition-delay: .2s;
+        }
+      }
+    }
+
+    &__toggler {
+      @include down(md) {
+        display: none;
+      }
+
+      width: .4rem;
+      height: .4rem;
+      background: $color-white;
+      border-radius: 50%;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: .4rem;
+        height: .4rem;
+        background: $color-white;
+        border-radius: 50%;
+      }
+
+      &::before {
+        left: -.6rem;
+      }
+
+      &::after {
+        right: -.6rem;
+      }
+    }
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: $color-white;
+    font-size: 1.4rem;
+    @include transition(opacity);
+
+    @include hover {
+      opacity: $link-hover-opacity;
+    }
+
+    span {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      @include down(sm) {
+        display: none;
+      }
+    }
+
+    .svgsprite {
+      width: 1.6rem;
+      height: 1.6rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: .8rem;
+  }
+
+  &__button {
+    $button: &;
+
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.4rem;
+    height: 3.4rem;
+    background: $color-primary;
+    color: $color-white;
+    border-radius: .6rem;
+    @include transition(background);
+
+    &._disabled {
+      cursor: not-allowed;
+      opacity: .4;
+    }
+
+    &:not(._disabled) {
+      @include hover {
+        background: $color-primary-hover;
+      }
+    }
+
+    .svgsprite {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &._with-dot {
+      &::after {
+        content: '';
+        position: absolute;
+        top: .3rem;
+        right: .4rem;
+        width: .6rem;
+        height: .6rem;
+        border-radius: 50%;
+        background: transparent;
+        @include transition(background);
+      }
+
+      &._active {
+        &::after {
+          background: $color-red;
+        }
+      }
+    }
+
+    &._burger {
+      @include up(lg) {
+        display: none;
+      }
+    }
+
+    &__burger-box {
+      width: 1.4rem;
+      height: 1rem;
+      display: block;
+
+      &__inner {
+        background-color: $color-white;
+        display: block;
+        width: 1.4rem;
+        height: .1rem;
+        position: absolute;
+        top: 50%;
+
+        transition-duration: .1s;
+        transition-timing-function: cubic-bezier(.55, .055, .675, .19);
+        transition-property: transform;
+
+        &:before,
+        &:after {
+          content: "";
+          display: block;
+          background-color: inherit;
+          width: 1.4rem;
+          height: .1rem;
+          position: absolute;
+
+          transition-property: transform;
+          transition-duration: .15s;
+          transition-timing-function: ease;
+        }
+
+        &:before {
+          top: -.6rem;
+          transition: top .1s .14s ease, opacity .1s ease;
+        }
+
+        &:after {
+          bottom: -.6rem;
+          transition: bottom .1s .14s ease, transform .1s cubic-bezier(.55, .055, .675, .19);
+        }
+
+        .body._menu-opened & {
+          transform: rotate(45deg);
+          transition-delay: .14s;
+          transition-timing-function: cubic-bezier(.215, .61, .355, 1);
+
+          &:before {
+            top: 0;
+            opacity: 0;
+            transition: top .1s ease, opacity .1s .14s ease;
+          }
+
+          &:after {
+            bottom: 0;
+            transform: rotate(-90deg);
+            transition: bottom .1s ease, transform .1s .14s cubic-bezier(.215, .61, .355, 1);
+          }
+        }
+      }
+    }
+  }
+
+  &__minicart {
+    .minicart {
+      position: absolute;
+      right: 0;
+      bottom: -.6rem;
+      transform: translateY(100%);
+      opacity: 0;
+      visibility: hidden;
+
+      .body._loaded & {
+        @include transition((opacity, visibility));
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -.6rem;
+        left: 0;
+        right: 0;
+        height: .6rem;
+      }
+    }
+
+    @include hover {
+      #{$root}__button:not(._disabled)~.minicart {
+        opacity: 1;
+        visibility: inherit;
+        transition-delay: .2s;
+      }
+    }
+  }
 
 }

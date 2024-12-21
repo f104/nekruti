@@ -139,7 +139,8 @@ export const LOCAL_STORAGE_COLOR_KEY = 'altColorValue'
 export const LOCAL_STORAGE_IMAGES_KEY = 'altImagesValue'
 
 // header
-export const MENU_TOGGLER_CLASS_NAME = 'js-menu-toggler'
+export const MENU_TOGGLER_CLASS = 'js-menu-toggler'
+export const BODY_MENU_OPENED_CLASS = '_menu-opened'
 
 export const DATA_INTL_DIAL_CODE = 'data-intl-dial-code'
 export const DATA_INTL_ISO = 'data-intl-iso'
@@ -267,7 +268,6 @@ export const POPUP_CLASS = 'js-popup'
 export const ERROR_POPUP_CLASS = '_errorred'
 export const MESSAGE_POPUP_ID = 'popup_message'
 export const POPUP_CONTENT_SELECTOR = 'js-popup-content'
-export const BODY_MENU_OPENED_CLASS_NAME = '_menu-opened'
 export const POPUP_DYNAMIC_CONTENT_CLASS = 'js-popup__dynamic-content'
 
 // paginaton

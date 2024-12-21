@@ -58,6 +58,12 @@
     }
   }
 
+  &._on-primary {
+    @include hover {
+      background: rgba($color-text, $link-hover-opacity);
+    }
+  }
+
   &._outline {
     background: $color-white;
     color: $color-text;
@@ -117,5 +123,9 @@
     @include down(sm) {
       width: 100%;
     }
+  }
+
+  &._wide {
+    width: 100%;
   }
 }

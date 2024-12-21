@@ -24,6 +24,7 @@ import SlidersClass from './components/Sliders'
 import ShareClass from './components/Share'
 import MapClass from './components/Map'
 import MessageClass from './components/Message'
+import MenuClass from './components/Menu'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
 // import PopupClass from '../ui/popup/Popup.class'
@@ -142,6 +143,7 @@ class App {
 
       // include components here
 
+      new MenuClass()
       new SlidersClass()
       new ShareClass()
       new MapClass()

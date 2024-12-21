@@ -3,7 +3,10 @@ footer.footer
     a(href="index.html").footer__logo
       img(src="assets/img/logo.svg" alt="alt text")
     ul.footer__menu
-      each item in nav
+      each item in nav1
+        li.footer__menu__item
+          a(href="#").footer__menu__link=item
+      each item in nav2
         li.footer__menu__item
           a(href="#").footer__menu__link=item
     p.footer__copyright Самокруты © 2003-2025

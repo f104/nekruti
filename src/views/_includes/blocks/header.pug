@@ -1,3 +1,44 @@
 header.header
   .header__inner
-    a(href="index.html") index
+    .header__logo
+      img(src="assets/img/logo-bg.svg" alt="" aria-hidden="true").header__logo__bg
+      a(href="index.html" title="На главную")
+        img(src="assets/img/logo.svg" alt="alt text")
+    nav.header__nav
+      ul.header__menu
+        each item in nav1
+          li.header__menu__item
+            a(href="#").header__menu__link=item
+      .header__menu-wrapper
+        .header__menu-wrapper__toggler
+        ul.header__menu
+          each item in nav2
+            li.header__menu__item
+              a(href="#").header__menu__link=item
+      .header__nav__bg.js-menu-toggler
+    .header__right
+      a(href="#").header__user
+        span rag@gmail.com
+        +svgsprite('user')(aria-hidden="true")
+      .header__buttons
+        .header__minicart
+          a(href="#" title="Корзина").header__button._with-dot._active
+            +svgsprite('basket')
+          .minicart
+            .minicart__product-list
+              each item in products.splice(0, 2)
+                a(href="#").minicart__product-card
+                  +picture({
+                    url: item.image,
+                    alt: item.title,
+                    _0: {width: 262, height: 179},
+                  }).minicart__product-card__picture
+                  .minicart__product-card__content
+                    p.minicart__product-card__title=item.title
+                    p.minicart__product-card__count #{item.count} шт.
+                    p.minicart__product-card__price=item.price
+            a(href="#").btn._on-primary._wide Купить
+            .minicart__note Вы сможете изменить заказ на этапе оформления.
+        button.header__button._burger.js-menu-toggler
+          span.header__button__burger-box
+            span.header__button__burger-box__inner
