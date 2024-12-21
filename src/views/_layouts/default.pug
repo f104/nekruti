@@ -37,22 +37,26 @@ block config
         title: 'Универсальный механизм вращения',
         price: '14 000 ₽',
         text: 'Предназначен для эксплуатации со всеми видами шампуров, а также с валиками для гриль-булочек...',
-        count: 2,
+        count: 1,
         cost: '14 000 ₽',
       },
       {
         image: 'assets/img/products/4.jpg',
         title: 'Шампуры-самокруты МВШ-9',
         price: '5 600 ₽',
+        cost: '5 600 ₽',
         priceOld: '6 500 ₽',
         text: 'Набор из девяти шампуров для большой компании и большого праздника.',
+        count: 1,
       },
       {
         image: 'assets/img/products/5.jpg',
         title: 'Валик для гриль-булочки',
         price: '1 500 ₽',
+        cost: '3 000 ₽',
         priceOld: '2 000 ₽',
         text: 'Валик для гриль-булочки предназначен для приготовления теста на углях.',
+        count: 2,
       },
     ]
 
@@ -109,6 +113,8 @@ html(lang="ru" data-zoom='100')
       include ../_includes/blocks/footer
 
     block popups
+      include ../_includes/blocks/login
+      include ../_includes/blocks/register
 
     block styles
       link(href="/src/scss/common.scss" rel='stylesheet')

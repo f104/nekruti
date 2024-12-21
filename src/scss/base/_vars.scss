@@ -18,8 +18,7 @@ $color-primary-active: #418D25;
 $color-error: $color-red;
 $color-popup-background: $color-white;
 
-$color-overlay: $color-text;
-$opacity-overlay: .4;
+$background-overlay: rgba($color-text, .6);
 
 $link-color: $color-primary;
 $link-hover-color: $color-primary-hover;

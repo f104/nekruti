@@ -10,6 +10,11 @@
     max-width: 80rem;
   }
 
+  &._login {
+    background: transparent;
+    padding: 0;
+  }
+
   &__inner {
     display: grid;
     gap: 1.6rem 4.8rem;
@@ -27,7 +32,8 @@
       opacity: 0;
     }
 
-    #{$root}._profile & {
+    #{$root}._profile &,
+    #{$root}._login & {
       grid-template-columns: 1fr;
     }
   }
@@ -45,6 +51,27 @@
     text-align: center;
   }
 
+  &__toggler {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 1.8rem;
+    font-size: 1.8rem;
+    text-align: center;
+
+    &__item {
+      &._active {
+        font-weight: 500;
+        color: $color-primary;
+      }
+
+      &:not(._active) {
+        border-bottom: .1rem dotted;
+      }
+    }
+  }
+
   &__footer {
     display: flex;
     flex-direction: column;
@@ -59,6 +86,10 @@
   &__agree {
     font-size: 1.2rem;
     color: $color-text-gray;
+
+    #{$root}._login & {
+      text-align: center;
+    }
 
     a {
       text-decoration: underline;

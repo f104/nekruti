@@ -1,0 +1,52 @@
++popup('login')
+  form.form._login.js-form(
+    novalidate 
+    autocomplete="off" 
+    action="assets/ajax/success.json"
+  )
+    .form__toggler
+      span.form__toggler__item._active Вход
+      button(data-modal="popup_register" type="button").form__toggler__item Регистрация
+
+    .form__inner
+      +input-mask({
+        label: 'E-mail',
+        placeholder: 'user@host.com',
+        id: 'login_form_email',
+        errorMessage: 'Это поле обязательно',
+        caption: 'Который вы использовали при регистрации или оформлении заказа.',
+      })(
+        type='text'
+        name='email2'
+        required
+        data-inputmask-alias="email"
+        data-inputmask-inputmode="email"
+        value="user@host.com"
+      )
+
+      +input({
+        label: 'Пароль',
+        id: 'login_form_password',
+        caption: 'Если вы не помните свой пароль – просто оставьте это поле пустым и вы получите новый, вместе со ссылкой на активацию.',
+      })(
+        name="password"
+        type="password"
+        autocomplete="off"
+      )
+
+      .form__footer
+        button(type="submit").btn
+          span Войти
+
+  -
+    var successData = {
+      text: 'Отправили письмо на user@host.com',
+    }
+    var errorData = {
+      title: 'Произошла ошибка',
+      text: 'Попробуйте повторить действие чуть позже',
+      btnText: 'Попробовать снова',
+    }
+  +form-message(successData, errorData, true)
+
+

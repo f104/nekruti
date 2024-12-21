@@ -1,0 +1,54 @@
++popup('register')
+  form.form._login.js-form(
+    novalidate 
+    autocomplete="off" 
+    action="assets/ajax/success.json"
+  )
+    .form__toggler
+      button(data-modal="popup_login" type="button").form__toggler__item Вход
+      span.form__toggler__item._active Регистрация
+
+    .form__inner
+      +input-mask({
+        label: 'E-mail',
+        placeholder: 'user@host.com',
+        id: 'register_form_email',
+        errorMessage: 'Это поле обязательно',
+        caption: 'На указанный email придёт письмо со ссылкой для активации.',
+      })(
+        type='text'
+        name='email2'
+        required
+        data-inputmask-alias="email"
+        data-inputmask-inputmode="email"
+        value="user@host.com"
+      )
+
+      +input({
+        label: 'Пароль',
+        id: 'register_form_password',
+        caption: 'Вы можете указать свой пароль, или оставить это поле пустым и тогда он будет сгенерирован автоматически.',
+      })(
+        name="password"
+        type="password"
+        autocomplete="off"
+      )
+
+      .form__footer
+        button(type="submit").btn
+          span Регистрация
+        p.form__agree Отправляя информацию, вы соглашаетесь с <a href="#">условиями обработки персональных данных</a>.
+
+  -
+    var successData = {
+      title: 'Спасибо за регистрацию!',
+      text: 'Отправили письмо на user@host.com',
+    }
+    var errorData = {
+      title: 'Произошла ошибка',
+      text: 'Попробуйте повторить действие чуть позже',
+      btnText: 'Попробовать снова',
+    }
+  +form-message(successData, errorData, true)
+
+

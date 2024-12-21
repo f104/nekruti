@@ -27,7 +27,7 @@ import MessageClass from './components/Message'
 import MenuClass from './components/Menu'
 // import AlternativeVersionClass from './components/AlternativeVersion'
 // import { TabsClass } from '../ui/tabs/Tabs.class'
-// import PopupClass from '../ui/popup/Popup.class'
+import PopupClass from '../ui/popup/Popup.class'
 import CollapseClass from '../ui/accordion/Collapse.class'
 // import { BtnUpClass } from '../ui/btn-scroll-up/BtnUp.class'
 import FormClass from '../ui/form/Form.class'
@@ -44,11 +44,10 @@ if (!('scrollBehavior' in window.document.documentElement.style)) {
     res?.polyfill()
   })
 }
-
 class App {
   restUrl =
     process.env.NODE_ENV === 'development'
-      ? 'http://localhost:8888'
+      ? 'http://localhost:8889'
       : 'https://pages.rs-app.ru/rs/html/frontend-vite-pug' // базовый урл рест
   langParam = 'lang' // параметр запроса к рест, в котором передаем язык
   lang = document.documentElement.lang || 'ru' // язык сайта
@@ -148,7 +147,7 @@ class App {
       new ShareClass()
       new MapClass()
       // new TabsClass()
-      // new PopupClass()
+      new PopupClass()
       new CollapseClass()
       // new BtnUpClass()
       new FormClass()

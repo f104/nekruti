@@ -11,11 +11,11 @@ import {
   OPEN_CLASS_NAME,
   POPUP_BTN_CLOSE_CLASS,
   POPUP_CLASS,
-  BODY_MENU_OPENED_CLASS_NAME,
   FILTER_FORM_PRELOADER_CLASS,
   POPUP_DYNAMIC_CONTENT_CLASS,
   DATA_URL,
   SHOW_CLASS_NAME,
+  BODY_MENU_OPENED_CLASS,
 } from '../../js/constants'
 
 export default class PopupClass {
@@ -90,7 +90,18 @@ export default class PopupClass {
           }
         }
       }
+
+      const closeOther = () => {
+        document.querySelectorAll(`.${POPUP_CLASS}.${OPEN_CLASS_NAME}[${DATA_INIT}]`).forEach((popup) => {
+          popup.dispatchEvent(new CustomEvent(CUSTOM_EVENT_HANDLE_CLOSE))
+        })
+      }
+
       const toggleOpen = (open = false, openBtn) => {
+        if (open) {
+          closeOther()
+        }
+
         toggleAria(open)
 
         if (open) {
@@ -112,7 +123,7 @@ export default class PopupClass {
             popupInPopup = false
           }
         } else {
-          if (!popupInPopup && !window.app.body.classList.contains(BODY_MENU_OPENED_CLASS_NAME)) {
+          if (!popupInPopup && !window.app.body.classList.contains(BODY_MENU_OPENED_CLASS)) {
             window.app.removeOverflowHiddenBody()
           } else {
             popupInPopup = false
