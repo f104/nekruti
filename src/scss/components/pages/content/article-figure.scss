@@ -1,0 +1,13 @@
+.article-figure {
+  $root: &;
+
+  &__caption {
+    font-size: 1.2rem;
+    color: $color-text-gray;
+    margin-top: 1.2rem;
+
+    @include up(md) {
+      font-size: 1.4rem;
+    }
+  }
+}

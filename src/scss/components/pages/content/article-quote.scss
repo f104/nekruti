@@ -21,5 +21,10 @@
     @include up(md) {
       font-size: 1.6rem;
     }
+
+    a {
+      @include link-primary-dark;
+      text-decoration: underline;
+    }
   }
 }

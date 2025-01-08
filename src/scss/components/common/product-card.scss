@@ -97,6 +97,7 @@
     color: $color-text-gray;
     font-size: 1.2rem;
     @include transition(opacity);
+    @include line-clamp(3);
 
     @media (hover: none) {
       display: none;
